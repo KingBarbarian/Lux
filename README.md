@@ -1,6 +1,6 @@
-# <a name="features">&sect; Ant Design Mobile of React @农分期</a>
+# <a name="features">⊙ Ant Design Mobile of React @农分期</a>
 
-## <a name="features">&sect; 技术栈</a>
+## <a name="features">⊙ 技术栈</a>
 > 详情可参阅 `package.json`
 
 * React 15.6.1
@@ -13,7 +13,6 @@
 * Axios 0.16.2
 * ES6 + Babel
 * Ant Design Mobile 2.0.0(beta)
-*** 
 
 ### <a name="tree">⊙ 目录结构</a>
 ```
@@ -41,7 +40,7 @@
 ├── .postcssrc.js       # postcss配置项，vue-cli产出
 ├── package.json        # 很重要的东西了
 ```
-## <a name="reference">&sect; 操作</a>
+## <a name="reference">⊙ 操作</a>
 项目下载
 ```
 git clone https://github.com/brucecham/react-cli.git
@@ -56,7 +55,7 @@ yarn start
 yarn build
 ```
 
-## <a name="reference">&sect; 启动静态服务器</a>
+## <a name="reference">⊙ 启动静态服务器</a>
 > [sts启动静态服务器](https://www.npmjs.com/package/sts)
 ```
 yarn build
