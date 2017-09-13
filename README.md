@@ -1,20 +1,32 @@
 # <a name="features">⊙ Ant Design Mobile of React</a>
 
 ## <a name="features">⊙ 技术栈</a>
-> 详情可参阅 `package.json`
+详情可参阅 `package.json`
 
-* React 15.6.1
-* Redux 3.7.2
-* React-redux 5.0.6
-* React-router-dom 4.2.2 
-* Redux-saga 0.15.6
-* Webpack 3.5.6
-* Babel-ESlint + Pre-ommit(参考vue-ci)
-* Axios 0.16.2
-* ES6 + Babel
-* Ant Design Mobile 2.0.0(beta)
+* `React 15.6.1`
+* `Redux 3.7.2`
+* `React-redux 5.0.6`
+* `React-router-dom 4.2.2`
+* `Redux-saga 0.15.6`
+* `Webpack 3.5.6`
+* `ESlint 4.6.1 + Prettier 1.6.1 + Pre-ommit`
+* `Axios 0.16.2`
+* `ES6 + Babel`
+* `Ant Design Mobile 2.0.0(beta)`
 
-### <a name="tree">⊙ 目录结构</a>
+## <a name="features">⊙ 代码检测</a>
+eslint手动检查
+```
+`npm run eslint`
+```
+eslint手动修正
+```
+`npm run fix`
+```
+git commit -m 后会执行eslint+prettier
+```
+
+## <a name="tree">⊙ 目录结构</a>
 ```
 .
 ├─ build/               # Webpack构建的线上包
@@ -43,29 +55,21 @@
 ## <a name="reference">⊙ 操作</a>
 项目下载
 ```
-git clone https://github.com/brucecham/react-cli.git
-cd react-cli && yarn
+`git clone https://github.com/brucecham/react-cli.git`
+`cd react-cli && yarn`
 ```
 启动开发环境
 ```
-yarn start
+`yarn start`
 ```
 构建生产环境代码
 ```
-yarn build
-```
-eslint手动检查
-```
-npm run eslint
-```
-eslint手动修正
-```
-npm run fix
+`yarn build`
 ```
 
 ## <a name="reference">⊙ 启动静态服务器</a>
-> [sts启动静态服务器](https://www.npmjs.com/package/sts)
+[sts启动静态服务器](https://www.npmjs.com/package/sts)
 ```
-yarn build
-cd dist && sts 8090
+`yarn build`
+`cd dist && sts 8090`
 ```
