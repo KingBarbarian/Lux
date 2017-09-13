@@ -2,6 +2,7 @@ import React from "react";
 import { DatePickerView } from "antd-mobile";
 import enUs from "antd-mobile/lib/date-picker-view/locale/en_US";
 
+const a = 1;
 
 export default class App extends React.Component {
   constructor(props) {
