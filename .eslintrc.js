@@ -1,64 +1,33 @@
-'use strict';
+// http://eslint.org/docs/user-guide/configuring
 
 const eslintrc = {
-  env: {
-    browser: true,
-    node: true,
-    mocha: true,
-    jest: true,
-    es6: true,
-  },
+  root: true,
   parser: 'babel-eslint',
   parserOptions: {
-    ecmaVersion: 6,
-    ecmaFeatures: {
-      jsx: true,
-      experimentalObjectRestSpread: true,
-    },
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
-  plugins: [
-    'markdown',
-    'react',
-    'babel',
-  ],
+  env: {
+    browser: true,
+    "es6": true
+  },
+  // https://github.com/facebookincubator/create-react-app/tree/master/packages/eslint-config-react-app
+  extends: 'react-app',
+  plugins: ["react"],
   rules: {
-    "react/jsx-uses-vars": "error",
-    'react/forbid-prop-types': 0,
-    'quote-props': 0,
-    'no-script-url': 0,
-    'jsx-a11y/label-has-for': 0,
-    'react/jsx-filename-extension': 0,
-    'func-names': 0,
-    'prefer-const': 0,
-    'arrow-body-style': 0,
-    'react/sort-comp': 0,
-    'react/prop-types': 0,
-    'react/jsx-first-prop-new-line': 0,
-    'import/no-unresolved': 0,
-    'no-param-reassign': 0,
-    'no-return-assign': 0,
-    'max-len': 0,
-    'newline-after-import': 0,
-    'consistent-return': 0,
-    'import/no-extraneous-dependencies': 0,
-    'import/newline-after-import': 0,
-    'react/prefer-stateless-function': 0,
-    "no-use-before-define": ["error", { "functions": true, "classes": true }],
-    "no-unused-vars": ["error", { "vars": "all", "args": "none", "ignoreRestSiblings": false }]
-  },
-};
-eslintrc.globals = {
-  React: true,
-  ReactDOM: true,
-  mountNode: true,
-};
-
-Object.assign(eslintrc.rules, {
-  'no-console': 0,
-  'eol-last': 0,
-  'prefer-rest-params': 0,
-  'react/no-multi-comp': 0,
-  'react/prefer-es6-class': 0,
-});
+    'arrow-parens': 0,
+    'generator-star-spacing': 0,
+    "react/jsx-uses-vars": [2],
+    "react/jsx-uses-react": 2,
+    "react/react-in-jsx-scope": 2,
+    "import/no-webpack-loader-syntax": 0,
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }]
+  }
+}
 
 module.exports = eslintrc;

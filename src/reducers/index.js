@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux'
-import { reducer as form } from 'redux-form'
+import { combineReducers } from "redux";
+import { reducer as form } from "redux-form";
 
-import counter from './counter'
-import countTimer from './countTimer'
+import counter from "./counter";
+import countTimer from "./countTimer";
 /*
   直接引用counter作为reducer时候
     state = 0
@@ -16,4 +16,4 @@ export default combineReducers({
   counter,
   countTimer,
   form
-})
+});

@@ -1,4 +1,4 @@
-# <a name="features">⊙ Ant Design Mobile of React @农分期</a>
+# <a name="features">⊙ Ant Design Mobile of React</a>
 
 ## <a name="features">⊙ 技术栈</a>
 > 详情可参阅 `package.json`
@@ -9,7 +9,7 @@
 * React-router-dom 4.2.2 
 * Redux-saga 0.15.6
 * Webpack 3.5.6
-* Babel-ESlint + Pre-ommit
+* Babel-ESlint + Pre-ommit(参考vue-ci)
 * Axios 0.16.2
 * ES6 + Babel
 * Ant Design Mobile 2.0.0(beta)
@@ -53,6 +53,14 @@ yarn start
 构建生产环境代码
 ```
 yarn build
+```
+eslint手动检查
+```
+npm run eslint
+```
+eslint手动修正
+```
+npm run fix
 ```
 
 ## <a name="reference">⊙ 启动静态服务器</a>

@@ -13,14 +13,17 @@
     "test": "npm run unit && npm run e2e",
     "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
     "eslint": "eslint --ext .js src",
-    "fix": "eslint --ext .js src  --fix"
+    "fix": "eslint --ext .js src  --fix",
+    "prettier": "prettier --write 'src/**/*.js' "
   },
   "precommit": [
     "precommit-msg",
+    "prettier --write --bracketSpacing",
     "eslint"
   ],
   "pre-commit": [
     "precommit-msg",
+    "prettier --write --bracketSpacing",
     "eslint"
   ],
   "dependencies": {
@@ -30,8 +33,11 @@
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "bundle-loader": "^0.5.5",
     "classnames": "^2.2.5",
+    "eslint-config-react-app": "^2.0.0",
     "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-flowtype": "^2.35.1",
     "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "nyan-progress-webpack-plugin": "^1.2.0",
@@ -40,6 +46,7 @@
     "postcss-loader": "^2.0.6",
     "pre-commit": "^1.2.2",
     "precss": "^2.0.0",
+    "prettier": "^1.6.1",
     "pure-render-decorator": "^1.2.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
