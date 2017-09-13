@@ -21,6 +21,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
+        <i className="iconfont icon-pending" />
         <div className="sub-title">Start DateTime</div>
         <DatePickerView
           value={this.state.value}

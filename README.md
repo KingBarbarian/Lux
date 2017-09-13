@@ -39,6 +39,7 @@ npm run fix
 │   ├─ utils/           # 公用方法封装
 │   ├─ main.js          # 主入口文件
 ├── static/             # 放置无需经由 Webpack 处理的静态文件
+│   ├─ font.css/        # [iconfont+配置](http://www.iconfont.cn/)
 ├── test/               # vue-cli产出的测试目录，暂时没有处理，待更
 ├── index.html          # 静态模板页面，开发和build产出，都依赖它
 ├── .babelrc            # Babel 转码配置
