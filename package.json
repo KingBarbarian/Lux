@@ -18,8 +18,8 @@
   },
   "lint-staged": {
     "*.js": [
-      "prettier --write --bracketSpacing",
-      "eslint",
+      "prettier --write 'src/**/*.js",
+      "eslint --ext .js src",
       "git add"
     ]
   },
@@ -35,6 +35,7 @@
     "eslint-plugin-flowtype": "^2.35.1",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
+    "husky": "^0.14.3",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "lint-staged": "^4.1.3",
