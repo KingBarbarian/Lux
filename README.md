@@ -1,8 +1,6 @@
 # <a name="features">⊙ Ant Design Mobile of React</a>
 
 ## <a name="features">⊙ 技术栈</a>
-详情可参阅 `package.json`
-
 * `React 15.6.1`
 * `Redux 3.7.2`
 * `React-redux 5.0.6`
@@ -17,13 +15,11 @@
 ## <a name="features">⊙ 代码检测</a>
 eslint手动检查
 ```
-`npm run eslint`
+npm run eslint
 ```
 eslint手动修正
 ```
-`npm run fix`
-```
-git commit -m 后会执行eslint+prettier
+npm run fix
 ```
 
 ## <a name="tree">⊙ 目录结构</a>
@@ -55,21 +51,21 @@ git commit -m 后会执行eslint+prettier
 ## <a name="reference">⊙ 操作</a>
 项目下载
 ```
-`git clone https://github.com/brucecham/react-cli.git`
-`cd react-cli && yarn`
+git clone https://github.com/brucecham/react-cli.git
+cd react-cli && yarn
 ```
 启动开发环境
 ```
-`yarn start`
+yarn start
 ```
 构建生产环境代码
 ```
-`yarn build`
+yarn build
 ```
 
 ## <a name="reference">⊙ 启动静态服务器</a>
 [sts启动静态服务器](https://www.npmjs.com/package/sts)
 ```
-`yarn build`
-`cd dist && sts 8090`
+yarn build
+cd dist && sts 8090
 ```
