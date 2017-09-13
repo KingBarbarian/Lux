@@ -16,14 +16,20 @@
     "fix": "eslint --ext .js src  --fix",
     "prettier": "prettier --write 'src/**/*.js' "
   },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write --bracketSpacing",
+      "git add"
+    ]
+  },
   "precommit": [
     "precommit-msg",
-    "prettier --write --bracketSpacing",
+    "prettier --write 'src/**/*.js",
     "eslint"
   ],
   "pre-commit": [
     "precommit-msg",
-    "prettier --write --bracketSpacing",
+    "prettier --write 'src/**/*.js",
     "eslint"
   ],
   "dependencies": {
