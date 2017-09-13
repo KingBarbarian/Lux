@@ -52,8 +52,8 @@ npm run fix
 ## <a name="reference">⊙ 操作</a>
 项目下载
 ```
-git clone https://github.com/brucecham/react-cli.git
-cd react-cli && yarn
+git clone http://gitlab.dev.nongfenqi.com/Tristram/Lux
+cd Lux && yarn
 ```
 启动开发环境
 ```

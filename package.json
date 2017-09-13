@@ -1,5 +1,5 @@
 {
-  "name": "react-cli",
+  "name": "lux",
   "version": "0.0.1",
   "description": "react project based on vue-cli",
   "author": "weijianwei weijianwei@nongfenqi.com",
@@ -50,6 +50,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-hot-loader": "next",
+    "react-native-webview-invoke": "^0.3.10",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
