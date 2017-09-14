@@ -1,9 +1,15 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Button, InputItem, WhiteSpace, NavBar, Icon } from "antd-mobile";
 import invoke from "react-native-webview-invoke/browser";
 
 const webWannaSet = invoke.default.bind("set");
 
+@connect(state => {
+  return {
+    state_: state
+  };
+})
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -14,6 +20,7 @@ export default class App extends React.Component {
 
   onClick_() {
     console.log(this.state.value);
+    console.log(this.props.state_);
     webWannaSet();
   }
   render() {

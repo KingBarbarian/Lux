@@ -53,6 +53,7 @@
     "redux": "^3.7.2",
     "redux-form": "^7.0.4",
     "redux-saga": "^0.15.6",
+    "redux-thunk": "^2.2.0",
     "style-loader": "^0.18.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
