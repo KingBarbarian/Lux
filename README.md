@@ -29,8 +29,8 @@ npm run fix
 ├─ dist/                # build 生成的生产环境下的项目
 ├─ src/                 # 源码目录
 │   ├─ assets/          # images
-│   ├─ components/      # 组件（COMPONENT）
-│   ├─ const/           # 常量集中管理
+│   ├─ components/      # 组件
+│   ├─ const/           # 常量
 │   ├─ containers/      # 容器
 │   ├─ reducers/        # 函数因子
 │   ├─ routers/         # 路由
@@ -40,9 +40,9 @@ npm run fix
 │   ├─ main.js          # 主入口文件
 ├── static/             # 放置无需经由 Webpack 处理的静态文件
 │   ├─ font.css/        # [iconfont+配置](http://www.iconfont.cn/)
-├── test/               # vue-cli产出的测试目录，暂时没有处理，待更
 ├── index.html          # 静态模板页面，开发和build产出，都依赖它
 ├── .babelrc            # Babel 转码配置
+├── .gitlab-ci.yml      # gitlab 自动打包上线
 ├── .eslintignore       # ESLint 检查中需忽略的文件（夹）
 ├── .eslintrc           # ESLint 配置
 ├── .gitignore          # git忽略提交
