@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/weijianwei/.nvm/versions/node/v5.9.0/bin/node /Users/weijianwei/.yarn/bin/yarn.js add react-native-webview-invoke
+  /Users/weijianwei/.nvm/versions/node/v5.9.0/bin/node /Users/weijianwei/.yarn/bin/yarn.js
 
 PATH: 
   /Users/weijianwei/.nvm/versions/node/v5.9.0/bin:/Users/weijianwei/.yarn/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/weijianwei/.yarn/bin:/usr/local/rvm/bin:/Users/weijianwei/Downloads/android-sdk-macosx/tools/:/Users/weijianwei/Downloads/android-sdk-macosx/tools/
@@ -24,9 +24,6 @@ npm manifest:
       "dev": "node build/dev-server.js",
       "start": "node build/dev-server.js",
       "build": "node build/build.js",
-      "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
-      "e2e": "node test/e2e/runner.js",
-      "test": "npm run unit && npm run e2e",
       "precommit": "lint-staged",
       "eslint": "eslint --ext .js src",
       "fix": "eslint --ext .js src  --fix",
@@ -66,11 +63,13 @@ npm manifest:
       "react": "^15.6.1",
       "react-dom": "^15.6.1",
       "react-hot-loader": "next",
+      "react-native-webview-invoke": "^0.3.10",
       "react-redux": "^5.0.6",
       "react-router-dom": "^4.2.2",
       "redux": "^3.7.2",
       "redux-form": "^7.0.4",
       "redux-saga": "^0.15.6",
+      "redux-thunk": "^2.2.0",
       "style-loader": "^0.18.2",
       "stylus": "^0.54.5",
       "stylus-loader": "^3.0.1",
@@ -8066,7 +8065,5 @@ Lockfile:
       raf "^3.3.0"
 
 Trace: 
-  Error: https://registry.npm.taobao.org/react-native-webview-invoke: ETIMEDOUT
-      at null._onTimeout (/Users/weijianwei/.yarn/lib/yarn-cli.js:114906:19)
-      at tryOnTimeout (timers.js:224:11)
-      at Timer.listOnTimeout (timers.js:198:5)
+  Error: EACCES: permission denied, unlink '/Users/weijianwei/Library/Caches/Yarn/v1/npm-selenium-server-3.5.3-278c0af61ac2961476a59c6ff951216d67f2095c/.yarn-tarball.tgz'
+      at Error (native)
