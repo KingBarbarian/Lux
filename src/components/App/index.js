@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { List, WhiteSpace, Result, Icon } from "antd-mobile";
+import { List, WhiteSpace, Result, Icon,ImagePicker } from "antd-mobile";
 import { withRouter } from "react-router-dom";
 import invoke from "react-native-webview-invoke/browser";
 import classNames from "classnames/bind";
@@ -15,6 +15,14 @@ const getParamers = invoke.default.bind("getParamers");
 const Item = List.Item;
 const Brief = Item.Brief;
 
+const data = [{
+  url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
+  id: '2121',
+}, {
+  url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
+  id: '2122',
+}];
+
 @connect(state => {
   return {
     state_: state
@@ -25,7 +33,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       disabled: false,
-      info: ""
+      info: "",
+      files: data,
     };
   }
 
@@ -45,7 +54,15 @@ class App extends React.Component {
     });
   }
 
+  onChange(files, type, index) {
+    alert(files);
+    this.setState({
+      files,
+    });
+  }
+
   render() {
+    const { files } = this.state;
     return (
       <div>
         <List renderHeader={() => "路由演示"} className="my-list">
@@ -70,6 +87,12 @@ class App extends React.Component {
             跳转 <Brief>下一个页面</Brief>
           </Item>
         </List>
+        <ImagePicker
+          files={files}
+          onChange={() => this.onChange}
+          onImageClick={(index, fs) => alert(fs)}
+          selectable={files.length < 5}
+        />
         <List renderHeader={() => "Basic Style"} className="my-list">
           <Item extra={"extra content"}>Title</Item>
         </List>
