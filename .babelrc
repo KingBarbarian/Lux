@@ -4,7 +4,10 @@
       "env",
       {
         "targets": {
-          "browsers": ["last 2 versions", "safari >= 7"]
+          "browsers": [
+            "last 2 versions",
+            "safari >= 7"
+          ]
         }
       }
     ],
@@ -17,16 +20,28 @@
     "transform-decorators-legacy",
     // Enables React code to work with HMR.
     "react-hot-loader/babel",
-    ["import", { "libraryName": "antd-mobile", "style": true }]
+    [
+      "import",
+      {
+        "libraryName": "antd-mobile",
+        "style": true
+      }
+    ]
   ],
   "comments": false,
   "env": {
     "test": {
-      "presets": ["env"],
-      "plugins": ["istanbul"]
+      "presets": [
+        "env"
+      ],
+      "plugins": [
+        "istanbul"
+      ]
     },
     "production": {
-      "presets": ["react-optimize"]
+      "presets": [
+        "react-optimize"
+      ]
     }
   }
 }

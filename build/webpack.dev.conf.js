@@ -13,7 +13,6 @@ var env = process.env.NODE_ENV.trim()
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
   baseWebpackConfig.entry[name] = [
     'react-hot-loader/patch',
-    './build/dev-client'
   ].concat(baseWebpackConfig.entry[name])
 })
 

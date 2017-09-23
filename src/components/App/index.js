@@ -1,10 +1,9 @@
 import React from "react";
-import { connect } from "react-redux";
 import { List, WhiteSpace, Result, Icon,ImagePicker } from "antd-mobile";
 import { withRouter } from "react-router-dom";
 import invoke from "react-native-webview-invoke/browser";
 import classNames from "classnames/bind";
-import styles from "./index.styl";
+import styles from "./index.css";
 let cx = classNames.bind(styles);
 
 //调用rn的方法，判断进入下一个页面
@@ -23,11 +22,6 @@ const data = [{
   id: '2122',
 }];
 
-@connect(state => {
-  return {
-    state_: state
-  };
-})
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -36,6 +30,7 @@ class App extends React.Component {
       info: "",
       files: data,
     };
+    this.onChange = this.onChange.bind(this);
   }
 
   toNext() {
@@ -55,7 +50,7 @@ class App extends React.Component {
   }
 
   onChange(files, type, index) {
-    alert(files);
+    console.log(files);
     this.setState({
       files,
     });
@@ -89,7 +84,7 @@ class App extends React.Component {
         </List>
         <ImagePicker
           files={files}
-          onChange={() => this.onChange}
+          onChange={this.onChange}
           onImageClick={(index, fs) => alert(fs)}
           selectable={files.length < 5}
         />

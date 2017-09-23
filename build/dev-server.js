@@ -56,13 +56,6 @@ Object.keys(proxyTable).forEach(function (context) {
   app.use(proxyMiddleware(options.filter || context, options))
 })
 
-// 启动mock
-mock(apiRoutes)
-app.use('/api', apiRoutes)
-
-// handle fallback for HTML5 history API
-app.use(require('connect-history-api-fallback')())
-
 // serve webpack bundle output
 app.use(devMiddleware)
 

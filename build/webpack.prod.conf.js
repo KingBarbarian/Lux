@@ -39,7 +39,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         // drop_debugger: true,
         // drop_console: true
       },
-      sourceMap: true
+      sourceMap: false   //打包是否需要带上source文件
     }),
     // extract css into its own file
     new ExtractTextPlugin({

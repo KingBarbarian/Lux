@@ -1,10 +1,9 @@
 import React from "react";
-import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { List, Result, Icon, WhiteSpace } from "antd-mobile";
 import invoke from "react-native-webview-invoke/browser";
 import classNames from "classnames/bind";
-import styles from "./index.styl";
+import styles from "./index.css";
 let cx = classNames.bind(styles);
 
 //调用rn的方法，判断返回页面
@@ -13,11 +12,6 @@ const back = invoke.default.bind("back");
 const Item = List.Item;
 const Brief = Item.Brief;
 
-@connect(state => {
-  return {
-    state_: state
-  };
-})
 class Next extends React.Component {
   constructor(props) {
     super(props);

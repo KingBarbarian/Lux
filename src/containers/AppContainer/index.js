@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
 import App from "@/components/App";
 class AppContainer extends Component {
   render() {
@@ -9,4 +8,4 @@ class AppContainer extends Component {
   }
 }
 
-export default withRouter(connect()(AppContainer));
+export default withRouter(AppContainer);

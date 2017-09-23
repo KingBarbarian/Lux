@@ -1,13 +1,9 @@
 # <a name="features">⊙ Ant Design Mobile of React</a>
 
 ## <a name="features">⊙ 技术栈</a>
-* `React 15.6.1`
-* `Redux 3.7.2`
-* `React-redux 5.0.6`
 * `React-router-dom 4.2.2`
-* `Redux-saga 0.15.6`
 * `Webpack 3.5.6`
-* `ESlint 4.6.1 + Prettier 1.6.1 + Pre-ommit`
+* `ESlint 4.6.1 + Prettier 1.6.1 + Pre-commit`
 * `Axios 0.16.2`
 * `ES6 + Babel`
 * `Ant Design Mobile 2.0.0(beta)`
@@ -69,4 +65,16 @@ yarn build
 ```
 yarn build
 cd dist && sts 8090
+```
+
+## <a name="reference">⊙ 上线打包修改配置</a>
+```
+new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        // drop_debugger: true,
+        // drop_console: true
+      },
+      sourceMap: false   //上线生产不允许带上source文件    <-------look this line
+}),
 ```
