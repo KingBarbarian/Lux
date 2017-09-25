@@ -5,12 +5,18 @@ import {
   Switch,
   HashRouter as Router
 } from "react-router-dom";
-
-import AppContainer from "@/containers/AppContainer";
-import NextContainer from "@/containers/NextContainer";
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
 import routers from "@/routers";
+import reducers from "@/reducers";
+
+const store = createStore(
+  reducer
+)
 
 ReactDOM.render(
-  routers,
+  <Provider store={store}>
+    {routers}
+  </Provider>,
   document.getElementById("app")
 );

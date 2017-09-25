@@ -1,10 +1,10 @@
 import { axios } from "@/utils";
 
-function getSceneInfo(id) {
+function getSceneInfo(endpoint, method, isFormData, host, data, timeout) {
   return axios({
     url: "/api/getSceneInfo",
     params: {
-      sceneId: id
+      sceneId: data
     }
   });
 }

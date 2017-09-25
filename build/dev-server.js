@@ -16,8 +16,6 @@ let webpackConfig = process.env.NODE_ENV === 'testing'
   ? require('./webpack.prod.conf')
   : require('./webpack.dev.conf')
 
-// 启动mock数据
-let mock = require('./mock')
 let apiRoutes = express.Router()
 
 // default port where dev server listens for incoming traffic
