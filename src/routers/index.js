@@ -1,13 +1,11 @@
 import React from "react";
 import { HashRouter, Route, browserHistory } from "react-router-dom";
 
-import AppContainer from "@/containers/AppContainer";
-import NextContainer from "@/containers/NextContainer";
+import CreditContainer from "@/containers/creditContainer";
 const routes = (
   <HashRouter history={browserHistory}>
     <div>
-      <Route exact path="/" component={AppContainer} />
-      <Route path="/next" component={NextContainer} />
+      <Route exact path="/" component={CreditContainer} />
     </div>
   </HashRouter>
 );
