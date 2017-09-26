@@ -4,12 +4,12 @@ const REQUEST = "REQUEST";
 const SUCCESS = "SUCCESS";
 const FAILURE = "FAILURE";
 
-export default (createRequestTypes = base => {
+export function createRequestTypes(base){
   return [REQUEST, SUCCESS, FAILURE].reduce((acc, type) => {
     acc[type] = `${base}_${type}`;
     return acc;
   }, {});
-});
+}
 
 /**
  * 浅层对对象作裁剪

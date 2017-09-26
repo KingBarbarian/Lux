@@ -1,18 +1,23 @@
 "use strict";
 
 import {
-    ACTION_DEMO
+    app
 } from "../actions";
+const {ACTION_DEMO_GET} = app;
+
+const defaultState = {
+    todoInfo: {
+        items: [],
+        isRefreshing: false
+    }
+};
 
 const appReducer = (state = defaultState, action) => {
     switch (action.type) {
-        case ACTION_DEMO.REQUEST:
+        case ACTION_DEMO_GET.REQUEST:
             return {
                 state,
-                appInfo: Object.assign(
-                    {},
-                    action.payload.data
-                )
+                todoInfo: {}
             };
         default:
             return state;

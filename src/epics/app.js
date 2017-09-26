@@ -1,19 +1,19 @@
 import { combineEpics } from "redux-observable";
 import Rx from "rxjs";
 import _ from "lodash";
-import {
-    ACTION_DEMO
-} from "Thrall/src/actions";
 import { simpleAjax, createErrorProcessStream } from "./tool";
-
-export const actionDemoGet = (action$, store) =>
-    action$
-        .ofType(ACTION_DEMO.REQUEST)
+import {
+    app
+} from "../actions";
+const {ACTION_DEMO_GET} = app;
+function actionDemoGet(action$, store) {
+    return action$
+        .ofType(ACTION_DEMO_GET.REQUEST)
         .do(() => console.log("hello"))
         .mergeMap(action => {
             return simpleAjax(action, store)
                 .map(response => ({
-                    ...action,
+                    action,
                     type: ACTION_DEMO.SUCCESS,
                     payload: response
                 }))
@@ -22,6 +22,7 @@ export const actionDemoGet = (action$, store) =>
                 );
         })
         .do(() => console.log("hello end"));
+}
 
 export default combineEpics(
     actionDemoGet

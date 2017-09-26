@@ -8,14 +8,10 @@ import {
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import routers from "@/routers";
-import reducers from "@/reducers";
-
-const store = createStore(
-  reducer
-)
+import configureStore from "./stores/configureStore";
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={configureStore()}>
     {routers}
   </Provider>,
   document.getElementById("app")

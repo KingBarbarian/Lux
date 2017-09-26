@@ -1,8 +1,9 @@
-import createRequestTypes from "./actionHelper";
+import {createRequestTypes} from "./actionHelper";
 
 /**
  * ACTION_DEMO_GET
  */
+
 const ACTION_DEMO_GET = createRequestTypes("ACTION_DEMO_GET");
 const actionDemoGet = obj => {
     return {
@@ -14,6 +15,6 @@ const actionDemoGet = obj => {
 };
 
 export default {
-    SCHEDULE_ORDER_GET,
-    getScheduleOrderByCustomer
+    ACTION_DEMO_GET,
+    actionDemoGet
 };
