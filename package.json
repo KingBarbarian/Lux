@@ -23,6 +23,7 @@
   "dependencies": {
     "antd-mobile": "^2.0.0-alpha.9",
     "axios": "^0.16.2",
+    "chromedriver": "^2.32.3",
     "classnames": "^2.2.5",
     "lodash": "^4.17.4",
     "react": "^15.6.1",
@@ -32,6 +33,7 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-observable": "^0.16.0",
+    "redux-thunk": "^2.2.0",
     "rxjs": "^5.4.3"
   },
   "devDependencies": {
