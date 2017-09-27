@@ -1,12 +1,7 @@
 import React from "react";
 import { Tabs, Badge, List, InputItem, WhiteSpace, TextareaItem, Button, Stepper, SegmentedControl } from 'antd-mobile';
 import { withRouter } from "react-router-dom";
-import invoke from "react-native-webview-invoke/browser";
-import classNames from "classnames/bind";
-import styles from "./index.css";
-let cx = classNames.bind(styles);
 const height = window.innerHeight;
-const width = window.innerWidth;
 const Item = List.Item;
 const Brief = Item.Brief;
 
@@ -196,13 +191,13 @@ class AddCredit extends React.Component {
               <Item
                 wrap
                 extra={
-                  <SegmentedControl selectedIndex={1} style={{ height: '33', width: '120' }} values={['植保', '收割', '耕地']} />}
+                  <SegmentedControl selectedIndex={1}  values={['植保', '收割', '耕地']} />}
               >农活类型
               </Item>
               <Item
                 wrap
                 extra={
-                  <SegmentedControl selectedIndex={1} style={{ height: '33', width: '80' }} values={['深耕', '浅耕']} />}
+                  <SegmentedControl selectedIndex={1}  values={['深耕', '浅耕']} />}
               >作业方式
               </Item>
               <Item arrow="horizontal" multipleLine onClick={() => { }}>
@@ -211,7 +206,7 @@ class AddCredit extends React.Component {
               <Item
                 wrap
                 extra={
-                  <SegmentedControl selectedIndex={1} style={{ height: '33', width: '80' }} values={['人工', '机械']} />}
+                  <SegmentedControl selectedIndex={1}  values={['人工', '机械']} />}
               >作业方式
               </Item>
               <Item

@@ -14,11 +14,11 @@ function actionDemoGet(action$, store) {
             return simpleAjax(action, store)
                 .map(response => ({
                     action,
-                    type: ACTION_DEMO.SUCCESS,
+                    type: ACTION_DEMO_GET.SUCCESS,
                     payload: response
                 }))
                 .catch(error =>
-                    createErrorProcessStream(action, SCHEDULE_PAGING_QUERY.FAILURE, error)
+                    createErrorProcessStream(action, ACTION_DEMO_GET.FAILURE, error)
                 );
         })
         .do(() => console.log("hello end"));

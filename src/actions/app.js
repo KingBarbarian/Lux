@@ -7,7 +7,7 @@ import {createRequestTypes} from "./actionHelper";
 const ACTION_DEMO_GET = createRequestTypes("ACTION_DEMO_GET");
 const actionDemoGet = obj => {
     return {
-        type: ACTION_DEMO.REQUEST,
+        type: ACTION_DEMO_GET.REQUEST,
         endpoint: "/action/get",
         data: obj,
         method: "GET"
