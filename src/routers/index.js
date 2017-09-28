@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { HashRouter, Route, browserHistory } from "react-router-dom";
-import Message from '@/components/Message';
+import Message from "@/components/Message";
 
 // import AppContainer from "@/containers/AppContainer";
 // import NextContainer from "@/containers/NextContainer";
@@ -25,13 +25,13 @@ class Router extends React.Component {
     const { visiable, content, type } = this.props;
     return (
       <div>
-      <HashRouter history={browserHistory}>
-        <div>
-          <Route exact path="/" component={Home} />
-          {/* <Route path="/next" component={NextContainer} /> */}
-        </div>
-      </HashRouter>
-      <Message visiable={visiable} content={content} type={type}/>
+        <HashRouter history={browserHistory}>
+          <div>
+            <Route exact path="/" component={Home} />
+            {/* <Route path="/next" component={NextContainer} /> */}
+          </div>
+        </HashRouter>
+        <Message visiable={visiable} content={content} type={type} />
       </div>
     );
   }

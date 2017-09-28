@@ -35,32 +35,32 @@ export const baseRequest = (
   root = API_ROOT,
   isFormData
 ) => {
-  const headers = {"Content-Type": "application/json"}
-  if(token) {
-    headers["x-auth-token"] = token
+  const headers = { "Content-Type": "application/json" };
+  if (token) {
+    headers["x-auth-token"] = token;
   }
-  if(isFormData) {
-    headers["Content-Type"] = "multipart/form-data"
+  if (isFormData) {
+    headers["Content-Type"] = "multipart/form-data";
   }
   const options = {
     url: url,
     method: type,
     baseURL: root,
     headers: headers,
-    timeout: timeout,
-  }
+    timeout: timeout
+  };
   // no patch
-  if( type === 'GET' || type === 'DELETE') {
-    options.params = data
+  if (type === "GET" || type === "DELETE") {
+    options.params = data;
   } else {
-    options.data = data
+    options.data = data;
   }
 
   return axios(options).then(response => {
     let { headers, data, status } = response;
     let contentType = headers["content-type"];
-    if(status !== 200) {
-      return Promise.reject(new Error('服务器请求失败'))
+    if (status !== 200) {
+      return Promise.reject(new Error("服务器请求失败"));
     }
     if (contentType && contentType.indexOf("application/json") !== -1) {
       let { retCode, retMsg } = data;
@@ -71,5 +71,5 @@ export const baseRequest = (
     } else {
       return Promise.reject(new Error("the response is not JSON"));
     }
-  })
+  });
 };

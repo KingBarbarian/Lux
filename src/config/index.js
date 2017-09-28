@@ -5,5 +5,5 @@ module.exports = {
   VERSION_API: "http://appversion.nongfenqi.net",
   GALEN_API: "http://galen.dev.nongfenqi.com",
   VERSION: packageJSON.version,
-  STATIC_ROOT: "http://static.nongfenqi.net",
+  STATIC_ROOT: "http://static.nongfenqi.net"
 };

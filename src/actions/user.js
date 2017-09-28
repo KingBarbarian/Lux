@@ -1,14 +1,14 @@
-import {createRequestTypes} from './actionHelper';
+import { createRequestTypes } from "./actionHelper";
 
 class User {
-  USER_TOKEN = createRequestTypes('USER_TOKEN');
+  USER_TOKEN = createRequestTypes("USER_TOKEN");
   getToken() {
     return {
-      type: this.USER_TOKEN.REQUEST,
-    }
+      type: this.USER_TOKEN.REQUEST
+    };
   }
 }
 
 export default {
   User: new User()
-}
+};

@@ -1,17 +1,17 @@
-import { User } from '@/actions'
+import { User } from "@/actions";
 const defaultState = {
-  token: '',
-}
+  token: ""
+};
 
 const user = (state = defaultState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case User.USER_TOKEN.SUCCESS:
       return {
         token: action.payload
-      }
-    default: 
+      };
+    default:
       return state;
   }
-}
+};
 
-module.exports = user
+module.exports = user;

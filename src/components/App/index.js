@@ -1,5 +1,5 @@
 import React from "react";
-import { List, WhiteSpace, Result, Icon,ImagePicker } from "antd-mobile";
+import { List, WhiteSpace, Result, Icon, ImagePicker } from "antd-mobile";
 import { withRouter } from "react-router-dom";
 import invoke from "react-native-webview-invoke/browser";
 import classNames from "classnames/bind";
@@ -14,13 +14,16 @@ const getParamers = invoke.default.bind("getParamers");
 const Item = List.Item;
 const Brief = Item.Brief;
 
-const data = [{
-  url: 'https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg',
-  id: '2121',
-}, {
-  url: 'https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg',
-  id: '2122',
-}];
+const data = [
+  {
+    url: "https://zos.alipayobjects.com/rmsportal/PZUUCKTRIHWiZSY.jpeg",
+    id: "2121"
+  },
+  {
+    url: "https://zos.alipayobjects.com/rmsportal/hqQWgTXdrlmVVYi.jpeg",
+    id: "2122"
+  }
+];
 
 class App extends React.Component {
   constructor(props) {
@@ -28,7 +31,7 @@ class App extends React.Component {
     this.state = {
       disabled: false,
       info: "",
-      files: data,
+      files: data
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -52,7 +55,7 @@ class App extends React.Component {
   onChange(files, type, index) {
     console.log(files);
     this.setState({
-      files,
+      files
     });
   }
 
