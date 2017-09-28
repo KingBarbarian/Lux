@@ -1,18 +1,19 @@
 import Rx from "rxjs";
-import { combineEpics } from "redux-observable";
-import * as API from '@/server'
-
+import { baseRequest } from '@/utils/axios';
+import { getToken } from '@/reducers/selectors';
 
 // without succee and fail
 export const simpleAjax = (action, store) => {
+  const token = getToken(store.getState());
   const { endpoint, method, isFormData, host, data, timeout } = action;
   return Rx.Observable.fromPromise(
-    API.getSceneInfo(endpoint, method, isFormData, host, data, timeout)
+    baseRequest(data, endpoint, token, method, timeout, host, isFormData)
   );
 };
 
-export const createErrorProcessStream = (action, failureType, error) =>
-  createErrorStream(action, failureType, error)
-    .concat(Rx.Observable.of(console.log("打开错误信息")))
-    .concat(Rx.Observable.of(console.log("关闭错误信息")));
-
+export const simpleAjaxWithToken = (action) => {
+  const { endpoint, method, isFormData, host, data, timeout } = action;
+  return Rx.Observable.fromPromise(
+    baseRequest(data, endpoint, null, method, timeout, host, isFormData)
+  );
+};

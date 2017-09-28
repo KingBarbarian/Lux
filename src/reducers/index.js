@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import app from "./app";
 
 module.exports = combineReducers({
-    app
+  user: require('./user'),
+  message: require('./message'),
 });

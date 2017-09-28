@@ -1,6 +1,7 @@
 import { combineEpics } from "redux-observable";
-import app from "./app";
+import user from './user';
 
-export default (
-  app
-);
+
+export const rootEpic = combineEpics(
+  user,
+)

@@ -12,7 +12,8 @@
       }
     ],
     // Transpile React components to JavaScript
-    "react"
+    "react",
+    "stage-0"
   ],
   "plugins": [
     "transform-runtime",

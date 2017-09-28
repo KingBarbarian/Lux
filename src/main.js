@@ -7,12 +7,12 @@ import {
 } from "react-router-dom";
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
-import routers from "@/routers";
+import Routers from "@/routers";
 import configureStore from "./stores/configureStore";
 
 ReactDOM.render(
   <Provider store={configureStore()}>
-    {routers}
+    <Routers/>
   </Provider>,
   document.getElementById("app")
 );
