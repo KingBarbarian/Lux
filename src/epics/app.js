@@ -7,9 +7,8 @@ import {
 } from "../actions";
 function actionDemoGet(action$, store) {
     return action$
-        
 
-    
+
 }
 
 export default combineEpics(
