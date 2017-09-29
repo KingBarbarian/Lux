@@ -22,7 +22,6 @@ export const simpleAjaxWithToken = action => {
 // successCB: successActions => Rx.Observable
 // errorCB: errorActions => Rx.Observable
 export const ajax = (type, action$, store) => (successCB, errorCB) => {
-  console.log(type);
   return action$
     .ofType(type.REQUEST)
     .do(() => store.dispatch(Message.show("载入中", Message.TYPE_LOADING)))

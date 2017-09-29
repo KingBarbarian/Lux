@@ -3,20 +3,17 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Lux</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-  <link rel="stylesheet" href="/static/font.css">
-  <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+  <title>Lux</title>
   <script>
-    if ('addEventListener' in document) {
-      document.addEventListener('DOMContentLoaded', function() {
-        FastClick.attach(document.body);
-      }, false);
-    }
-    if(!window.Promise) {
-      document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
+    window.PromiseRejectionEvent = function () { };
+    if (!window.Intl) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/intl/1.0.1/??Intl.js,locale-data/jsonp/en.js,locale-data/jsonp/zh.js">' + '<' + '/script>');
     }
   </script>
+  <link rel="stylesheet" type="text/css" href="https://gw.alipayobjects.com/os/site-cdn/a6157782-2d60-4949-8583-c7afbdd423d4/site-cdn/site/kitchen-sink.css">
+  <link rel="stylesheet" href="/static/font.css">
+  <link rel="stylesheet" href="/static/theme.css">
 </head>
 
 <body>

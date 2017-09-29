@@ -1,19 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { HashRouter, Route, browserHistory } from "react-router-dom";
 import Message from "@/components/Message";
-
-// import AppContainer from "@/containers/AppContainer";
-// import NextContainer from "@/containers/NextContainer";
-import Home from "@/containers/Home";
-// const routes = (
-//   <HashRouter history={browserHistory}>
-//     <div>
-//       <Route exact path="/" component={Home} />
-//       {/* <Route path="/next" component={NextContainer} /> */}
-//     </div>
-//   </HashRouter>
-// );
+import CreditContainer from "@/containers/creditContainer";
 
 @connect(state => ({
   visiable: state.message.isShowing,
@@ -27,7 +16,7 @@ class Router extends React.Component {
       <div>
         <HashRouter history={browserHistory}>
           <div>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={CreditContainer} />
             {/* <Route path="/next" component={NextContainer} /> */}
           </div>
         </HashRouter>

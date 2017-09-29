@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
+import { reducer as formReducer } from 'redux-form'
 
 module.exports = combineReducers({
   user: require("./user"),
-  message: require("./message")
+  message: require("./message"),
+  form: formReducer
 });
