@@ -1,5 +1,7 @@
-import app from "./app";
+import userActions from "./user";
+import messageActions from "./message";
 
 module.exports = {
-  ...app,
+  ...userActions,
+  ...messageActions
 };

@@ -47,8 +47,6 @@ class InnerComponent extends React.Component {
   render() {
     const {
       type,
-      value,
-      defaultValue,
       placeholder,
       editable,
       disabled,
@@ -61,7 +59,6 @@ class InnerComponent extends React.Component {
       moneyKeyboardAlign,
       meta
     } = this.props;
-    console.log(this.props);
     return (
       <div>
         <InputItem

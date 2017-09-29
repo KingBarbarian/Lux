@@ -15,9 +15,9 @@ import { connect } from "react-redux";
 import { addCreditValidate } from "@/validations";
 import FormWrapper from "@/components/form-wrapper";
 import Forms from "../../forms";
-const height = window.innerHeight;
-const Item = List.Item;
-const Brief = Item.Brief;
+const height = window.innerHeight
+const Item = List.Item
+const Brief = Item.Brief
 
 const tabs2 = [
   { title: "field", sub: "0" },
