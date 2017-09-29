@@ -72,7 +72,6 @@
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
     "http-proxy-middleware": "^0.17.4",
-    "pre-commit": "^1.2.2",
     "husky": "^0.14.3",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
