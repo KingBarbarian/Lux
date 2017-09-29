@@ -1,9 +1,6 @@
-"use strict";
-
 import {
-    app
+    ACTION_DEMO_GET
 } from "../actions";
-const {ACTION_DEMO_GET} = app;
 
 const defaultState = {
     todoInfo: {

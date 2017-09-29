@@ -6,8 +6,8 @@ import CustomerSelectContainer from "@/containers/customerSelectContainer";
 const routes = (
   <HashRouter history={browserHistory}>
     <div>
-      <Route exact path="/select" component={CreditContainer} />
-      <Route exact path="/" component={CustomerSelectContainer} />
+      <Route exact path="/" component={CreditContainer} />
+      <Route exact path="/select" component={CustomerSelectContainer} />
     </div>
   </HashRouter>
 );

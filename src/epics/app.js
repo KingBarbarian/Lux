@@ -3,9 +3,8 @@ import Rx from "rxjs";
 import _ from "lodash";
 import { simpleAjax, createErrorProcessStream } from "./tool";
 import {
-    app
+    ACTION_DEMO_GET
 } from "../actions";
-const {ACTION_DEMO_GET} = app;
 function actionDemoGet(action$, store) {
     return action$
         .ofType(ACTION_DEMO_GET.REQUEST)
