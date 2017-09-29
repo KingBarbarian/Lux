@@ -14,7 +14,7 @@ module.exports = (state = defaultState, action) => {
       return {
         content: action.payload.content || state.content,
         type: action.payload.type,
-        count: this.state.count + 1,
+        count: state.count + 1,
         isShowing: true
       };
     case Message.DISMISS:
