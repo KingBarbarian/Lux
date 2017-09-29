@@ -59,7 +59,11 @@ export const combineModal = modals => Component =>
     render() {
       return (
         <div>
-          <Component show={this.show} modalResults={this.state.modalResults} />
+          <Component
+            show={this.show}
+            modalResults={this.state.modalResults}
+            {...this.props}
+          />
           {Object.keys(modals).map(modalName => {
             let Modal = modals[modalName];
             Modal.displayName = modalName;
