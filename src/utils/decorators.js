@@ -9,10 +9,7 @@ export const modal = modalConfig => Component =>
   class ModalWrapper extends React.Component {
     render() {
       return (
-        <Modal
-          visible={this.props.visible}
-          {...modalConfig}
-        >
+        <Modal visible={this.props.visible} {...modalConfig}>
           <Component {...this.props} />
         </Modal>
       );
@@ -63,8 +60,9 @@ export const combineModal = modals => Component =>
       return (
         <div>
           <Component show={this.show} modalResults={this.state.modalResults} />
-          {Object.keys(modals).map((modalName) => {
-            const Modal = modals[modalName];
+          {Object.keys(modals).map(modalName => {
+            let Modal = modals[modalName];
+            Modal.displayName = modalName;
             return (
               <Modal
                 key={modalName}
