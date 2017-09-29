@@ -66,7 +66,7 @@ class InnerComponent extends React.Component {
         <InputItem
           type={type}
           placeholder={placeholder}
-          defaultValue={input.value?input.value:null}
+          value={input.value?input.value:null}
           editable={editable}
           disabled={disabled}
           clear={clear}

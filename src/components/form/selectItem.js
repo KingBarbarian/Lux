@@ -47,8 +47,7 @@ class InnerComponent extends React.Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    const { bindName, dispatch, formName,input,modalResults,sceneName } = this.props;
-    console.log(modalResults[sceneName].data)
+    const { bindName, dispatch, formName,input,modalResults,sceneName } = nextProps;
     if(modalResults[sceneName].data){
       input.onChange(modalResults[sceneName].data?modalResults[sceneName].data:null);
     }
