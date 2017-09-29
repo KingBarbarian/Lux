@@ -1,7 +1,7 @@
 import React from "react";
 import { RefreshControl, ListView, SearchBar } from "antd-mobile";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { modal } from "@/utils/decorators";
 import ReactDOM from "react-dom";
 
 const data = [
@@ -32,6 +32,7 @@ function genData(pIndex = 0) {
 }
 
 @connect()
+@modal()
 class CustomerSelect extends React.Component {
   constructor(props) {
     super(props);
@@ -158,11 +159,23 @@ class CustomerSelect extends React.Component {
             backgroundColor: "white",
             borderBottom: "1px solid #ECECED"
           }}
+          onClick={() =>this.props.onClose({data:obj.des})}
         >
           <div
             style={{ display: "-webkit-box", display: "flex", padding: "15px" }}
           >
-            <img style={{ height: '40px', width: '40px', marginRight: '15px',borderRadius:'40px' }} src={"https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png"} alt="icon" />
+            <img
+              style={{
+                height: "40px",
+                width: "40px",
+                marginRight: "15px",
+                borderRadius: "40px"
+              }}
+              src={
+                "https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png"
+              }
+              alt="icon"
+            />
             <div style={{ display: "inline-block" }}>
               <div
                 style={{
@@ -172,14 +185,12 @@ class CustomerSelect extends React.Component {
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
                   maxWidth: "250px",
-                  paddingBottom:"5px"
+                  paddingBottom: "5px"
                 }}
               >
                 {obj.title}
               </div>
-              <div style={{ fontSize: "14px",color: "#888", }}>
-                {obj.des}
-              </div>
+              <div style={{ fontSize: "14px", color: "#888" }}>{obj.des}</div>
             </div>
           </div>
         </div>
@@ -200,7 +211,7 @@ class CustomerSelect extends React.Component {
           initialListSize={5}
           pageSize={5}
           style={{
-            height: this.state.height,
+            height: this.state.height
           }}
           scrollerOptions={{
             scrollbars: true,
@@ -224,4 +235,4 @@ class CustomerSelect extends React.Component {
   }
 }
 
-export default withRouter(CustomerSelect);
+export default CustomerSelect;

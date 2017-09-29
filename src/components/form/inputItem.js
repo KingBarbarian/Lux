@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Field } from "redux-form";
-import { InputItem, Toast } from "antd-mobile";
+import { InputItem, Toast, List } from "antd-mobile";
+const Item = List.Item;
 
 const propTypes = {
   type: PropTypes.string,
@@ -57,18 +58,20 @@ class InnerComponent extends React.Component {
       labelNumber,
       updatePlaceholder,
       moneyKeyboardAlign,
-      meta
+      meta,
+      input
     } = this.props;
     return (
-      <div>
+      <Item>
         <InputItem
           type={type}
           placeholder={placeholder}
+          defaultValue={input.value?input.value:null}
           editable={editable}
           disabled={disabled}
           clear={clear}
           maxLength={maxLength}
-          error={(meta.error&&meta.touched) ? true : false}
+          error={meta.error && meta.touched ? true : false}
           onErrorClick={() => this.onErrorClick(meta.error)}
           extra={extra}
           labelNumber={labelNumber}
@@ -78,7 +81,7 @@ class InnerComponent extends React.Component {
         >
           {label}
         </InputItem>
-      </div>
+      </Item>
     );
   }
 }

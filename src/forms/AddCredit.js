@@ -5,6 +5,14 @@ export default {
     {
       fields: [
         {
+          fieldType: "selectItem",
+          name: "user.customer",
+          label: "选择客户",
+          placeholder: "请选择客户",
+          sceneName:"CustomerSelect",
+          bindName:"user.username"
+        },
+        {
           fieldType: "inputItem",
           name: "user.username",
           label: "账号",

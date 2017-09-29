@@ -1,6 +1,7 @@
 import { combineEpics } from "redux-observable";
 import Rx from "rxjs";
 import { User } from "@/actions";
+import { ajax } from "./tools";
 const getToken = (action$, store) => {
   if ("开发中") {
     console.log(User.USER_TOKEN);
@@ -14,4 +15,10 @@ const getToken = (action$, store) => {
   }
 };
 
-export default combineEpics(getToken);
+export default combineEpics(
+  // getToken,
+  (action$, store) =>
+    ajax(User.USER_TOKEN, action$, store)(null, errorAction => {
+      return Rx.Observable.of({ type: "sdsd" });
+    })
+);

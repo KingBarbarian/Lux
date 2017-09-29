@@ -58,6 +58,19 @@ class AddCredit extends React.Component {
     console.log(values)
   }
 
+  _initialValues() {
+    let initialValues = {};
+    initialValues = {
+      user:{
+        customer:"肥宝宝",
+        username:"魏建伟",
+        password:"jian025574",
+        phone:"18913372392"
+      }
+    }
+    return initialValues;
+  }
+
   render() {
     const { dispatch } = this.props;
     let formProp = Forms.AddCredit;
@@ -74,6 +87,7 @@ class AddCredit extends React.Component {
             <List renderHeader={() => "农机信贷"}>
               <FormWrapper
                 formProp={formProp}
+                initialValues={this._initialValues()}
                 bindSubmit={this.handleBindSubmit}
                 onSubmit={this.handleOnSubmit}
                 dispatch={dispatch}
