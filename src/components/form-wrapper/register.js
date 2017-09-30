@@ -4,9 +4,7 @@ import { Field } from "redux-form";
 const fields = {};
 
 export const setField = (type, component) => {
-  console.log(type);
   fields[type] = component;
-  console.log(fields);
 };
 
 export const getField = type => fields[type];

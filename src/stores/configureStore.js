@@ -20,7 +20,7 @@ export default function configureStore() {
         applyMiddleware(epicMiddleware),
         window.__REDUX_DEVTOOLS_EXTENSION__ &&
           window.__REDUX_DEVTOOLS_EXTENSION__()
-      ) //插件调试，未安装会报错
+      )
     );
   }
   return store;

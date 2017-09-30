@@ -115,9 +115,9 @@ class WebListView extends React.Component {
     if (this.props.isFetching) {
       return <div style={{ padding: 30, textAlign: "center" }}>{"加载中..."}</div>;
     }
-    if (this.props.totalCount === 0) {
-      return this.props.renderEmpty();
-    }
+    // if (this.props.totalCount === 0) {
+    //   return this.props.renderEmpty();
+    // }
     return null;
   };
 
