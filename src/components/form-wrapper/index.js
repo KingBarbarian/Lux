@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { reduxForm } from "redux-form";
-import FieldWrapper from "./FieldWrapper";
 import SectionWrapper from "./SectionWrapper";
 
 class FormView extends Component {
@@ -49,8 +48,5 @@ class FormWrapper extends Component {
     return this.temp(this.props);
   }
 }
-
-FormWrapper.FiledWrapper = FieldWrapper;
-FormWrapper.SectionWrapper = SectionWrapper;
 
 export default FormWrapper;

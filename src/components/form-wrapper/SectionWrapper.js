@@ -1,19 +1,17 @@
 import React, { Component } from "react";
 import FieldWrapper from "./FieldWrapper";
-import { autobind } from "core-decorators";
 import _ from "lodash";
 
 const refPrefix = "field";
 
 class SectionWrapper extends Component {
-  @autobind
-  handleSubmitEditing(index) {
+  handleSubmitEditing = index => {
     try {
       this.refs[`${refPrefix}-${index + 1}`].focus();
     } catch (error) {
       console.warn("focus error,", error);
     }
-  }
+  };
 
   render() {
     const { fields, formName, dispatch } = this.props;

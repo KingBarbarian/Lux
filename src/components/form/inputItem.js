@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Field } from "redux-form";
 import { InputItem, Toast, List } from "antd-mobile";
+import { fieldHOC } from "../form-wrapper/register";
 const Item = List.Item;
 
 const propTypes = {
@@ -36,7 +36,8 @@ const defaultProps = {
   moneyKeyboardAlign: "right"
 };
 
-class InnerComponent extends React.Component {
+@fieldHOC("inputItem")
+class InputItemField extends React.Component {
   onChange = value => {
     const { input } = this.props;
     input.onChange(value);
@@ -58,7 +59,7 @@ class InnerComponent extends React.Component {
       labelNumber,
       updatePlaceholder,
       moneyKeyboardAlign,
-      meta,
+      meta: { error, touched },
       input
     } = this.props;
     return (
@@ -66,13 +67,13 @@ class InnerComponent extends React.Component {
         <InputItem
           type={type}
           placeholder={placeholder}
-          value={input.value?input.value:null}
+          value={input.value ? input.value : null}
           editable={editable}
           disabled={disabled}
           clear={clear}
           maxLength={maxLength}
-          error={meta.error && meta.touched ? true : false}
-          onErrorClick={() => this.onErrorClick(meta.error)}
+          error={error && touched ? true : false}
+          onErrorClick={() => this.onErrorClick(error)}
           extra={extra}
           labelNumber={labelNumber}
           updatePlaceholder={updatePlaceholder}
@@ -86,19 +87,19 @@ class InnerComponent extends React.Component {
   }
 }
 
-class InputItemField extends React.Component {
-  render() {
-    return (
-      <Field
-        name={this.props.name}
-        props={this.props}
-        component={InnerComponent}
-      />
-    );
-  }
-}
+// class InputItemField extends React.Component {
+//   render() {
+//     return (
+//       <Field
+//         name={this.props.name}
+//         props={this.props}
+//         component={InnerComponent}
+//       />
+//     );
+//   }
+// }
 
-InputItemField.prototypes = propTypes;
-InputItemField.defaultProps = defaultProps;
+// InputItemField.prototypes = propTypes;
+// InputItemField.defaultProps = defaultProps;
 
 export default InputItemField;
