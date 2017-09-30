@@ -159,7 +159,7 @@ class CustomerSelect extends React.Component {
             backgroundColor: "white",
             borderBottom: "1px solid #ECECED"
           }}
-          onClick={() =>this.props.onClose({data:obj.des})}
+          onClick={() => this.props.onClose({ data: obj.des })}
         >
           <div
             style={{ display: "-webkit-box", display: "flex", padding: "15px" }}
