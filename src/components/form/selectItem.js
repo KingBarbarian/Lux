@@ -4,6 +4,8 @@ import { Field, change } from "redux-form";
 import { Toast, List } from "antd-mobile";
 import { combineModal } from "@/utils/decorators";
 import CustomerSelect from "@/page/customer";
+import { fieldHOC } from "../form-wrapper/register";
+
 const Item = List.Item;
 const Brief = Item.Brief;
 
@@ -26,8 +28,9 @@ const defaultProps = {
   platform: "ios",
   brief: false
 };
-
-class InnerComponent extends React.Component {
+@fieldHOC("selectItem")
+@combineModal({ CustomerSelect })
+class SelectItemField extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,33 +50,32 @@ class InnerComponent extends React.Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    const { bindName, dispatch, formName,input,modalResults,sceneName } = nextProps;
-    if(modalResults[sceneName].data){
-      input.onChange(modalResults[sceneName].data?modalResults[sceneName].data:null);
+    const {
+      bindName,
+      meta: { dispatch },
+      formName,
+      input,
+      modalResults,
+      sceneName
+    } = nextProps;
+    if (modalResults[sceneName].data) {
+      input.onChange(
+        modalResults[sceneName].data ? modalResults[sceneName].data : null
+      );
     }
     dispatch(change(formName, bindName, "魏建伟123"));
   }
 
   componentDidMount() {
-    const {input} = this.props;
-    if(input.value){
-      this.setState({extra:input.value})
+    const { input } = this.props;
+    if (input.value) {
+      this.setState({ extra: input.value });
       input.onChange(input.value);
     }
   }
-  
 
   render() {
-    const {
-      label,
-      arrow,
-      multipleLine,
-      wrap,
-      platform,
-      meta,
-      brief,
-      input
-    } = this.props;
+    const { label, arrow, multipleLine, wrap, platform, brief } = this.props;
     return (
       <Item
         arrow={arrow}
@@ -95,20 +97,19 @@ class InnerComponent extends React.Component {
   }
 }
 
-@combineModal({ CustomerSelect })
-class SelectItemField extends React.Component {
-  render() {
-    return (
-      <Field
-        name={this.props.name}
-        props={this.props}
-        component={InnerComponent}
-      />
-    );
-  }
-}
+// class SelectItemField extends React.Component {
+//   render() {
+//     return (
+//       <Field
+//         name={this.props.name}
+//         props={this.props}
+//         component={InnerComponent}
+//       />
+//     );
+//   }
+// }
 
-SelectItemField.prototypes = propTypes;
-SelectItemField.defaultProps = defaultProps;
+// SelectItemField.prototypes = propTypes;
+// SelectItemField.defaultProps = defaultProps;
 
 export default SelectItemField;

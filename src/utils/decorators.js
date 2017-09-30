@@ -22,7 +22,7 @@ export const modal = modalConfig => Component =>
  * 打开modal：show(modaName)(params)
  * 当前组件关闭modal：由modal自己控制关闭
  * modal返回数据：在props.modalResult中
- * @param {Object} modals 需要传入Object，因为需要知道每个moda名，返回的数据也是存在对应的modal名下
+ * @param {Object} modals 需要传入Object，因为需要知道每个modal名，返回的数据也是存在对应的modal名下
  */
 export const combineModal = modals => Component =>
   class ModalComponent extends React.Component {

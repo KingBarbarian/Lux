@@ -10,14 +10,13 @@ import {
   SegmentedControl
 } from "antd-mobile";
 import { withRouter } from "react-router-dom";
-import { autobind } from "core-decorators";
 import { connect } from "react-redux";
 import { addCreditValidate } from "@/validations";
 import FormWrapper from "@/components/form-wrapper";
 import Forms from "../../forms";
-const height = window.innerHeight
-const Item = List.Item
-const Brief = Item.Brief
+const height = window.innerHeight;
+const Item = List.Item;
+const Brief = Item.Brief;
 
 const tabs2 = [
   { title: "field", sub: "0" },
@@ -42,32 +41,29 @@ class AddCredit extends React.Component {
     this.setState({ val });
   }
 
-  @autobind
-  handleSubmit() {
+  handleSubmit = () => {
     this.submit();
-  }
+  };
 
-  @autobind
-  handleBindSubmit(submit) {
+  handleBindSubmit = submit => {
     this.submit = submit;
-  }
+  };
 
-  @autobind
-  handleOnSubmit(values) {
+  handleOnSubmit = values => {
     const { dispatch, location } = this.props;
-    console.log(values)
-  }
+    console.log(values);
+  };
 
   _initialValues() {
     let initialValues = {};
     initialValues = {
-      user:{
-        customer:"肥宝宝",
-        username:"魏建伟",
-        password:"jian025574",
-        phone:"18913372392"
+      user: {
+        customer: "肥宝宝",
+        username: "魏建伟",
+        password: "jian025574",
+        phone: "18913372392"
       }
-    }
+    };
     return initialValues;
   }
 

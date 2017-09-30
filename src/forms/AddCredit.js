@@ -1,4 +1,3 @@
-
 export default {
   formName: "creditAdd",
   sections: [
@@ -9,8 +8,8 @@ export default {
           name: "user.customer",
           label: "选择客户",
           placeholder: "请选择客户",
-          sceneName:"CustomerSelect",
-          bindName:"user.username"
+          sceneName: "CustomerSelect",
+          bindName: "user.username"
         },
         {
           fieldType: "inputItem",
