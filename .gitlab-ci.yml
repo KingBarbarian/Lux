@@ -1,0 +1,35 @@
+image: dockerniko/gitlab-ci-react-native-android
+before_script:
+  - yarn config set registry http://registry.cnpm.dev.nongfenqi.com
+
+stages:
+  - deploy
+  - notifiy
+
+cache:
+  paths:
+  - node_modules/
+
+deploy_to_server:
+  stage: deploy
+  environment: ${CI_COMMIT_REF_NAME}
+  script:
+    - yarn --ignore-engines
+    - DEPLOY_ENV=${CI_COMMIT_REF_NAME}_env
+    - DEPLOY_PATH=${CI_COMMIT_REF_NAME}_path
+    - yarn build:${CI_COMMIT_REF_NAME}
+    - lftp -e "mirror -R dist/ ${!DEPLOY_PATH}; bye" -u ${!DEPLOY_ENV}
+  only:
+    - develop
+    - test
+
+dingding:
+  stage: notifiy
+  script:
+  - MESSAGE=$(printf "%s 分支已更新到server" $CI_COMMIT_REF_NAME)
+  - echo $MESSAGE
+  - >
+      curl -X POST  "${DINGROBOT}" -H 'cache-control: no-cache' -H 'content-type: application/json' -d "{\"msgtype\": \"text\", \"text\": {\"content\": \"${MESSAGE}\"}}"
+  only:
+    - develop
+    - test
