@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { NavBar } from "antd-mobile";
 import { modal } from "@/utils/decorators";
 import { Customer } from "@/actions";
 import { createPaginateSelector } from "@/reducers/selectors";
@@ -15,12 +16,11 @@ const customersSelector = createPaginateSelector("customers");
 })
 @modal()
 class CustomerSelect extends React.Component {
-  
-  onEndReached = ({value}) => {
+  onEndReached = ({ value }) => {
     this.props.dispatch(Customer.listPaginator.loadNext(value));
   };
 
-  onRefresh = ({value}) => {
+  onRefresh = ({ value }) => {
     this.props.dispatch(Customer.listPaginator.refresh(value));
   };
 
@@ -32,7 +32,7 @@ class CustomerSelect extends React.Component {
           backgroundColor: "white",
           borderBottom: "1px solid #ECECED"
         }}
-        onClick={() => this.props.onClose({ data: rowData.des })}
+        onClick={() => this.props.onClose({ data: rowData.customerName })}
       >
         <div
           style={{ display: "-webkit-box", display: "flex", padding: "15px" }}
@@ -59,9 +59,9 @@ class CustomerSelect extends React.Component {
                 paddingBottom: "5px"
               }}
             >
-              {rowData.title}
+              {rowData.customerName}
             </div>
-            <div style={{ fontSize: "14px", color: "#888" }}>{rowData.des}</div>
+            <div style={{ fontSize: "14px", color: "#888" }}>{rowData.customerId}</div>
           </div>
         </div>
       </div>
@@ -77,8 +77,15 @@ class CustomerSelect extends React.Component {
     } = this.props.customers;
     return (
       <div>
+        <NavBar
+          leftContent="关闭"
+          mode="light"
+          onLeftClick={() => this.props.onClose()}
+        >
+          选择客户
+        </NavBar>
         <Table
-          dataList={entities}
+          dataList={entities?entities:[]}
           totalCount={totalCount}
           isRefreshing={isRefreshing}
           isFetching={isFetching}

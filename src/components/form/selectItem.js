@@ -58,7 +58,7 @@ class SelectItemField extends React.Component {
       modalResults,
       sceneName
     } = nextProps;
-    if (modalResults[sceneName].data) {
+    if (modalResults[sceneName] && modalResults[sceneName].data) {
       input.onChange(
         modalResults[sceneName].data ? modalResults[sceneName].data : null
       );
@@ -97,19 +97,7 @@ class SelectItemField extends React.Component {
   }
 }
 
-// class SelectItemField extends React.Component {
-//   render() {
-//     return (
-//       <Field
-//         name={this.props.name}
-//         props={this.props}
-//         component={InnerComponent}
-//       />
-//     );
-//   }
-// }
-
-// SelectItemField.prototypes = propTypes;
-// SelectItemField.defaultProps = defaultProps;
+SelectItemField.prototypes = propTypes;
+SelectItemField.defaultProps = defaultProps;
 
 export default SelectItemField;

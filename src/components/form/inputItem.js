@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { InputItem, Toast, List } from "antd-mobile";
+import { InputItem, Toast, List, TextareaItem } from "antd-mobile";
 import { fieldHOC } from "../form-wrapper/register";
 const Item = List.Item;
 
@@ -17,7 +17,10 @@ const propTypes = {
   label: PropTypes.string,
   labelNumber: PropTypes.number,
   updatePlaceholder: PropTypes.bool,
-  moneyKeyboardAlign: PropTypes.string
+  moneyKeyboardAlign: PropTypes.string,
+  textArea: PropTypes.bool,
+  rows: PropTypes.number,
+  count: PropTypes.number
 };
 
 const defaultProps = {
@@ -33,7 +36,10 @@ const defaultProps = {
   label: "标题",
   labelNumber: null,
   updatePlaceholder: false,
-  moneyKeyboardAlign: "right"
+  moneyKeyboardAlign: "right",
+  textArea: false,
+  rows: 5,
+  count: 100
 };
 
 @fieldHOC("inputItem")
@@ -60,46 +66,53 @@ class InputItemField extends React.Component {
       updatePlaceholder,
       moneyKeyboardAlign,
       meta: { error, touched },
-      input
+      input,
+      textArea,
+      rows,
+      count
     } = this.props;
     return (
-      <Item>
-        <InputItem
-          type={type}
-          placeholder={placeholder}
-          value={input.value ? input.value : null}
-          editable={editable}
-          disabled={disabled}
-          clear={clear}
-          maxLength={maxLength}
-          error={error && touched ? true : false}
-          onErrorClick={() => this.onErrorClick(error)}
-          extra={extra}
-          labelNumber={labelNumber}
-          updatePlaceholder={updatePlaceholder}
-          moneyKeyboardAlign={moneyKeyboardAlign}
-          onChange={this.onChange}
-        >
-          {label}
-        </InputItem>
-      </Item>
+      <div>
+        {textArea ? (
+          <TextareaItem
+            title={label}
+            placeholder={placeholder}
+            rows={rows}
+            count={count}
+            data-seed="logId"
+            autoHeight
+            error={error && touched ? true : false}
+            onErrorClick={() => this.onErrorClick(error)}
+            onChange={this.onChange}
+          />
+        ) : (
+          <Item>
+            <InputItem
+              type={type}
+              placeholder={placeholder}
+              value={input.value ? input.value : null}
+              editable={editable}
+              disabled={disabled}
+              clear={clear}
+              maxLength={maxLength}
+              error={error && touched ? true : false}
+              onErrorClick={() => this.onErrorClick(error)}
+              extra={extra}
+              labelNumber={labelNumber}
+              updatePlaceholder={updatePlaceholder}
+              moneyKeyboardAlign={moneyKeyboardAlign}
+              onChange={this.onChange}
+            >
+              {label}
+            </InputItem>
+          </Item>
+        )}
+      </div>
     );
   }
 }
 
-// class InputItemField extends React.Component {
-//   render() {
-//     return (
-//       <Field
-//         name={this.props.name}
-//         props={this.props}
-//         component={InnerComponent}
-//       />
-//     );
-//   }
-// }
-
-// InputItemField.prototypes = propTypes;
-// InputItemField.defaultProps = defaultProps;
+InputItemField.prototypes = propTypes;
+InputItemField.defaultProps = defaultProps;
 
 export default InputItemField;
