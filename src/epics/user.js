@@ -2,23 +2,42 @@ import { combineEpics } from "redux-observable";
 import Rx from "rxjs";
 import { User } from "@/actions";
 import { ajax } from "./tools";
-const getToken = (action$, store) => {
-  if ("开发中") {
-    console.log(User.USER_TOKEN);
-    return action$.ofType("USER_TOKEN_REQUEST").mergeMap(action => {
+import { requestToken } from "../utils/bridge";
+import { TOKEN } from "@/config";
+
+const getToken = action$ =>
+  action$.ofType(User.USER_TOKEN.REQUEST).mergeMap(action => {
+    if (TOKEN)
       return Rx.Observable.of({
         type: User.USER_TOKEN.SUCCESS,
-        payload: "czxczxczxczxc"
+        payload: TOKEN
       });
-    });
-  } else {
-  }
-};
+    return Rx.Observable
+      .fromPromise(requestToken())
+      .timeout(2000)
+      .map(response => {
+        if (response) {
+          return {
+            type: User.USER_TOKEN.SUCCESS,
+            payload: response
+          };
+        } else {
+          return {
+            type: User.USER_TOKEN.FAILURE
+          };
+        }
+      })
+      .catch(error => {
+        return Rx.Observable.of({
+          type: User.USER_TOKEN.FAILURE
+        });
+      });
+  });
 
-export default combineEpics(
-  // getToken,
-  (action$, store) =>
-    ajax(User.USER_TOKEN, action$, store)(null, errorAction => {
-      return Rx.Observable.of({ type: "sdsd" });
-    })
-);
+const getTokenFaild = action$ =>
+  action$
+    .ofType(User.USER_TOKEN.FAILURE)
+    .delay(2000)
+    .mapTo(User.getToken());
+
+export default combineEpics(getToken, getTokenFaild);
