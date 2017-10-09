@@ -1,23 +1,27 @@
 import React from "react";
 import { connect } from "react-redux";
-import { SearchBar } from "antd-mobile";
 import { modal } from "@/utils/decorators";
-import { dynamicListPaginator } from "@/actions";
+import { Customer } from "@/actions";
 import { createPaginateSelector } from "@/reducers/selectors";
+import tables from "@/tables";
 import Table from "@/components/table";
 
-const dynamicSelector = createPaginateSelector("dynamics");
+const customersSelector = createPaginateSelector("customers");
 
-@connect()
+@connect(state => {
+  return {
+    customers: customersSelector(state)
+  };
+})
 @modal()
 class CustomerSelect extends React.Component {
   
-  onEndReached = () => {
-    this.props.dispatch(dynamicListPaginator.loadNext());
+  onEndReached = ({value}) => {
+    this.props.dispatch(Customer.listPaginator.loadNext(value));
   };
 
-  onRefresh = () => {
-    this.props.dispatch(dynamicListPaginator.refresh());
+  onRefresh = ({value}) => {
+    this.props.dispatch(Customer.listPaginator.refresh(value));
   };
 
   renderRow = (rowData, sectionID, rowID) => {
@@ -70,10 +74,9 @@ class CustomerSelect extends React.Component {
       totalCount,
       isRefreshing,
       isFetching
-    } = this.props.dynamics;
+    } = this.props.customers;
     return (
       <div>
-        <SearchBar placeholder="搜索" maxLength={8} />
         <Table
           dataList={entities}
           totalCount={totalCount}
@@ -82,16 +85,12 @@ class CustomerSelect extends React.Component {
           onRefresh={this.onRefresh}
           onEndReached={this.onEndReached}
           renderRow={this.renderRow}
+          config={tables.customerList}
+          placeholder="请输入客户名/手机号"
         />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    dynamics: dynamicSelector(state)
-  };
-};
-
-export default connect(mapStateToProps)(CustomerSelect);
+export default CustomerSelect;

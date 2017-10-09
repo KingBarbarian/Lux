@@ -40,6 +40,7 @@ import {
       case PAGINATE_RESET.SUCCESS:
       case PAGINATE_INIT.SUCCESS:
       case PAGINATE_REFRESH.SUCCESS:
+      console.log(2222)
         return {
           ...state,
           [action.target]: {
@@ -93,6 +94,7 @@ import {
           }
         };
       case PAGINATE_CHANGE_STATE:
+      console.log(action)
         return {
           ...state,
           [action.target]: {
