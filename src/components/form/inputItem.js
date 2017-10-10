@@ -30,7 +30,7 @@ const defaultProps = {
   placeholder: "请输入",
   editable: true,
   disabled: false,
-  clear: false,
+  clear: true,
   maxLength: null,
   extra: "",
   label: "标题",
@@ -39,7 +39,7 @@ const defaultProps = {
   moneyKeyboardAlign: "right",
   textArea: false,
   rows: 5,
-  count: 0
+  count: 100
 };
 
 @fieldHOC("inputItem")
@@ -73,7 +73,7 @@ class InputItemField extends React.Component {
         {textArea ? (
           <TextareaItem
             title={label}
-            value={input.value ? input.value : null}
+            value={input.value ? input.value :''}
             placeholder={placeholder}
             rows={rows}
             count={count}
