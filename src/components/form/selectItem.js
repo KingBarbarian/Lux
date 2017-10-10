@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Field, change } from "redux-form";
 import { Toast, List } from "antd-mobile";
 import { combineModal } from "@/utils/decorators";
 import CustomerSelect from "@/page/customer";
+import DistributorSelect from "@/page/distributor";
 import { fieldHOC } from "../form-wrapper/register";
 
 const Item = List.Item;
@@ -29,7 +29,7 @@ const defaultProps = {
   brief: false
 };
 @fieldHOC("selectItem")
-@combineModal({ CustomerSelect })
+@combineModal({ CustomerSelect, DistributorSelect })
 class SelectItemField extends React.Component {
   constructor(props) {
     super(props);
@@ -46,20 +46,13 @@ class SelectItemField extends React.Component {
     Toast.info(info);
   };
   openModal = info => {
-    this.props.show("CustomerSelect")();
+    this.props.show(this.props.sceneName)();
   };
 
   componentWillReceiveProps(nextProps) {
-    const {
-      bindName,
-      meta: { dispatch },
-      formName,
-      input,
-      modalResults,
-      sceneName
-    } = nextProps;
+    const { input, modalResults, sceneName } = nextProps;
     if (modalResults[sceneName] && modalResults[sceneName].data) {
-      this.setState({extra:modalResults[sceneName].data.value})
+      this.setState({ extra: modalResults[sceneName].data.value });
       input.onChange(
         modalResults[sceneName].data ? modalResults[sceneName].data : null
       );
@@ -86,11 +79,7 @@ class SelectItemField extends React.Component {
         onClick={this.openModal}
       >
         {label}
-        {!brief ? (
-          <Brief>
-            {this.state.extra}
-          </Brief>
-        ) : null}
+        {!brief ? <Brief>{this.state.extra}</Brief> : null}
       </Item>
     );
   }
