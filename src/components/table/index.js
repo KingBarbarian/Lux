@@ -26,11 +26,6 @@ class Table extends React.Component {
     this.keyword = null;
   }
 
-  componentDidMount = () => {
-    this.onRefresh();
-  }
-  
-
   onRefresh = value => {
     let requestValue = null;
     if (value) {
@@ -57,7 +52,8 @@ class Table extends React.Component {
       isRefreshing,
       isFetching,
       renderRow,
-      placeholder
+      placeholder,
+      config
     } = this.props;
     return (
       <div>
@@ -70,6 +66,7 @@ class Table extends React.Component {
           onRefresh={this.onRefresh}
           onEndReached={this.onEndReached}
           renderRow={renderRow}
+          config={config}
         />
       </div>
     );
