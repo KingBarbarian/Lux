@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import _ from "lodash";
 import { RefreshControl, ListView } from "antd-mobile";
 import ReactDOM from "react-dom";
 import ListEmpty from "../list-empty";
@@ -27,18 +28,71 @@ const defaultProps = {
 class WebListView extends React.Component {
   constructor(props) {
     super(props);
-    const dataSource = new ListView.DataSource({
-      rowHasChanged: (row1, row2) => row1 !== row2,
+    this.ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
     });
-
+    const data = this.props.config.data;
     this.state = {
-      dataSource,
+      text: data.map(rows => {
+        if (rows.headerDisplay && rows.index) {
+          return rows.index;
+        } else if (rows.value) {
+          return 1;
+        } else if (rows.headerDisplay) {
+          return 0;
+        } else {
+          return -1;
+        }
+      }),
+      value: [],
+      activity: [],
+      selectIndex: data.map(rows => {
+        if (rows.headerDisplay && rows.index) {
+          return rows.index;
+        } else if (rows.value) {
+          return 1;
+        } else if (rows.headerDisplay) {
+          return 0;
+        } else {
+          return -1;
+        }
+      }),
       refreshing: true,
-      height: document.documentElement.clientHeight,
+      height: document.documentElement.clientHeight
     };
   }
 
   componentDidMount() {
+    const data = this.props.config.data;
+    let addValue = {};
+    let value = data.map((rows, key) => {
+      let _index = 0;
+      const options = _.get(rows, "options") || [];
+      options.map((item, index) => {
+        if (item.id === rows.value) {
+          _index = index;
+        }
+        return item;
+      });
+      if (rows.value && rows.type === "select") {
+        addValue.id = rows.id;
+        addValue.headerDisplay = rows.headerDisplay;
+        addValue.value = rows.value;
+        addValue.activityIndex = key;
+        addValue.defaultValue = rows.value;
+        addValue.name = `${rows.name}：${rows.options[_index].name}`;
+        return addValue;
+      } else {
+        return -1;
+      }
+    });
+
+    this.setState({
+      text: value,
+      value: value,
+      activity: value
+    });
+
     setTimeout(
       () =>
         this.setState({
@@ -84,15 +138,7 @@ class WebListView extends React.Component {
 
   handleTextChange = text => {
     this.keyword = text;
-    const value = this.state.value;
-    const data = this.props.config.data;
-
-    if (
-      (text === null || text === "" || text === undefined) &&
-      value.length > data.length
-    ) {
-      this.handleSearch();
-    }
+    this.handleSearch();
   };
 
   handleSearch = () => {
@@ -106,10 +152,11 @@ class WebListView extends React.Component {
 
     value[data.length] = keyword;
 
-    this.props.onRefresh(value);
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(this.props.dataList),
+      value: value
     });
+
+    this.props.onRefresh(value);
   };
 
   onRefresh = () => {
@@ -121,9 +168,8 @@ class WebListView extends React.Component {
     setTimeout(() => {
       this.props.onRefresh();
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(this.props.dataList),
         refreshing: false,
-        showFinishTxt: true,
+        showFinishTxt: true
       });
       if (this.domScroller) {
         this.domScroller.scroller.options.animationDuration = 500;
@@ -133,9 +179,6 @@ class WebListView extends React.Component {
 
   onEndReached = event => {
     this.props.onEndReached();
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(this.props.dataList),
-    });
   };
 
   scrollingComplete = () => {
@@ -166,7 +209,7 @@ class WebListView extends React.Component {
   };
 
   render() {
-    const { renderRow,placeholder } = this.props;
+    const { renderRow, placeholder } = this.props;
     return (
       <div>
         <SearchInput
@@ -176,7 +219,7 @@ class WebListView extends React.Component {
         />
         <ListView
           ref={el => (this.lv = el)}
-          dataSource={this.state.dataSource}
+          dataSource={this.ds.cloneWithRows(this.props.dataList)}
           renderFooter={this.renderFooter}
           renderRow={renderRow}
           initialListSize={5}
