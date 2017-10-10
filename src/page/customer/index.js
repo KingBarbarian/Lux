@@ -32,7 +32,7 @@ class CustomerSelect extends React.Component {
           backgroundColor: "white",
           borderBottom: "1px solid #ECECED"
         }}
-        onClick={() => this.props.onClose({ data: rowData.customerName })}
+        onClick={() => this.props.onClose({ data: {key:rowData.customerId,value:rowData.customerName} })}
       >
         <div
           style={{ display: "-webkit-box", display: "flex", padding: "15px" }}

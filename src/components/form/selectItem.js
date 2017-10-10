@@ -63,7 +63,7 @@ class SelectItemField extends React.Component {
         modalResults[sceneName].data ? modalResults[sceneName].data : null
       );
     }
-    dispatch(change(formName, bindName, "魏建伟123"));
+    // dispatch(change(formName, bindName, "魏建伟123"));
   }
 
   componentDidMount() {
@@ -82,16 +82,16 @@ class SelectItemField extends React.Component {
         multipleLine={multipleLine}
         wrap={wrap}
         platform={platform}
-        extra={
-          !brief
-            ? this.props.modalResults[this.props.sceneName].data
-              ? this.props.modalResults[this.props.sceneName].data
-              : this.state.extra
-            : null
-        }
         onClick={this.openModal}
       >
-        {label} {brief ? <Brief>{this.state.extra}</Brief> : null}
+        {label}
+        {!brief ? (
+          <Brief>
+            {this.props.modalResults[this.props.sceneName].data
+              ? this.props.modalResults[this.props.sceneName].data.value
+              : this.state.extra}
+          </Brief>
+        ) : null}
       </Item>
     );
   }

@@ -46,9 +46,6 @@ class Table extends React.Component {
     };
     this.keyword = null;
   }
-  componentDidMount() {
-    this.onRefresh();
-  }
 
   handleTextChange = text => {
     this.keyword = text;

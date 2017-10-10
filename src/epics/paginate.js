@@ -62,6 +62,7 @@ export const paginateRefresh = (action$, store) =>
         PAGINATE_REFRESH.FAILURE
       );
     })
+    .do(() => store.dispatch(Message.dismiss()));
 
 export const paginateReset = (action$, store) =>
   action$

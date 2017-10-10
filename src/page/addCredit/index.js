@@ -24,7 +24,7 @@ const tabs = [
   { title: "地租", sub: "3" },
   { title: "农活", sub: "4" },
   { title: "粮食", sub: "5" },
-  { title: "经营消费", sub: "6" }
+  { title: "人工", sub: "6" }
 ];
 
 @connect()

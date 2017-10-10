@@ -10,7 +10,7 @@ const customIcon = src => (
 class ListEmpty extends React.Component {
   render() {
     return (
-      <div style={{ flex: 1 }}>
+      <div style={{ flex: 1,paddingTop:70 }}>
         <Result
           img={customIcon(
             "https://gw.alipayobjects.com/zos/rmsportal/GIyMDJnuqmcqPLpHCSkj.svg"

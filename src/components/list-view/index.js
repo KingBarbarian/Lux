@@ -90,6 +90,13 @@ class WebListView extends React.Component {
     }, 600);
   };
 
+  
+
+  componentWillMount = () => {
+    // this.onRefresh();
+  }
+  
+
   onEndReached = event => {
     this.props.onEndReached();
   };
@@ -115,7 +122,7 @@ class WebListView extends React.Component {
     if (this.props.isFetching) {
       return <div style={{ padding: 30, textAlign: "center" }}>{"加载中..."}</div>;
     }
-    if (this.props.totalCount === 0) {
+    if (!this.state.showFinishTxt && this.props.totalCount === 0) {
       return this.props.renderEmpty();
     }
     return null;

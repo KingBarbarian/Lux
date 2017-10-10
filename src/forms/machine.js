@@ -6,7 +6,6 @@ export default {
         {
           fieldType: "selectItem",
           name: "customer",
-          brief:true,
           label: "客户",
           placeholder: "请选择客户",
           sceneName: "CustomerSelect"
@@ -14,7 +13,6 @@ export default {
         {
           fieldType: "selectItem",
           name: "dealers",
-          brief:true,
           label: "经销商",
           placeholder: "请选择经销商",
           sceneName: "CustomerSelect"
@@ -22,7 +20,6 @@ export default {
         {
           fieldType: "selectItem",
           name: "models",
-          brief:true,
           label: "购买机型",
           placeholder: "请选择购买机型",
           sceneName: "CustomerSelect"

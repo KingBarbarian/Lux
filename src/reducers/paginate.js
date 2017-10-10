@@ -67,10 +67,10 @@ export const paginateReducer = (state = {}, action) => {
           isFetching: false,
           currentPage: state[action.target].currentPage + 1,
           entities: [...state[action.target].entities].concat(
-            action.payload.data.items
+            action.payload.items
           ),
-          pageSize: action.payload.data.pageSize,
-          totalCount: action.payload.data.totalCount
+          pageSize: action.payload.pageSize,
+          totalCount: action.payload.totalCount
         }
       };
       if (

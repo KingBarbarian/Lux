@@ -37,7 +37,6 @@ export const createPaginateActionCreator = type => {
 };
 
 export const createPaginateActionCreatorS = (type, func, pageSize = 10) => {
-  console.log(type)
   const init = (...args) => ({
     ...func(0, pageSize, ...args),
     type: PAGINATE_INIT.REQUEST,
