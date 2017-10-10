@@ -5,7 +5,7 @@ export const addMachineValidate = values => {
   if (!values.customer) {
     _.set(errors, "customer", "必填项");
   }
-  if (!values.dealerse) {
+  if (!values.dealers) {
     _.set(errors, "dealers", "必填项");
   }
   if (!values.models) {
