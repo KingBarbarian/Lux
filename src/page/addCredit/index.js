@@ -11,7 +11,7 @@ import {
 } from "antd-mobile";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { addCreditValidate } from "@/validations";
+import { addMachineValidate } from "@/validations";
 import FormWrapper from "@/components/form-wrapper";
 import Forms from "../../forms";
 const height = window.innerHeight;
@@ -56,12 +56,7 @@ class AddCredit extends React.Component {
   _initialValues() {
     let initialValues = {};
     initialValues = {
-      user: {
-        customer: "肥宝宝",
-        username: "魏建伟",
-        password: "jian025574",
-        phone: "18913372392"
-      }
+      remark:"我是initialValues生成的"
     };
     return initialValues;
   }
@@ -86,13 +81,14 @@ class AddCredit extends React.Component {
                 bindSubmit={this.handleBindSubmit}
                 onSubmit={this.handleOnSubmit}
                 dispatch={dispatch}
-                validate={addCreditValidate}
+                validate={addMachineValidate}
               />
               <WhiteSpace />
               <div>
                 <Button
                   type="primary"
                   style={{ marginRight: "15px", marginLeft: "15px" }}
+                  onClick={this.handleSubmit}
                 >
                   保存
                 </Button>
@@ -100,6 +96,22 @@ class AddCredit extends React.Component {
               <WhiteSpace />
               <WhiteSpace />
               <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              
             </List>
           </div>
           <div style={{ height: `${height - 43.5}px` }}>
