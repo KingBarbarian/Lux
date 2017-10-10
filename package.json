@@ -21,11 +21,11 @@
     ]
   },
   "dependencies": {
-    "antd-mobile": "^2.0.0-beta.2",
+    "antd-mobile": "^2.0.0-beta.5",
     "axios": "^0.16.2",
-    "chromedriver": "^2.32.3",
     "classnames": "^2.2.5",
     "lodash": "^4.17.4",
+    "pre-commit": "^1.2.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-native-webview-invoke": "^0.3.10",

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import _ from "lodash";
 import { RefreshControl, ListView } from "antd-mobile";
 import ReactDOM from "react-dom";
 import ListEmpty from "../list-empty";
@@ -27,11 +28,10 @@ const defaultProps = {
 class WebListView extends React.Component {
   constructor(props) {
     super(props);
-    const data = this.props.config.data;
-    const dataSource = new ListView.DataSource({
-      rowHasChanged: (row1, row2) => row1 !== row2
+    this.ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
     });
-
+    const data = this.props.config.data;
     this.state = {
       text: data.map(rows => {
         if (rows.headerDisplay && rows.index) {
@@ -57,7 +57,6 @@ class WebListView extends React.Component {
           return -1;
         }
       }),
-      dataSource,
       refreshing: true,
       height: document.documentElement.clientHeight
     };
@@ -66,18 +65,15 @@ class WebListView extends React.Component {
   componentDidMount() {
     const data = this.props.config.data;
     let addValue = {};
-
     let value = data.map((rows, key) => {
       let _index = 0;
       const options = _.get(rows, "options") || [];
-
       options.map((item, index) => {
-        if (item.id == rows.value) {
+        if (item.id === rows.value) {
           _index = index;
         }
         return item;
       });
-
       if (rows.value && rows.type === "select") {
         addValue.id = rows.id;
         addValue.headerDisplay = rows.headerDisplay;
@@ -161,9 +157,6 @@ class WebListView extends React.Component {
     });
 
     this.props.onRefresh(value);
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(this.props.dataList)
-    });
   };
 
   onRefresh = () => {
@@ -175,7 +168,6 @@ class WebListView extends React.Component {
     setTimeout(() => {
       this.props.onRefresh();
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(this.props.dataList),
         refreshing: false,
         showFinishTxt: true
       });
@@ -187,9 +179,6 @@ class WebListView extends React.Component {
 
   onEndReached = event => {
     this.props.onEndReached();
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(this.props.dataList)
-    });
   };
 
   scrollingComplete = () => {
@@ -230,7 +219,7 @@ class WebListView extends React.Component {
         />
         <ListView
           ref={el => (this.lv = el)}
-          dataSource={this.state.dataSource}
+          dataSource={this.ds.cloneWithRows(this.props.dataList)}
           renderFooter={this.renderFooter}
           renderRow={renderRow}
           initialListSize={5}
