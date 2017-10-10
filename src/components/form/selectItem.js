@@ -59,6 +59,7 @@ class SelectItemField extends React.Component {
       sceneName
     } = nextProps;
     if (modalResults[sceneName] && modalResults[sceneName].data) {
+      this.setState({extra:modalResults[sceneName].data.value})
       input.onChange(
         modalResults[sceneName].data ? modalResults[sceneName].data : null
       );
@@ -87,9 +88,7 @@ class SelectItemField extends React.Component {
         {label}
         {!brief ? (
           <Brief>
-            {this.props.modalResults[this.props.sceneName].data
-              ? this.props.modalResults[this.props.sceneName].data.value
-              : this.state.extra}
+            {this.state.extra}
           </Brief>
         ) : null}
       </Item>

@@ -1,29 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import Sorter from "./sorter";
-// import Filter from "./filter";
 import WebListView from "../list-view";
-import SearchInput from "../search-input";
 
 const noop = () => {};
-
-const data = [
-  {
-    img: "https://zos.alipayobjects.com/rmsportal/dKbkpPXKfvZzWCM.png",
-    title: "Meet hotel",
-    des: "不是所有的兼职汪都需要风吹日晒"
-  },
-  {
-    img: "https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png",
-    title: "McDonald's invites you",
-    des: "不是所有的兼职汪都需要风吹日晒"
-  },
-  {
-    img: "https://zos.alipayobjects.com/rmsportal/hfVtzEhPzTUewPm.png",
-    title: "Eat the week",
-    des: "不是所有的兼职汪都需要风吹日晒"
-  }
-];
 
 const propTypes = {
   renderRow: PropTypes.func,
@@ -47,36 +26,10 @@ class Table extends React.Component {
     this.keyword = null;
   }
 
-  handleTextChange = text => {
-    this.keyword = text;
-    const value = this.state.value;
-    const data = this.props.config.data;
-
-    if (
-      (text === null || text === "" || text === undefined) &&
-      value.length > data.length
-    ) {
-      this.handleSearch();
-    }
-  };
-
-  handleSearch = () => {
-    const data = this.props.config.data;
-    let keyword = {};
-    let value = this.state.value;
-
-    keyword.id = "keyword";
-    keyword.value = this.keyword;
-    keyword.headerDisplay = "false";
-
-    value[data.length] = keyword;
-
-    this.setState({
-      value: value
-    });
-
-    this.onRefresh(value);
-  };
+  componentDidMount = () => {
+    this.onRefresh();
+  }
+  
 
   onRefresh = value => {
     let requestValue = null;
@@ -108,12 +61,8 @@ class Table extends React.Component {
     } = this.props;
     return (
       <div>
-        <SearchInput
-          placeholder={placeholder}
-          onChangeText={this.handleTextChange}
-          onSubmitEditing={this.handleSearch}
-        />
         <WebListView
+          placeholder={placeholder}
           dataList={dataList}
           totalCount={totalCount}
           isRefreshing={isRefreshing}

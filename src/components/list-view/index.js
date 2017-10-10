@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { RefreshControl, ListView } from "antd-mobile";
 import ReactDOM from "react-dom";
 import ListEmpty from "../list-empty";
+import SearchInput from "../search-input";
 
 const propTypes = {
   dataList: PropTypes.array,
@@ -26,11 +27,14 @@ const defaultProps = {
 class WebListView extends React.Component {
   constructor(props) {
     super(props);
-    this.ds = new ListView.DataSource({
-      rowHasChanged: (row1, row2) => row1 !== row2
+    const dataSource = new ListView.DataSource({
+      rowHasChanged: (row1, row2) => row1 !== row2,
     });
+
     this.state = {
-      height: document.documentElement.clientHeight
+      dataSource,
+      refreshing: true,
+      height: document.documentElement.clientHeight,
     };
   }
 
@@ -78,11 +82,48 @@ class WebListView extends React.Component {
     this.domScroller = e;
   };
 
+  handleTextChange = text => {
+    this.keyword = text;
+    const value = this.state.value;
+    const data = this.props.config.data;
+
+    if (
+      (text === null || text === "" || text === undefined) &&
+      value.length > data.length
+    ) {
+      this.handleSearch();
+    }
+  };
+
+  handleSearch = () => {
+    const data = this.props.config.data;
+    let keyword = {};
+    let value = this.state.value;
+
+    keyword.id = "keyword";
+    keyword.value = this.keyword;
+    keyword.headerDisplay = "false";
+
+    value[data.length] = keyword;
+
+    this.props.onRefresh(value);
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(this.props.dataList),
+    });
+  };
+
   onRefresh = () => {
+    if (!this.manuallyRefresh) {
+      this.setState({ refreshing: true });
+    } else {
+      this.manuallyRefresh = false;
+    }
     setTimeout(() => {
       this.props.onRefresh();
       this.setState({
-        showFinishTxt: true
+        dataSource: this.state.dataSource.cloneWithRows(this.props.dataList),
+        refreshing: false,
+        showFinishTxt: true,
       });
       if (this.domScroller) {
         this.domScroller.scroller.options.animationDuration = 500;
@@ -90,15 +131,11 @@ class WebListView extends React.Component {
     }, 600);
   };
 
-  
-
-  componentWillMount = () => {
-    // this.onRefresh();
-  }
-  
-
   onEndReached = event => {
     this.props.onEndReached();
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(this.props.dataList),
+    });
   };
 
   scrollingComplete = () => {
@@ -129,12 +166,17 @@ class WebListView extends React.Component {
   };
 
   render() {
-    const { renderRow } = this.props;
+    const { renderRow,placeholder } = this.props;
     return (
       <div>
+        <SearchInput
+          placeholder={placeholder}
+          onChangeText={this.handleTextChange}
+          onSubmitEditing={this.handleSearch}
+        />
         <ListView
           ref={el => (this.lv = el)}
-          dataSource={this.ds.cloneWithRows(this.props.dataList)}
+          dataSource={this.state.dataSource}
           renderFooter={this.renderFooter}
           renderRow={renderRow}
           initialListSize={5}
@@ -148,7 +190,7 @@ class WebListView extends React.Component {
           }}
           refreshControl={
             <RefreshControl
-              refreshing={this.props.isRefreshing}
+              refreshing={this.state.refreshing}
               onRefresh={this.onRefresh}
               icon={this.renderCustomIcon()}
             />
