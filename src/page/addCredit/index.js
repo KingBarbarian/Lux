@@ -18,14 +18,13 @@ const height = window.innerHeight;
 const Item = List.Item;
 const Brief = Item.Brief;
 
-const tabs2 = [
-  { title: "field", sub: "0" },
+const tabs = [
   { title: "农机", sub: "1" },
   { title: "农补", sub: "2" },
   { title: "地租", sub: "3" },
   { title: "农活", sub: "4" },
   { title: "粮食", sub: "5" },
-  { title: "经营消费", sub: "6" }
+  { title: "人工", sub: "6" }
 ];
 
 @connect()
@@ -69,17 +68,17 @@ class AddCredit extends React.Component {
 
   render() {
     const { dispatch } = this.props;
-    let formProp = Forms.AddCredit;
+    let formProp = Forms.Machine;
     return (
       <div>
         <Tabs
-          tabs={tabs2}
+          tabs={tabs}
           initialPage={0}
           tabBarPosition="top"
           swipeable={false}
           renderTab={tab => <span>{tab.title}</span>}
         >
-          <div>
+          <div style={{ height: `${height - 43.5}px` }}>
             <List renderHeader={() => "农机信贷"}>
               <FormWrapper
                 formProp={formProp}
@@ -88,51 +87,6 @@ class AddCredit extends React.Component {
                 onSubmit={this.handleOnSubmit}
                 dispatch={dispatch}
                 validate={addCreditValidate}
-              />
-              <div>
-                <Button
-                  type="primary"
-                  style={{ marginRight: "15px", marginLeft: "15px" }}
-                  onClick={this.handleSubmit}
-                >
-                  保存
-                </Button>
-              </div>
-            </List>
-          </div>
-          <div style={{ height: `${height - 43.5}px` }}>
-            <List renderHeader={() => "农机信贷"}>
-              <Item arrow="horizontal" multipleLine onClick={() => {}}>
-                客户 <Brief>请选择客户</Brief>
-              </Item>
-              <Item arrow="horizontal" multipleLine onClick={() => {}}>
-                经销商 <Brief>请选择经销商</Brief>
-              </Item>
-              <Item arrow="horizontal" multipleLine onClick={() => {}}>
-                购买机型 <Brief>请选择购买机型</Brief>
-              </Item>
-              <Item>
-                <InputItem placeholder="0.00" extra="¥">
-                  总价
-                </InputItem>
-              </Item>
-              <Item>
-                <InputItem placeholder="0.00" extra="¥">
-                  首付款
-                </InputItem>
-              </Item>
-              <Item>
-                <InputItem placeholder="0.00" extra="¥">
-                  申请金额
-                </InputItem>
-              </Item>
-              <TextareaItem
-                title="备注"
-                placeholder="请输入备注信息"
-                rows={5}
-                count={100}
-                data-seed="logId"
-                autoHeight
               />
               <WhiteSpace />
               <div>

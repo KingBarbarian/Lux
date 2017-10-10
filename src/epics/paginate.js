@@ -9,7 +9,7 @@ import {
   PAGINATE_CHANGE_STATE
 } from "@/actions";
 import { createPaginateSelector } from "@/reducers/selectors";
-import { ajax } from "./tools";
+import { baseAjax } from "./tools";
 
 export const isPaginateProcessing = (action, store) => {
   const paginateSelector = createPaginateSelector(action.target);
@@ -36,7 +36,7 @@ export const paginateInit = (action$, store) =>
           isFetching: false
         }
       });
-      return ajax(action, store, PAGINATE_INIT.SUCCESS, PAGINATE_INIT.FAILURE);
+      return baseAjax(action, store, PAGINATE_INIT.SUCCESS, PAGINATE_INIT.FAILURE);
     })
     .do(() => store.dispatch(Message.dismiss()));
 
@@ -55,14 +55,14 @@ export const paginateRefresh = (action$, store) =>
           isFetching: false
         }
       });
-      return ajax(
+      return baseAjax(
         action,
         store,
         PAGINATE_REFRESH.SUCCESS,
         PAGINATE_REFRESH.FAILURE
       );
     })
-    .do(() => {console.log(111)});
+    .do(() => store.dispatch(Message.dismiss()));
 
 export const paginateReset = (action$, store) =>
   action$
@@ -79,7 +79,7 @@ export const paginateReset = (action$, store) =>
           isFetching: false
         }
       });
-      return ajax(
+      return baseAjax(
         action,
         store,
         PAGINATE_RESET.SUCCESS,
@@ -114,7 +114,7 @@ export const paginateLoadNext = (action$, store) =>
           isFetching: true
         }
       });
-      return ajax(
+      return baseAjax(
         action,
         store,
         PAGINATE_LOAD_NEXT.SUCCESS,

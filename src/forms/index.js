@@ -1,5 +1,5 @@
-import AddCredit from "./AddCredit";
+import Machine from "./machine";
 
 export default {
-  AddCredit
+  Machine
 };

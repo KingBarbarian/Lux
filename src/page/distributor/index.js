@@ -2,26 +2,24 @@ import React from "react";
 import { connect } from "react-redux";
 import { NavBar } from "antd-mobile";
 import { modal } from "@/utils/decorators";
-import { Customer } from "@/actions";
+import { Distributor } from "@/actions";
 import { createPaginateSelector } from "@/reducers/selectors";
 import tables from "@/tables";
 import Table from "@/components/table";
 
-const customersSelector = createPaginateSelector("customers");
+const distributorSelector = createPaginateSelector("distributors");
 
-@connect(state => {
-  return {
-    customers: customersSelector(state)
-  };
-})
+@connect(state => ({
+  distributors: distributorSelector(state)
+}))
 @modal()
-class CustomerSelect extends React.Component {
-  onEndReached = ({ value }) => {
-    this.props.dispatch(Customer.listPaginator.loadNext(value));
+class DistributorSelect extends React.Component {
+  onEndReached = ({ value = {} }) => {
+    this.props.dispatch(Distributor.listPaginator.loadNext(value));
   };
 
-  onRefresh = ({ value }) => {
-    this.props.dispatch(Customer.listPaginator.refresh(value));
+  onRefresh = ({ value = {} }) => {
+    this.props.dispatch(Distributor.listPaginator.refresh(value));
   };
 
   renderRow = (rowData, sectionID, rowID) => {
@@ -32,11 +30,9 @@ class CustomerSelect extends React.Component {
           backgroundColor: "white",
           borderBottom: "1px solid #ECECED"
         }}
-        onClick={() => this.props.onClose({ data: {key:rowData.customerId,value:rowData.customerName} })}
+        onClick={() => this.props.onClose({ data: rowData.companyName })}
       >
-        <div
-          style={{ display: "-webkit-box", display: "flex", padding: "15px" }}
-        >
+        <div style={{ display: "flex", padding: "15px" }}>
           <img
             style={{
               height: "40px",
@@ -59,9 +55,11 @@ class CustomerSelect extends React.Component {
                 paddingBottom: "5px"
               }}
             >
-              {rowData.customerName}
+              {rowData.companyName}
             </div>
-            <div style={{ fontSize: "14px", color: "#888" }}>{rowData.customerId}</div>
+            <div style={{ fontSize: "14px", color: "#888" }}>
+              {rowData.distributorId}
+            </div>
           </div>
         </div>
       </div>
@@ -74,7 +72,7 @@ class CustomerSelect extends React.Component {
       totalCount,
       isRefreshing,
       isFetching
-    } = this.props.customers;
+    } = this.props.distributors;
     return (
       <div>
         <NavBar
@@ -82,22 +80,22 @@ class CustomerSelect extends React.Component {
           mode="light"
           onLeftClick={() => this.props.onClose()}
         >
-          选择客户
+          选择经销商
         </NavBar>
         <Table
-          dataList={entities?entities:[]}
+          dataList={entities || []}
           totalCount={totalCount}
           isRefreshing={isRefreshing}
           isFetching={isFetching}
           onRefresh={this.onRefresh}
           onEndReached={this.onEndReached}
           renderRow={this.renderRow}
-          config={tables.customerList}
-          placeholder="请输入客户名/手机号"
+          config={tables.distributorList}
+          placeholder="请选择经销商"
         />
       </div>
     );
   }
 }
 
-export default CustomerSelect;
+export default DistributorSelect;

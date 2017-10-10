@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Field, change } from "redux-form";
 import { Toast, List } from "antd-mobile";
 import { combineModal } from "@/utils/decorators";
 import CustomerSelect from "@/page/customer";
+import DistributorSelect from "@/page/distributor";
 import { fieldHOC } from "../form-wrapper/register";
 
 const Item = List.Item;
@@ -29,7 +29,7 @@ const defaultProps = {
   brief: false
 };
 @fieldHOC("selectItem")
-@combineModal({ CustomerSelect })
+@combineModal({ CustomerSelect, DistributorSelect })
 class SelectItemField extends React.Component {
   constructor(props) {
     super(props);
@@ -46,24 +46,18 @@ class SelectItemField extends React.Component {
     Toast.info(info);
   };
   openModal = info => {
-    this.props.show("CustomerSelect")();
+    this.props.show(this.props.sceneName)();
   };
 
   componentWillReceiveProps(nextProps) {
-    const {
-      bindName,
-      meta: { dispatch },
-      formName,
-      input,
-      modalResults,
-      sceneName
-    } = nextProps;
-    if (modalResults[sceneName].data) {
+    const { input, modalResults, sceneName } = nextProps;
+    if (modalResults[sceneName] && modalResults[sceneName].data) {
+      this.setState({ extra: modalResults[sceneName].data.value });
       input.onChange(
         modalResults[sceneName].data ? modalResults[sceneName].data : null
       );
     }
-    dispatch(change(formName, bindName, "魏建伟123"));
+    // dispatch(change(formName, bindName, "魏建伟123"));
   }
 
   componentDidMount() {
@@ -82,34 +76,16 @@ class SelectItemField extends React.Component {
         multipleLine={multipleLine}
         wrap={wrap}
         platform={platform}
-        extra={
-          !brief
-            ? this.props.modalResults[this.props.sceneName].data
-              ? this.props.modalResults[this.props.sceneName].data
-              : this.state.extra
-            : null
-        }
         onClick={this.openModal}
       >
-        {label} {brief ? <Brief>{this.state.extra}</Brief> : null}
+        {label}
+        {!brief ? <Brief>{this.state.extra}</Brief> : null}
       </Item>
     );
   }
 }
 
-// class SelectItemField extends React.Component {
-//   render() {
-//     return (
-//       <Field
-//         name={this.props.name}
-//         props={this.props}
-//         component={InnerComponent}
-//       />
-//     );
-//   }
-// }
-
-// SelectItemField.prototypes = propTypes;
-// SelectItemField.defaultProps = defaultProps;
+SelectItemField.prototypes = propTypes;
+SelectItemField.defaultProps = defaultProps;
 
 export default SelectItemField;

@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import _ from "lodash";
 import { RefreshControl, ListView } from "antd-mobile";
 import ReactDOM from "react-dom";
 import ListEmpty from "../list-empty";
+import SearchInput from "../search-input";
 
 const propTypes = {
   dataList: PropTypes.array,
@@ -27,14 +29,70 @@ class WebListView extends React.Component {
   constructor(props) {
     super(props);
     this.ds = new ListView.DataSource({
-      rowHasChanged: (row1, row2) => row1 !== row2
+      rowHasChanged: (r1, r2) => r1 !== r2
     });
+    const data = this.props.config.data;
     this.state = {
+      text: data.map(rows => {
+        if (rows.headerDisplay && rows.index) {
+          return rows.index;
+        } else if (rows.value) {
+          return 1;
+        } else if (rows.headerDisplay) {
+          return 0;
+        } else {
+          return -1;
+        }
+      }),
+      value: [],
+      activity: [],
+      selectIndex: data.map(rows => {
+        if (rows.headerDisplay && rows.index) {
+          return rows.index;
+        } else if (rows.value) {
+          return 1;
+        } else if (rows.headerDisplay) {
+          return 0;
+        } else {
+          return -1;
+        }
+      }),
+      refreshing: true,
       height: document.documentElement.clientHeight
     };
   }
 
   componentDidMount() {
+    const data = this.props.config.data;
+    let addValue = {};
+    let value = data.map((rows, key) => {
+      let _index = 0;
+      const options = _.get(rows, "options") || [];
+      options.map((item, index) => {
+        if (item.id === rows.value) {
+          _index = index;
+        }
+        return item;
+      });
+      if (rows.value && rows.type === "select") {
+        addValue.id = rows.id;
+        addValue.headerDisplay = rows.headerDisplay;
+        addValue.value = rows.value;
+        addValue.activityIndex = key;
+        addValue.defaultValue = rows.value;
+        addValue.name = `${rows.name}：${rows.options[_index].name}`;
+        return addValue;
+      } else {
+        return -1;
+      }
+    });
+
+    this.setState({
+      text: value,
+      value: value,
+      activity: value
+    });
+
     setTimeout(
       () =>
         this.setState({
@@ -78,10 +136,39 @@ class WebListView extends React.Component {
     this.domScroller = e;
   };
 
+  handleTextChange = text => {
+    this.keyword = text;
+    this.handleSearch();
+  };
+
+  handleSearch = () => {
+    const data = this.props.config.data;
+    let keyword = {};
+    let value = this.state.value;
+
+    keyword.id = "keyword";
+    keyword.value = this.keyword;
+    keyword.headerDisplay = "false";
+
+    value[data.length] = keyword;
+
+    this.setState({
+      value: value
+    });
+
+    this.props.onRefresh(value);
+  };
+
   onRefresh = () => {
+    if (!this.manuallyRefresh) {
+      this.setState({ refreshing: true });
+    } else {
+      this.manuallyRefresh = false;
+    }
     setTimeout(() => {
       this.props.onRefresh();
       this.setState({
+        refreshing: false,
         showFinishTxt: true
       });
       if (this.domScroller) {
@@ -115,16 +202,21 @@ class WebListView extends React.Component {
     if (this.props.isFetching) {
       return <div style={{ padding: 30, textAlign: "center" }}>{"加载中..."}</div>;
     }
-    // if (this.props.totalCount === 0) {
-    //   return this.props.renderEmpty();
-    // }
+    if (!this.state.showFinishTxt && this.props.totalCount === 0) {
+      return this.props.renderEmpty();
+    }
     return null;
   };
 
   render() {
-    const { renderRow } = this.props;
+    const { renderRow, placeholder } = this.props;
     return (
       <div>
+        <SearchInput
+          placeholder={placeholder}
+          onChangeText={this.handleTextChange}
+          onSubmitEditing={this.handleSearch}
+        />
         <ListView
           ref={el => (this.lv = el)}
           dataSource={this.ds.cloneWithRows(this.props.dataList)}
@@ -141,7 +233,7 @@ class WebListView extends React.Component {
           }}
           refreshControl={
             <RefreshControl
-              refreshing={this.props.isRefreshing}
+              refreshing={this.state.refreshing}
               onRefresh={this.onRefresh}
               icon={this.renderCustomIcon()}
             />
