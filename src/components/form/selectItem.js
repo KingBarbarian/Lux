@@ -34,7 +34,8 @@ class SelectItemField extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      extra: props.placeholder
+      extra: props.placeholder,
+      errorExtra: "必选项"
     };
   }
 
@@ -57,7 +58,6 @@ class SelectItemField extends React.Component {
         modalResults[sceneName].data ? modalResults[sceneName].data : null
       );
     }
-    // dispatch(change(formName, bindName, "魏建伟123"));
   }
 
   componentDidMount() {
@@ -69,17 +69,25 @@ class SelectItemField extends React.Component {
   }
 
   render() {
-    const { label, arrow, multipleLine, wrap, platform, brief } = this.props;
+    const {
+      label,
+      arrow,
+      multipleLine,
+      wrap,
+      platform,
+      meta: { error, touched }
+    } = this.props;
     return (
       <Item
         arrow={arrow}
         multipleLine={multipleLine}
+        error={error && touched ? true : false}
         wrap={wrap}
         platform={platform}
         onClick={this.openModal}
+        extra={error && touched ? this.state.errorExtra : this.state.extra}
       >
         {label}
-        {!brief ? <Brief>{this.state.extra}</Brief> : null}
       </Item>
     );
   }

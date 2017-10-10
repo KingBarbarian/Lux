@@ -10,7 +10,10 @@ const getDistributorList = (
 ) => {
   return {
     endpoint: "/distributor",
-    data: {},
+    data: {
+      startIndex,
+      pageSize
+    },
     method: "GET"
   };
 };

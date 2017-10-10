@@ -39,7 +39,7 @@ const defaultProps = {
   moneyKeyboardAlign: "right",
   textArea: false,
   rows: 5,
-  count: 100
+  count: 0
 };
 
 @fieldHOC("inputItem")
@@ -62,9 +62,6 @@ class InputItemField extends React.Component {
       maxLength,
       extra,
       label,
-      labelNumber,
-      updatePlaceholder,
-      moneyKeyboardAlign,
       meta: { error, touched },
       input,
       textArea,
@@ -76,6 +73,7 @@ class InputItemField extends React.Component {
         {textArea ? (
           <TextareaItem
             title={label}
+            value={input.value ? input.value : null}
             placeholder={placeholder}
             rows={rows}
             count={count}
@@ -98,9 +96,6 @@ class InputItemField extends React.Component {
               error={error && touched ? true : false}
               onErrorClick={() => this.onErrorClick(error)}
               extra={extra}
-              labelNumber={labelNumber}
-              updatePlaceholder={updatePlaceholder}
-              moneyKeyboardAlign={moneyKeyboardAlign}
               onChange={this.onChange}
             >
               {label}
