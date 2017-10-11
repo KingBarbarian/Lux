@@ -5,7 +5,7 @@ import Labor from "./labor";
 import Machine from "./machine";
 import Rent from "./rent";
 
-export default {
+module.exports =  {
   FarmWork,
   FillFarmers,
   Food,
