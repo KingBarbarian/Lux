@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Toast, List } from "antd-mobile";
 import { combineModal } from "@/utils/decorators";
 import CustomerSelect from "@/page/customer";
-import DistributorSelect from "@/page/distributor";
+import DistributorSelect, { MachineSelect } from "@/page/distributor";
 import { fieldHOC } from "../form-wrapper/register";
 
 const Item = List.Item;
@@ -29,7 +29,7 @@ const defaultProps = {
   brief: false
 };
 @fieldHOC("selectItem")
-@combineModal({ CustomerSelect, DistributorSelect })
+@combineModal({ CustomerSelect, DistributorSelect, MachineSelect })
 class SelectItemField extends React.Component {
   constructor(props) {
     super(props);
