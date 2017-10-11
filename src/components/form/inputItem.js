@@ -72,18 +72,20 @@ class InputItemField extends React.Component {
     return (
       <div>
         {textArea ? (
-          <TextareaItem
-            title={label}
-            value={input.value ? input.value : ""}
-            placeholder={placeholder}
-            rows={rows}
-            count={count}
-            data-seed="logId"
-            autoHeight
-            error={error && touched ? true : false}
-            onErrorClick={() => this.onErrorClick(error)}
-            onChange={this.onChange}
-          />
+          <Item>
+            <TextareaItem
+              title={label}
+              value={input.value ? input.value : ""}
+              placeholder={placeholder}
+              rows={rows}
+              count={count}
+              data-seed="logId"
+              autoHeight
+              error={error && touched ? true : false}
+              onErrorClick={() => this.onErrorClick(error)}
+              onChange={this.onChange}
+            />
+          </Item>
         ) : (
           <Item>
             <InputItem
@@ -93,6 +95,7 @@ class InputItemField extends React.Component {
               editable={editable}
               disabled={disabled}
               clear={clear}
+              style={{ textAlign: "right" }}
               maxLength={maxLength}
               error={error && touched ? true : false}
               onErrorClick={() => this.onErrorClick(error)}
