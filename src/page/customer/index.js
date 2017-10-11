@@ -32,7 +32,10 @@ class CustomerSelect extends React.Component {
           backgroundColor: "white",
           borderBottom: "1px solid #ECECED"
         }}
-        onClick={() => this.props.onClose({ data: {key:rowData.customerId,value:rowData.customerName} })}
+        onClick={() =>
+          this.props.onClose({
+            data: { key: rowData.customerId, value: rowData.customerName }
+          })}
       >
         <div
           style={{ display: "-webkit-box", display: "flex", padding: "15px" }}
@@ -61,7 +64,9 @@ class CustomerSelect extends React.Component {
             >
               {rowData.customerName}
             </div>
-            <div style={{ fontSize: "14px", color: "#888" }}>{rowData.customerId}</div>
+            <div style={{ fontSize: "14px", color: "#888" }}>
+              {rowData.customerId}
+            </div>
           </div>
         </div>
       </div>
@@ -85,7 +90,7 @@ class CustomerSelect extends React.Component {
           选择客户
         </NavBar>
         <Table
-          dataList={entities?entities:[]}
+          dataList={entities ? entities : []}
           totalCount={totalCount}
           isRefreshing={isRefreshing}
           isFetching={isFetching}

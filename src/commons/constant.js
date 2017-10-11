@@ -1,4 +1,3 @@
-
 const FarmWorkType = new Map();
 FarmWorkType.set(0, "植保");
 FarmWorkType.set(1, "收割");
@@ -8,19 +7,16 @@ const Practices = new Map();
 Practices.set(0, "深耕");
 Practices.set(1, "浅耕");
 
-
 const CustomerLinkedType = new Map();
 CustomerLinkedType.set("", "全部的客户");
 CustomerLinkedType.set(0, "我的客户");
 CustomerLinkedType.set(1, "我下属的客户");
 CustomerLinkedType.set(2, "我可见的其他客户");
 
-
 const CustomerType = new Map();
 CustomerType.set(0, "农户");
 CustomerType.set(1, "农机手");
 CustomerType.set(9, "其他");
-
 
 const CustomerTrackType = new Map();
 CustomerTrackType.set(0, "初步了解");
@@ -96,7 +92,7 @@ const Constant = {
   SignState,
   getNameById(id, array, defaultValue) {
     for (let item of array) {
-      if (id == item.id) {
+      if (id === item.id) {
         return item.name;
       }
     }

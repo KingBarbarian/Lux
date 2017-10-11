@@ -47,8 +47,7 @@ export const paginateReducer = (state = {}, action) => {
           isRefreshing: false,
           // 如果当前接口不是普通的分页接口，那么isReachEnd必须为True
           isReachEnd: Array.isArray(action.payload.items)
-            ? action.payload.items.length ===
-              action.payload.totalCount
+            ? action.payload.items.length === action.payload.totalCount
             : true,
           currentPage: 1,
           entities: Array.isArray(action.payload.items)

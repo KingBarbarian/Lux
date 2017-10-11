@@ -6,14 +6,14 @@ const propTypes = {
   testOptionEqual: PropTypes.func,
   renderOption: PropTypes.func,
   renderContainer: PropTypes.func,
-  onSelection: PropTypes.func,
+  onSelection: PropTypes.func
 };
 
 const defaultProps = {
   testOptionEqual(a, b) {
-    return JSON.stringify(a) == JSON.stringify(b);
+    return JSON.stringify(a) === JSON.stringify(b);
   },
-  onSelection(option) {},
+  onSelection(option) {}
 };
 
 class Radio extends React.Component {

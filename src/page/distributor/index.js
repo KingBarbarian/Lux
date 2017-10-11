@@ -30,10 +30,13 @@ class DistributorSelect extends React.Component {
           backgroundColor: "white",
           borderBottom: "1px solid #ECECED"
         }}
-        onClick={() => this.props.onClose({ data: {
-          key: rowData.distributorId,
-          value: rowData.companyName
-        } })}
+        onClick={() =>
+          this.props.onClose({
+            data: {
+              key: rowData.distributorId,
+              value: rowData.companyName
+            }
+          })}
       >
         <div style={{ display: "flex", padding: "15px" }}>
           <img

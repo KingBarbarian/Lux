@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button, List } from "antd-mobile";
 import Radio from "../radio";
-import { fieldHOC } from "../form-wrapper/register";
+import { rctField as fieldHOC } from "rct-form";
 
 const Item = List.Item;
 const Brief = Item.Brief;

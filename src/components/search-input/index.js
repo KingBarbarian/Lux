@@ -21,7 +21,12 @@ class SearchInput extends React.Component {
     const { placeholder, onChangeText, onSubmitEditing } = this.props;
     return (
       <div>
-        <SearchBar placeholder={placeholder} maxLength={8} onChange={onChangeText} onSubmit={onSubmitEditing}/>
+        <SearchBar
+          placeholder={placeholder}
+          maxLength={8}
+          onChange={onChangeText}
+          onSubmit={onSubmitEditing}
+        />
       </div>
     );
   }

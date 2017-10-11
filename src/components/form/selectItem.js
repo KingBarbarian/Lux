@@ -3,11 +3,10 @@ import PropTypes from "prop-types";
 import { Toast, List } from "antd-mobile";
 import { combineModal } from "@/utils/decorators";
 import CustomerSelect from "@/page/customer";
+import { rctField as fieldHOC } from "rct-form";
 import DistributorSelect from "@/page/distributor";
-import { fieldHOC } from "../form-wrapper/register";
 
 const Item = List.Item;
-const Brief = Item.Brief;
 
 const propTypes = {
   placeholder: PropTypes.string,

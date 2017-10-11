@@ -1,7 +1,6 @@
 import { combineEpics } from "redux-observable";
 import Rx from "rxjs";
 import { User } from "@/actions";
-import { ajax } from "./tools";
 import { requestToken } from "../utils/bridge";
 import { TOKEN } from "@/config";
 

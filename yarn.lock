@@ -4839,6 +4839,10 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+rct-form@^0.3.0:
+  version "0.3.0"
+  resolved "http://registry.npm.taobao.org/rct-form/download/rct-form-0.3.0.tgz#8cdbd58b67afe98a1effdf30eadffda58914dd4d"
+
 react-deep-force-update@^2.0.1:
   version "2.1.1"
   resolved "http://registry.npm.taobao.org/react-deep-force-update/download/react-deep-force-update-2.1.1.tgz#8ea4263cd6455a050b37445b3f08fd839d86e909"

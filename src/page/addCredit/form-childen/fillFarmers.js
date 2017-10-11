@@ -26,7 +26,6 @@ class FillFarmers extends React.Component {
   };
 
   handleOnSubmit = values => {
-    const { dispatch } = this.props;
     console.log(values);
   };
 
