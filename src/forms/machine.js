@@ -28,21 +28,21 @@ export default {
           fieldType: "inputItem",
           name: "totalPrice",
           label: "总价",
-          placeholder: "0.00",
+          placeholder: "请输入总价",
           type: "text"
         },
         {
           fieldType: "inputItem",
           name: "capital",
           label: "首付款",
-          placeholder: "0.00",
+          placeholder: "请输入首付款",
           type: "text"
         },
         {
           fieldType: "inputItem",
-          name: "applyAmount",
+          name: "applyPrice",
           label: "申请金额",
-          placeholder: "0.00",
+          placeholder: "亲输入申请金额",
           type: "text"
         },
         {
