@@ -12,6 +12,11 @@ class Machine extends React.Component {
     this.state = {};
   }
 
+  initialValues = () => {
+    let initialValues = {};
+    return initialValues;
+  };
+
   handleSubmit = () => {
     this.submit();
   };
@@ -21,18 +26,17 @@ class Machine extends React.Component {
   };
 
   handleOnSubmit = values => {
-    const { dispatch } = this.props;
     console.log(values);
   };
 
   render() {
     const { dispatch } = this.props;
-    let formProp = Forms.Machine;
+    let machineFormProp = Forms.Machine;
     return (
       <List renderHeader={() => "农机信贷"}>
         <FormWrapper
-          formProp={formProp}
-          initialValues={this._initialValues()}
+          formProp={machineFormProp}
+          initialValues={this.initialValues}
           bindSubmit={this.handleBindSubmit}
           onSubmit={this.handleOnSubmit}
           dispatch={dispatch}

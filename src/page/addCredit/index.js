@@ -1,16 +1,9 @@
 import React from "react";
 import {
-  Tabs,
-  List,
-  InputItem,
-  WhiteSpace,
-  TextareaItem,
-  Button
+  Tabs
 } from "antd-mobile";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { addMachineValidate } from "@/validations";
-import FormWrapper from "@/components/form-wrapper";
 import {
   FarmWork,
   FillFarmers,
@@ -19,10 +12,7 @@ import {
   Machine,
   Rent
 } from "./form-childen";
-import Forms from "../../forms";
 const height = window.innerHeight;
-const Item = List.Item;
-const Brief = Item.Brief;
 
 const tabs = [
   { title: "农机", sub: "1" },
@@ -42,34 +32,7 @@ class AddCredit extends React.Component {
     };
   }
 
-  onChange(val) {
-    this.setState({ val });
-  }
-
-  handleSubmit = () => {
-    this.submit();
-  };
-
-  handleBindSubmit = submit => {
-    this.submit = submit;
-  };
-
-  handleOnSubmit = values => {
-    const { dispatch } = this.props;
-    console.log(values);
-  };
-
-  _initialValues() {
-    let initialValues = {};
-    return initialValues;
-  }
-
   render() {
-    const { dispatch } = this.props;
-    let formProp = Forms.Machine;
-    let fillFarmersFormProp = Forms.FillFarmers;
-    let rentFormProp = Forms.Rent;
-    let farmWorkFormProp = Forms.FarmWork;
     return (
       <div>
         <Tabs
@@ -80,201 +43,22 @@ class AddCredit extends React.Component {
           renderTab={tab => <span>{tab.title}</span>}
         >
           <div style={{ height: `${height - 43.5}px` }}>
-            <List renderHeader={() => "农机信贷"}>
-              <FormWrapper
-                formProp={formProp}
-                initialValues={this._initialValues()}
-                bindSubmit={this.handleBindSubmit}
-                onSubmit={this.handleOnSubmit}
-                dispatch={dispatch}
-                validate={addMachineValidate}
-              />
-              <WhiteSpace />
-              <div>
-                <Button
-                  type="primary"
-                  style={{ marginRight: "15px", marginLeft: "15px" }}
-                  onClick={this.handleSubmit}
-                >
-                  保存
-                </Button>
-              </div>
-            </List>
+            <Machine/>
           </div>
           <div style={{ height: `${height - 43.5}px` }}>
-            <List renderHeader={() => "农补信贷"}>
-              <FormWrapper
-                formProp={fillFarmersFormProp}
-                initialValues={this._initialValues()}
-                bindSubmit={this.handleBindSubmit}
-                onSubmit={this.handleOnSubmit}
-                dispatch={dispatch}
-                validate={addMachineValidate}
-              />
-              <WhiteSpace />
-              <div>
-                <Button
-                  type="primary"
-                  style={{ marginRight: "15px", marginLeft: "15px" }}
-                  onClick={this.handleSubmit}
-                >
-                  保存
-                </Button>
-              </div>
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-            </List>
+            <FillFarmers/>
           </div>
           <div style={{ height: `${height - 43.5}px` }}>
-            <List renderHeader={() => "地租信贷"}>
-              <FormWrapper
-                formProp={rentFormProp}
-                initialValues={this._initialValues()}
-                bindSubmit={this.handleBindSubmit}
-                onSubmit={this.handleOnSubmit}
-                dispatch={dispatch}
-                validate={addMachineValidate}
-              />
-              <WhiteSpace />
-              <div>
-                <Button
-                  type="primary"
-                  style={{ marginRight: "15px", marginLeft: "15px" }}
-                >
-                  保存
-                </Button>
-              </div>
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-            </List>
+            <Rent/>
           </div>
           <div style={{ height: `${height - 43.5}px` }}>
-            <List renderHeader={() => "农活信贷"}>
-              <FormWrapper
-                formProp={farmWorkFormProp}
-                initialValues={this._initialValues()}
-                bindSubmit={this.handleBindSubmit}
-                onSubmit={this.handleOnSubmit}
-                dispatch={dispatch}
-                validate={addMachineValidate}
-              />
-              <WhiteSpace />
-              <div>
-                <Button
-                  type="primary"
-                  style={{ marginRight: "15px", marginLeft: "15px" }}
-                >
-                  保存
-                </Button>
-              </div>
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-            </List>
+            <FarmWork/>
           </div>
           <div style={{ height: `${height - 43.5}px` }}>
-            <List renderHeader={() => "粮食信贷"}>
-              <Item arrow="horizontal" multipleLine onClick={() => {}}>
-                客户 <Brief>请选择客户</Brief>
-              </Item>
-              <Item arrow="horizontal" multipleLine onClick={() => {}}>
-                收粮品种 <Brief>请选择收粮品种</Brief>
-              </Item>
-              <Item>
-                <InputItem placeholder="0.00" extra="kg">
-                  重量
-                </InputItem>
-              </Item>
-              <Item>
-                <InputItem placeholder="0.00" extra="¥">
-                  总价
-                </InputItem>
-              </Item>
-              <Item>
-                <InputItem placeholder="0.00" extra="¥">
-                  申请金额
-                </InputItem>
-              </Item>
-              <TextareaItem
-                title="备注"
-                placeholder="请输入备注信息"
-                rows={5}
-                count={100}
-                data-seed="logId"
-                autoHeight
-              />
-              <WhiteSpace />
-              <div>
-                <Button
-                  type="primary"
-                  style={{ marginRight: "15px", marginLeft: "15px" }}
-                >
-                  保存
-                </Button>
-              </div>
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-            </List>
+            <Food/>
           </div>
           <div style={{ height: `${height - 43.5}px` }}>
-            <List renderHeader={() => "粮食信贷"}>
-              <Item arrow="horizontal" multipleLine onClick={() => {}}>
-                客户 <Brief>请选择客户</Brief>
-              </Item>
-              <Item>
-                <InputItem clear placeholder="请输入用途描述">
-                  用途描述
-                </InputItem>
-              </Item>
-              <Item>
-                <InputItem placeholder="0.00" extra="¥">
-                  总价
-                </InputItem>
-              </Item>
-              <Item>
-                <InputItem placeholder="0.00" extra="¥">
-                  申请金额
-                </InputItem>
-              </Item>
-              <TextareaItem
-                title="备注"
-                placeholder="请输入备注信息"
-                rows={5}
-                count={100}
-                data-seed="logId"
-                autoHeight
-              />
-              <WhiteSpace />
-              <div>
-                <Button
-                  type="primary"
-                  style={{ marginRight: "15px", marginLeft: "15px" }}
-                >
-                  保存
-                </Button>
-              </div>
-              <WhiteSpace />
-              <WhiteSpace />
-            </List>
+            <Labor/>
           </div>
         </Tabs>
       </div>

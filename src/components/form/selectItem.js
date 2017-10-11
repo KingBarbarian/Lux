@@ -7,7 +7,6 @@ import { rctField as fieldHOC } from "rct-form";
 import DistributorSelect from "@/page/distributor";
 
 const Item = List.Item;
-const Brief = Item.Brief;
 
 const propTypes = {
   placeholder: PropTypes.string,

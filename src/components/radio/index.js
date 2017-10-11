@@ -11,7 +11,7 @@ const propTypes = {
 
 const defaultProps = {
   testOptionEqual(a, b) {
-    return JSON.stringify(a) == JSON.stringify(b);
+    return JSON.stringify(a) === JSON.stringify(b);
   },
   onSelection(option) {}
 };
