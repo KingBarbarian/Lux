@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { rctField as fieldHOC } from "rct-form";
 import { InputItem, Toast, List } from "antd-mobile";
-import { fieldHOC } from "../form-wrapper/register";
 const Item = List.Item;
 
 const propTypes = {

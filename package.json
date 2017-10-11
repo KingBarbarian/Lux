@@ -26,6 +26,7 @@
     "chromedriver": "^2.32.3",
     "classnames": "^2.2.5",
     "lodash": "^4.17.4",
+    "rct-form": "^0.3.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-native-webview-invoke": "^0.3.10",
