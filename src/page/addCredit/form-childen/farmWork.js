@@ -58,4 +58,3 @@ class FarmWork extends React.Component {
 }
 
 export default FarmWork;
-

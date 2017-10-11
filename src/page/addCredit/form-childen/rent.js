@@ -58,4 +58,3 @@ class Rent extends React.Component {
 }
 
 export default Rent;
-
