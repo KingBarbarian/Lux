@@ -58,4 +58,3 @@ class FillFarmers extends React.Component {
 }
 
 export default FillFarmers;
-

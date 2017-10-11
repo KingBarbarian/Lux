@@ -58,4 +58,3 @@ class Labor extends React.Component {
 }
 
 export default Labor;
-

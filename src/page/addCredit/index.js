@@ -1,7 +1,5 @@
 import React from "react";
-import {
-  Tabs
-} from "antd-mobile";
+import { Tabs } from "antd-mobile";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import {
@@ -43,22 +41,22 @@ class AddCredit extends React.Component {
           renderTab={tab => <span>{tab.title}</span>}
         >
           <div style={{ height: `${height - 43.5}px` }}>
-            <Machine/>
+            <Machine />
           </div>
           <div style={{ height: `${height - 43.5}px` }}>
-            <FillFarmers/>
+            <FillFarmers />
           </div>
           <div style={{ height: `${height - 43.5}px` }}>
-            <Rent/>
+            <Rent />
           </div>
           <div style={{ height: `${height - 43.5}px` }}>
-            <FarmWork/>
+            <FarmWork />
           </div>
           <div style={{ height: `${height - 43.5}px` }}>
-            <Food/>
+            <Food />
           </div>
           <div style={{ height: `${height - 43.5}px` }}>
-            <Labor/>
+            <Labor />
           </div>
         </Tabs>
       </div>
