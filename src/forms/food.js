@@ -1,5 +1,5 @@
 export default {
-  formName: "machine",
+  formName: "food",
   sections: [
     {
       fields: [
@@ -12,17 +12,17 @@ export default {
         },
         {
           fieldType: "selectItem",
-          name: "dealers",
-          label: "经销商",
-          placeholder: "请选择经销商",
-          sceneName: "DistributorSelect"
+          name: "collectFoodFarieties",
+          label: "收粮品种",
+          placeholder: "请选择收粮品种",
+          sceneName: "CustomerSelect"
         },
         {
-          fieldType: "selectItem",
-          name: "models",
-          label: "购买机型",
-          placeholder: "请选择购买机型",
-          sceneName: "CustomerSelect"
+          fieldType: "inputItem",
+          name: "numberMu",
+          label: "重量",
+          placeholder: "请输入重量",
+          type: "number"
         },
         {
           fieldType: "inputItem",
@@ -34,15 +34,8 @@ export default {
         {
           fieldType: "inputItem",
           name: "capital",
-          label: "首付款",
-          placeholder: "请输入首付款",
-          type: "text"
-        },
-        {
-          fieldType: "inputItem",
-          name: "applyPrice",
           label: "申请金额",
-          placeholder: "亲输入申请金额",
+          placeholder: "请输入申请金额",
           type: "text"
         },
         {

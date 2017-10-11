@@ -168,11 +168,12 @@ const dateUtil = {
      * @param {Date} endDate
      */
   diffMonth: (startDate, endDate) => {
-    return (monthPassed =
+    return (
       endDate.getFullYear() * 12 +
       endDate.getMonth() -
       startDate.getFullYear() * 12 -
-      startDate.getMonth());
+      startDate.getMonth()
+    );
   },
 
   /**

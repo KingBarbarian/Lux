@@ -1,5 +1,5 @@
 export default {
-  formName: "machine",
+  formName: "fillFarmers",
   sections: [
     {
       fields: [
@@ -33,16 +33,16 @@ export default {
         },
         {
           fieldType: "inputItem",
-          name: "capital",
-          label: "首付款",
-          placeholder: "请输入首付款",
+          name: "applyPrice",
+          label: "申请金额",
+          placeholder: "请输入申请金额",
           type: "text"
         },
         {
           fieldType: "inputItem",
-          name: "applyPrice",
-          label: "申请金额",
-          placeholder: "亲输入申请金额",
+          name: "subsidies",
+          label: "补贴金额",
+          placeholder: "请输入补贴金额",
           type: "text"
         },
         {

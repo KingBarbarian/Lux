@@ -5,14 +5,20 @@ import {
   InputItem,
   WhiteSpace,
   TextareaItem,
-  Button,
-  Stepper,
-  SegmentedControl
+  Button
 } from "antd-mobile";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { addMachineValidate } from "@/validations";
 import FormWrapper from "@/components/form-wrapper";
+import {
+  FarmWork,
+  FillFarmers,
+  Food,
+  Labor,
+  Machine,
+  Rent
+} from "./form-childen";
 import Forms from "../../forms";
 const height = window.innerHeight;
 const Item = List.Item;
@@ -49,21 +55,21 @@ class AddCredit extends React.Component {
   };
 
   handleOnSubmit = values => {
-    const { dispatch, location } = this.props;
+    const { dispatch } = this.props;
     console.log(values);
   };
 
   _initialValues() {
     let initialValues = {};
-    initialValues = {
-      remark: "我是initialValues生成的"
-    };
     return initialValues;
   }
 
   render() {
     const { dispatch } = this.props;
     let formProp = Forms.Machine;
+    let fillFarmersFormProp = Forms.FillFarmers;
+    let rentFormProp = Forms.Rent;
+    let farmWorkFormProp = Forms.FarmWork;
     return (
       <div>
         <Tabs
@@ -93,69 +99,34 @@ class AddCredit extends React.Component {
                   保存
                 </Button>
               </div>
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
-              <WhiteSpace />
             </List>
           </div>
           <div style={{ height: `${height - 43.5}px` }}>
             <List renderHeader={() => "农补信贷"}>
-              <Item arrow="horizontal" multipleLine onClick={() => {}}>
-                客户 <Brief>请选择客户</Brief>
-              </Item>
-              <Item arrow="horizontal" multipleLine onClick={() => {}}>
-                经销商 <Brief>请选择经销商</Brief>
-              </Item>
-              <Item arrow="horizontal" multipleLine onClick={() => {}}>
-                购买机型 <Brief>请选择购买机型</Brief>
-              </Item>
-              <Item>
-                <InputItem placeholder="0.00" extra="¥">
-                  总价
-                </InputItem>
-              </Item>
-              <Item>
-                <InputItem placeholder="0.00" extra="¥">
-                  申请金额
-                </InputItem>
-              </Item>
-              <Item>
-                <InputItem placeholder="0.00" extra="¥">
-                  补贴金额
-                </InputItem>
-              </Item>
-              <TextareaItem
-                title="备注"
-                placeholder="请输入备注信息"
-                rows={5}
-                count={100}
-                data-seed="logId"
-                autoHeight
+              <FormWrapper
+                formProp={fillFarmersFormProp}
+                initialValues={this._initialValues()}
+                bindSubmit={this.handleBindSubmit}
+                onSubmit={this.handleOnSubmit}
+                dispatch={dispatch}
+                validate={addMachineValidate}
               />
               <WhiteSpace />
               <div>
                 <Button
                   type="primary"
                   style={{ marginRight: "15px", marginLeft: "15px" }}
+                  onClick={this.handleSubmit}
                 >
                   保存
                 </Button>
               </div>
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
               <WhiteSpace />
               <WhiteSpace />
               <WhiteSpace />
@@ -163,49 +134,13 @@ class AddCredit extends React.Component {
           </div>
           <div style={{ height: `${height - 43.5}px` }}>
             <List renderHeader={() => "地租信贷"}>
-              <Item arrow="horizontal" multipleLine onClick={() => {}}>
-                客户 <Brief>请选择客户</Brief>
-              </Item>
-              <Item
-                wrap
-                extra={
-                  <Stepper
-                    style={{ width: "100%", minWidth: "100px" }}
-                    showNumber
-                    max={1000}
-                    min={1}
-                    value={this.state.val}
-                    onChange={val => this.onChange(val)}
-                  />
-                }
-              >
-                承包亩数
-              </Item>
-              <Item arrow="horizontal" multipleLine onClick={() => {}}>
-                承包年限 <Brief>请选择承包年限</Brief>
-              </Item>
-              <Item>
-                <InputItem placeholder="0.00" extra="¥">
-                  总价
-                </InputItem>
-              </Item>
-              <Item>
-                <InputItem placeholder="0.00" extra="¥">
-                  申请金额
-                </InputItem>
-              </Item>
-              <Item>
-                <InputItem placeholder="0.00" extra="¥">
-                  补贴金额
-                </InputItem>
-              </Item>
-              <TextareaItem
-                title="备注"
-                placeholder="请输入备注信息"
-                rows={5}
-                count={100}
-                data-seed="logId"
-                autoHeight
+              <FormWrapper
+                formProp={rentFormProp}
+                initialValues={this._initialValues()}
+                bindSubmit={this.handleBindSubmit}
+                onSubmit={this.handleOnSubmit}
+                dispatch={dispatch}
+                validate={addMachineValidate}
               />
               <WhiteSpace />
               <div>
@@ -219,75 +154,27 @@ class AddCredit extends React.Component {
               <WhiteSpace />
               <WhiteSpace />
               <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
+              <WhiteSpace />
             </List>
           </div>
           <div style={{ height: `${height - 43.5}px` }}>
             <List renderHeader={() => "农活信贷"}>
-              <Item arrow="horizontal" multipleLine onClick={() => {}}>
-                客户 <Brief>请选择客户</Brief>
-              </Item>
-              <Item
-                wrap
-                extra={
-                  <SegmentedControl
-                    selectedIndex={1}
-                    values={["植保", "收割", "耕地"]}
-                  />
-                }
-              >
-                农活类型
-              </Item>
-              <Item
-                wrap
-                extra={
-                  <SegmentedControl selectedIndex={1} values={["深耕", "浅耕"]} />
-                }
-              >
-                作业方式
-              </Item>
-              <Item arrow="horizontal" multipleLine onClick={() => {}}>
-                品种 <Brief>请选择品种</Brief>
-              </Item>
-              <Item
-                wrap
-                extra={
-                  <SegmentedControl selectedIndex={1} values={["人工", "机械"]} />
-                }
-              >
-                作业方式
-              </Item>
-              <Item
-                wrap
-                extra={
-                  <Stepper
-                    style={{ width: "100%", minWidth: "100px" }}
-                    showNumber
-                    max={1000}
-                    min={1}
-                    value={this.state.val}
-                    onChange={val => this.onChange(val)}
-                  />
-                }
-              >
-                亩数
-              </Item>
-              <Item>
-                <InputItem placeholder="0.00" extra="¥">
-                  总价
-                </InputItem>
-              </Item>
-              <Item>
-                <InputItem placeholder="0.00" extra="¥">
-                  申请金额
-                </InputItem>
-              </Item>
-              <TextareaItem
-                title="备注"
-                placeholder="请输入备注信息"
-                rows={5}
-                count={100}
-                data-seed="logId"
-                autoHeight
+              <FormWrapper
+                formProp={farmWorkFormProp}
+                initialValues={this._initialValues()}
+                bindSubmit={this.handleBindSubmit}
+                onSubmit={this.handleOnSubmit}
+                dispatch={dispatch}
+                validate={addMachineValidate}
               />
               <WhiteSpace />
               <div>
