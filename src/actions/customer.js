@@ -70,7 +70,6 @@ class Customer {
    * 客户列表分页器
    */
   listPaginator = createPaginateActionCreatorS("customers", getCustomerList);
-  
 }
 
 export default {

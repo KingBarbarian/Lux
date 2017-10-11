@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { rctField as fieldHOC } from "rct-form";
 import { InputItem, Toast, List, TextareaItem } from "antd-mobile";
-import { fieldHOC } from "../form-wrapper/register";
+
 const Item = List.Item;
 
 const propTypes = {
@@ -73,7 +74,7 @@ class InputItemField extends React.Component {
         {textArea ? (
           <TextareaItem
             title={label}
-            value={input.value ? input.value :''}
+            value={input.value ? input.value : ""}
             placeholder={placeholder}
             rows={rows}
             count={count}

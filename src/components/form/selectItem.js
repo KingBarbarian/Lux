@@ -5,9 +5,9 @@ import { combineModal } from "@/utils/decorators";
 import CustomerSelect from "@/page/customer";
 import DistributorSelect, { MachineSelect } from "@/page/distributor";
 import { fieldHOC } from "../form-wrapper/register";
+import { rctField as fieldHOC } from "rct-form";
 
 const Item = List.Item;
-const Brief = Item.Brief;
 
 const propTypes = {
   placeholder: PropTypes.string,

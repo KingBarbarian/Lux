@@ -1,5 +1,5 @@
 export default {
-  formName: "machine",
+  formName: "labor",
   sections: [
     {
       fields: [
@@ -10,19 +10,13 @@ export default {
           placeholder: "请选择客户",
           sceneName: "CustomerSelect"
         },
+
         {
-          fieldType: "selectItem",
-          name: "dealers",
-          label: "经销商",
-          placeholder: "请选择经销商",
-          sceneName: "DistributorSelect"
-        },
-        {
-          fieldType: "selectItem",
-          name: "models",
-          label: "购买机型",
-          placeholder: "请选择购买机型",
-          sceneName: "MachineSelect"
+          fieldType: "inputItem",
+          name: "numberMu",
+          label: "用途描述",
+          placeholder: "请输入用途描述",
+          type: "text"
         },
         {
           fieldType: "inputItem",
@@ -34,15 +28,8 @@ export default {
         {
           fieldType: "inputItem",
           name: "capital",
-          label: "首付款",
-          placeholder: "请输入首付款",
-          type: "text"
-        },
-        {
-          fieldType: "inputItem",
-          name: "applyPrice",
           label: "申请金额",
-          placeholder: "亲输入申请金额",
+          placeholder: "请输入申请金额",
           type: "text"
         },
         {

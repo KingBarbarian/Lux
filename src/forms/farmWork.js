@@ -1,5 +1,7 @@
+import { Constant } from "@/commons";
+import { FormUtil } from "@/utils";
 export default {
-  formName: "machine",
+  formName: "farmWork",
   sections: [
     {
       fields: [
@@ -11,18 +13,23 @@ export default {
           sceneName: "CustomerSelect"
         },
         {
-          fieldType: "selectItem",
-          name: "dealers",
-          label: "经销商",
-          placeholder: "请选择经销商",
-          sceneName: "DistributorSelect"
+          fieldType: "radioButtonItem",
+          name: "farmWorkType",
+          label: "农活类型",
+          options: FormUtil.convertMap2List(Constant.FarmWorkType)
         },
         {
-          fieldType: "selectItem",
-          name: "models",
-          label: "购买机型",
-          placeholder: "请选择购买机型",
-          sceneName: "MachineSelect"
+          fieldType: "radioButtonItem",
+          name: "practices",
+          label: "耕种方式",
+          options: FormUtil.convertMap2List(Constant.Practices)
+        },
+        {
+          fieldType: "inputItem",
+          name: "numberMu",
+          label: "亩数",
+          placeholder: "请输入亩数",
+          type: "numbe"
         },
         {
           fieldType: "inputItem",
@@ -33,16 +40,9 @@ export default {
         },
         {
           fieldType: "inputItem",
-          name: "capital",
-          label: "首付款",
-          placeholder: "请输入首付款",
-          type: "text"
-        },
-        {
-          fieldType: "inputItem",
           name: "applyPrice",
           label: "申请金额",
-          placeholder: "亲输入申请金额",
+          placeholder: "请输入申请金额",
           type: "text"
         },
         {

@@ -33,16 +33,12 @@ export const baseAjax = (action, store, SUCCESS, FAILURE) => {
         payload: error,
         error: true
       });
-      return (
-        error$
-          .concat(Rx.Observable.of(Message.dismiss()))
-          .concat(
-            Rx.Observable.of(
-              Message.show(error.message, Message.TYPE_ERROR)
-            )
-          )
-          .concat(Rx.Observable.of(Message.dismiss()).delay(3000))
-      );
+      return error$
+        .concat(Rx.Observable.of(Message.dismiss()))
+        .concat(
+          Rx.Observable.of(Message.show(error.message, Message.TYPE_ERROR))
+        )
+        .concat(Rx.Observable.of(Message.dismiss()).delay(3000));
     });
 };
 

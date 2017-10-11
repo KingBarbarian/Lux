@@ -36,7 +36,12 @@ export const paginateInit = (action$, store) =>
           isFetching: false
         }
       });
-      return baseAjax(action, store, PAGINATE_INIT.SUCCESS, PAGINATE_INIT.FAILURE);
+      return baseAjax(
+        action,
+        store,
+        PAGINATE_INIT.SUCCESS,
+        PAGINATE_INIT.FAILURE
+      );
     })
     .do(() => store.dispatch(Message.dismiss()));
 
