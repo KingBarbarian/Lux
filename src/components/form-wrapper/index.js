@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { formValueSelector } from "redux-form";
 import { rctForm } from "rct-form";
 import UNUSED from "../form";
-console.log(rctForm);
 
 @connect(state => {
   return { state };
