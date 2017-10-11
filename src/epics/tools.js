@@ -19,6 +19,29 @@ export const simpleAjaxWithToken = action => {
   );
 };
 
+export const baseAjax = (action, store, SUCCESS, FAILURE) => {
+  return simpleAjax(action, store)
+    .map(response => ({
+      ...action,
+      type: SUCCESS,
+      payload: response
+    }))
+    .catch(error => {
+      let error$ = Rx.Observable.of({
+        ...action,
+        type: FAILURE,
+        payload: error,
+        error: true
+      });
+      return error$
+        .concat(Rx.Observable.of(Message.dismiss()))
+        .concat(
+          Rx.Observable.of(Message.show(error.message, Message.TYPE_ERROR))
+        )
+        .concat(Rx.Observable.of(Message.dismiss()).delay(3000));
+    });
+};
+
 // successCB: successActions => Rx.Observable
 // errorCB: errorActions => Rx.Observable
 export const ajax = (type, action$, store) => (successCB, errorCB) => {

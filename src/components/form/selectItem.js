@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Field, change } from "redux-form";
 import { Toast, List } from "antd-mobile";
 import { combineModal } from "@/utils/decorators";
 import CustomerSelect from "@/page/customer";
 import { rctField as fieldHOC } from "rct-form";
+import DistributorSelect from "@/page/distributor";
 
 const Item = List.Item;
 const Brief = Item.Brief;
@@ -29,12 +29,13 @@ const defaultProps = {
   brief: false
 };
 @fieldHOC("selectItem")
-@combineModal({ CustomerSelect })
+@combineModal({ CustomerSelect, DistributorSelect })
 class SelectItemField extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      extra: props.placeholder
+      extra: props.placeholder,
+      errorExtra: "必选项"
     };
   }
 
@@ -46,24 +47,17 @@ class SelectItemField extends React.Component {
     Toast.info(info);
   };
   openModal = info => {
-    this.props.show("CustomerSelect")();
+    this.props.show(this.props.sceneName)();
   };
 
   componentWillReceiveProps(nextProps) {
-    const {
-      bindName,
-      meta: { dispatch },
-      formName,
-      input,
-      modalResults,
-      sceneName
-    } = nextProps;
-    if (modalResults[sceneName].data) {
+    const { input, modalResults, sceneName } = nextProps;
+    if (modalResults[sceneName] && modalResults[sceneName].data) {
+      this.setState({ extra: modalResults[sceneName].data.value });
       input.onChange(
         modalResults[sceneName].data ? modalResults[sceneName].data : null
       );
     }
-    dispatch(change(formName, bindName, "魏建伟123"));
   }
 
   componentDidMount() {
@@ -75,41 +69,31 @@ class SelectItemField extends React.Component {
   }
 
   render() {
-    const { label, arrow, multipleLine, wrap, platform, brief } = this.props;
+    const {
+      label,
+      arrow,
+      multipleLine,
+      wrap,
+      platform,
+      meta: { error, touched }
+    } = this.props;
     return (
       <Item
         arrow={arrow}
         multipleLine={multipleLine}
+        error={error && touched ? true : false}
         wrap={wrap}
         platform={platform}
-        extra={
-          !brief
-            ? this.props.modalResults[this.props.sceneName].data
-              ? this.props.modalResults[this.props.sceneName].data
-              : this.state.extra
-            : null
-        }
         onClick={this.openModal}
+        extra={error && touched ? this.state.errorExtra : this.state.extra}
       >
-        {label} {brief ? <Brief>{this.state.extra}</Brief> : null}
+        {label}
       </Item>
     );
   }
 }
 
-// class SelectItemField extends React.Component {
-//   render() {
-//     return (
-//       <Field
-//         name={this.props.name}
-//         props={this.props}
-//         component={InnerComponent}
-//       />
-//     );
-//   }
-// }
-
-// SelectItemField.prototypes = propTypes;
-// SelectItemField.defaultProps = defaultProps;
+SelectItemField.prototypes = propTypes;
+SelectItemField.defaultProps = defaultProps;
 
 export default SelectItemField;

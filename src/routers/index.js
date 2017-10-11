@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { HashRouter, Route, browserHistory } from "react-router-dom";
 import Message from "@/components/Message";
+import { User } from "@/actions";
 import CreditContainer from "@/containers/creditContainer";
 
 @connect(state => ({
@@ -10,6 +11,9 @@ import CreditContainer from "@/containers/creditContainer";
   type: state.message.type
 }))
 class Router extends React.Component {
+  componentDidMount = () => {
+    this.props.dispatch(User.getToken());
+  };
   render() {
     const { visiable, content, type } = this.props;
     return (

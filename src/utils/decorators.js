@@ -51,9 +51,13 @@ export const combineModal = modals => Component =>
 
     close = ModalName => result => {
       this.setState({
-        [ModalName]: false,
-        modalResults: { ...this.state.modalResults, [ModalName]: result }
+        [ModalName]: false
       });
+      if (result) {
+        this.setState({
+          modalResults: { ...this.state.modalResults, [ModalName]: result }
+        });
+      }
     };
 
     render() {
