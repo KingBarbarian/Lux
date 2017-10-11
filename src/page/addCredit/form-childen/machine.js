@@ -33,15 +33,15 @@ class Machine extends React.Component {
     const { dispatch } = this.props;
     let machineFormProp = Forms.Machine;
     return (
-      <List renderHeader={() => "农机信贷"}>
+      <List>
         <FormWrapper
           formProp={machineFormProp}
-          initialValues={this.initialValues}
           bindSubmit={this.handleBindSubmit}
           onSubmit={this.handleOnSubmit}
           dispatch={dispatch}
           validate={addMachineValidate}
         />
+        <WhiteSpace />
         <WhiteSpace />
         <div>
           <Button
@@ -52,6 +52,8 @@ class Machine extends React.Component {
             保存
           </Button>
         </div>
+        <WhiteSpace />
+        <WhiteSpace />
       </List>
     );
   }
