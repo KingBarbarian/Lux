@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
-import { RefreshControl, ListView } from "antd-mobile";
+import { PullToRefresh, ListView } from "antd-mobile";
 import ReactDOM from "react-dom";
 import ListEmpty from "../list-empty";
 import SearchInput from "../search-input";
@@ -86,6 +86,7 @@ class WebListView extends React.Component {
         return -1;
       }
     });
+    this.props.onRefresh();
 
     this.setState({
       text: value,
@@ -93,48 +94,15 @@ class WebListView extends React.Component {
       activity: value
     });
 
-    setTimeout(
-      () =>
-        this.setState({
-          height: this.state.height - ReactDOM.findDOMNode(this.lv).offsetTop
-        }),
-      0
-    );
-    this.lv.getInnerViewNode().addEventListener(
-      "touchstart",
-      (this.ts = e => {
-        this.tsPageY = e.touches[0].pageY;
-      })
-    );
-    const scrollNode = document.scrollingElement
-      ? document.scrollingElement
-      : document.body;
-    this.lv.getInnerViewNode().addEventListener(
-      "touchmove",
-      (this.tm = e => {
-        this.tmPageY = e.touches[0].pageY;
-        if (
-          this.tmPageY > this.tsPageY &&
-          this.scrollerTop <= 0 &&
-          scrollNode.scrollTop > 0
-        ) {
-          this.domScroller.options.preventDefaultOnTouchMove = false;
-        } else {
-          this.domScroller.options.preventDefaultOnTouchMove = undefined;
-        }
-      })
-    );
+    const hei = this.state.height - ReactDOM.findDOMNode(this.lv).offsetTop;
+    document.body.style.overflow = "hidden";
+    setTimeout(() => {
+      this.setState({
+        height: hei,
+        refreshing: false
+      });
+    }, 2000);
   }
-
-  componentWillUnmount() {
-    this.lv.getInnerViewNode().removeEventListener("touchstart", this.ts);
-    this.lv.getInnerViewNode().removeEventListener("touchmove", this.tm);
-  }
-
-  onScroll = e => {
-    this.scrollerTop = e.scroller.getValues().top;
-    this.domScroller = e;
-  };
 
   handleTextChange = text => {
     this.keyword = text;
@@ -181,23 +149,6 @@ class WebListView extends React.Component {
     this.props.onEndReached();
   };
 
-  scrollingComplete = () => {
-    if (this.scrollerTop >= -1) {
-      this.setState({ showFinishTxt: false });
-    }
-  };
-
-  renderCustomIcon() {
-    return [
-      <div key="0" className="am-refresh-control-pull">
-        <span>{this.state.showFinishTxt ? "刷新完毕" : "下拉可以刷新"}</span>
-      </div>,
-      <div key="1" className="am-refresh-control-release">
-        <span>松开立即刷新</span>
-      </div>
-    ];
-  }
-
   renderFooter = () => {
     if (this.props.isFetching) {
       return <div style={{ padding: 30, textAlign: "center" }}>{"加载中..."}</div>;
@@ -222,27 +173,17 @@ class WebListView extends React.Component {
           dataSource={this.ds.cloneWithRows(this.props.dataList)}
           renderFooter={this.renderFooter}
           renderRow={renderRow}
-          initialListSize={5}
-          pageSize={5}
           style={{
             height: this.state.height
           }}
-          scrollerOptions={{
-            scrollbars: true,
-            scrollingComplete: this.scrollingComplete
-          }}
-          refreshControl={
-            <RefreshControl
+          pullToRefresh={
+            <PullToRefresh
               refreshing={this.state.refreshing}
               onRefresh={this.onRefresh}
-              icon={this.renderCustomIcon()}
             />
           }
-          onScroll={this.onScroll}
-          scrollRenderAheadDistance={200}
-          scrollEventThrottle={20}
           onEndReached={this.onEndReached}
-          onEndReachedThreshold={10}
+          pageSize={5}
         />
       </div>
     );

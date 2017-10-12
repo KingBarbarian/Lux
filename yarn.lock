@@ -113,9 +113,9 @@ ansi-styles@^3.0.0, ansi-styles@^3.1.0, ansi-styles@^3.2.0:
   dependencies:
     color-convert "^1.9.0"
 
-antd-mobile@^2.0.0-beta.5:
-  version "2.0.0-beta.5"
-  resolved "http://registry.npm.taobao.org/antd-mobile/download/antd-mobile-2.0.0-beta.5.tgz#f5e2124ab817468956b978c39154c2c9f6f7e85e"
+antd-mobile@^2.0.0-beta.6:
+  version "2.0.0-beta.6"
+  resolved "http://registry.npm.taobao.org/antd-mobile/download/antd-mobile-2.0.0-beta.6.tgz#2c86c9ea0f5ff5673d039737ad499cc39aa6f660"
   dependencies:
     array-tree-filter "~1.0.0"
     babel-runtime "6.x"
@@ -131,15 +131,16 @@ antd-mobile@^2.0.0-beta.5:
     react-native-collapsible "^0.8.0"
     react-native-drawer-layout "~1.3.0"
     react-native-menu "^0.23.0"
-    rmc-calendar "^0.1.9"
+    rmc-calendar "^1.0.0"
     rmc-cascader "~5.0.0-alpha.2"
     rmc-date-picker "~6.0.0-alpha.10"
     rmc-dialog "^1.0.1"
     rmc-feedback "^1.0.0"
-    rmc-input-number "^0.1.5"
-    rmc-list-view "^0.10.0"
+    rmc-input-number "^1.0.0"
+    rmc-list-view "^0.11.0"
     rmc-nuka-carousel "^3.0.0-alpha.1"
-    rmc-picker "~5.0.0-alpha.7"
+    rmc-picker "~5.0.0-alpha.9"
+    rmc-pull-to-refresh "^1.0.0-alpha.5"
     rmc-steps "~1.0.0"
     rmc-tabs "~1.2.0"
     rmc-tooltip "~1.0.0"
@@ -2459,7 +2460,7 @@ fastparse@^1.1.1:
   version "1.1.1"
   resolved "http://registry.npm.taobao.org/fastparse/download/fastparse-1.1.1.tgz#d1e2643b38a94d7583b479060e6c4affc94071f8"
 
-fbjs@^0.8.16:
+fbjs@^0.8.16, fbjs@^0.8.3:
   version "0.8.16"
   resolved "http://registry.npm.taobao.org/fbjs/download/fbjs-0.8.16.tgz#5e67432f550dc41b572bf55847b8aca64e5337db"
   dependencies:
@@ -2471,7 +2472,7 @@ fbjs@^0.8.16:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.9"
 
-fbjs@^0.8.3, fbjs@^0.8.9:
+fbjs@^0.8.9:
   version "0.8.15"
   resolved "http://registry.npm.taobao.org/fbjs/download/fbjs-0.8.15.tgz#4f0695fdfcc16c37c0b07facec8cb4c4091685b9"
   dependencies:
@@ -4689,8 +4690,8 @@ querystring@0.2.0, querystring@^0.2.0:
   resolved "http://registry.npm.taobao.org/querystring/download/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
 
 raf@^3.1.0, raf@^3.3.0, raf@^3.3.2:
-  version "3.3.2"
-  resolved "http://registry.npm.taobao.org/raf/download/raf-3.3.2.tgz#0c13be0b5b49b46f76d6669248d527cf2b02fe27"
+  version "3.4.0"
+  resolved "http://registry.npm.taobao.org/raf/download/raf-3.4.0.tgz#a28876881b4bc2ca9117d4138163ddb80f781575"
   dependencies:
     performance-now "^2.1.0"
 
@@ -4791,8 +4792,8 @@ rc-swipeout@~2.0.0:
     react-native-swipeout "~2.1.1"
 
 rc-tooltip@^3.4.2:
-  version "3.4.9"
-  resolved "http://registry.npm.taobao.org/rc-tooltip/download/rc-tooltip-3.4.9.tgz#6f99ecbbe3925810447fe0ce81a6ed4f721da8c5"
+  version "3.5.0"
+  resolved "http://registry.npm.taobao.org/rc-tooltip/download/rc-tooltip-3.5.0.tgz#f73e835ae174ecfa81cddda1b1fa318361f57dc1"
   dependencies:
     babel-runtime "6.x"
     prop-types "^15.5.8"
@@ -5285,9 +5286,9 @@ rmc-align@~1.0.0:
     dom-align "1.x"
     rc-util "4.x"
 
-rmc-calendar@^0.1.9:
-  version "0.1.14"
-  resolved "http://registry.npm.taobao.org/rmc-calendar/download/rmc-calendar-0.1.14.tgz#e7d79c77627056843f996f091ada97ad7d8025c9"
+rmc-calendar@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/rmc-calendar/download/rmc-calendar-1.0.0.tgz#c9ca7ae1aae01fd17c345f5b87b774418f4e2a52"
   dependencies:
     babel-runtime "6.x"
     rc-animate "^2.4.1"
@@ -5308,13 +5309,6 @@ rmc-date-picker@~6.0.0-alpha.10:
     babel-runtime "6.x"
     rmc-picker "~5.0.0-alpha.7"
 
-rmc-dialog@^0.0.1-alpha.2:
-  version "0.0.1-alpha.4"
-  resolved "http://registry.npm.taobao.org/rmc-dialog/download/rmc-dialog-0.0.1-alpha.4.tgz#cf7982bc84395afc0c3dd1bdb213f2be5b81b765"
-  dependencies:
-    babel-runtime "6.x"
-    rc-animate "2.x"
-
 rmc-dialog@^1.0.1:
   version "1.0.3"
   resolved "http://registry.npm.taobao.org/rmc-dialog/download/rmc-dialog-1.0.3.tgz#4ee8ab244a11229fc3ad85ee2638b69039880dca"
@@ -5329,17 +5323,17 @@ rmc-feedback@^1.0.0:
     babel-runtime "6.x"
     classnames "^2.2.5"
 
-rmc-input-number@^0.1.5:
-  version "0.1.5"
-  resolved "http://registry.npm.taobao.org/rmc-input-number/download/rmc-input-number-0.1.5.tgz#f96eaa62275212edcbb16ab3537dcf1943a47778"
+rmc-input-number@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/rmc-input-number/download/rmc-input-number-1.0.0.tgz#daf07e16d50d87c60862da7a250e1fb594c82d9c"
   dependencies:
     babel-runtime "6.x"
     classnames "^2.2.0"
     rmc-feedback "^1.0.0"
 
-rmc-list-view@^0.10.0:
-  version "0.10.1"
-  resolved "http://registry.npm.taobao.org/rmc-list-view/download/rmc-list-view-0.10.1.tgz#d2bc773ddddf601062fbb0bed4b1f1b48637846c"
+rmc-list-view@^0.11.0:
+  version "0.11.1"
+  resolved "http://registry.npm.taobao.org/rmc-list-view/download/rmc-list-view-0.11.1.tgz#6bea1618312d94ce4d491d7b64716fcccbe91b74"
   dependencies:
     babel-runtime "6.x"
     classnames "^2.2.5"
@@ -5355,25 +5349,21 @@ rmc-nuka-carousel@^3.0.0-alpha.1:
     exenv "^1.2.0"
     raf "^3.3.2"
 
-rmc-picker@~5.0.0-alpha.6:
-  version "5.0.0-alpha.6"
-  resolved "http://registry.npm.taobao.org/rmc-picker/download/rmc-picker-5.0.0-alpha.6.tgz#8fd7dd8c18ebea6c19a26918883f1bc7e91aa570"
-  dependencies:
-    babel-runtime "6.x"
-    classnames "^2.2.0"
-    rmc-dialog "^0.0.1-alpha.2"
-    rmc-feedback "^1.0.0"
-    zscroller "~0.3.0"
-
-rmc-picker@~5.0.0-alpha.7:
-  version "5.0.0-alpha.7"
-  resolved "http://registry.npm.taobao.org/rmc-picker/download/rmc-picker-5.0.0-alpha.7.tgz#c635c5a56574359fcbc5bc5b875ab9c93e4e91f8"
+rmc-picker@~5.0.0-alpha.6, rmc-picker@~5.0.0-alpha.7, rmc-picker@~5.0.0-alpha.9:
+  version "5.0.0-alpha.9"
+  resolved "http://registry.npm.taobao.org/rmc-picker/download/rmc-picker-5.0.0-alpha.9.tgz#76bb86e06fdbfc00d0aa9f381aced0f6efee43ba"
   dependencies:
     babel-runtime "6.x"
     classnames "^2.2.0"
     rmc-dialog "^1.0.1"
     rmc-feedback "^1.0.0"
-    zscroller "~0.3.0"
+
+rmc-pull-to-refresh@^1.0.0-alpha.5:
+  version "1.0.0-alpha.5"
+  resolved "http://registry.npm.taobao.org/rmc-pull-to-refresh/download/rmc-pull-to-refresh-1.0.0-alpha.5.tgz#56ebbbbd699256c6e1e3521d9b2cb039ef628af0"
+  dependencies:
+    babel-runtime "6.x"
+    classnames "^2.2.5"
 
 rmc-steps@~1.0.0:
   version "1.0.0"
@@ -5383,8 +5373,8 @@ rmc-steps@~1.0.0:
     classnames "^2.2.3"
 
 rmc-tabs@~1.2.0:
-  version "1.2.3"
-  resolved "http://registry.npm.taobao.org/rmc-tabs/download/rmc-tabs-1.2.3.tgz#5bb7bfadb6e895fb27ec511c21450acd315b245f"
+  version "1.2.5"
+  resolved "http://registry.npm.taobao.org/rmc-tabs/download/rmc-tabs-1.2.5.tgz#184141ca3f6b01f9bdae4afbc046d5f7e2c7c474"
   dependencies:
     babel-runtime "6.x"
     rc-gesture "^0.0.15"
@@ -5397,8 +5387,8 @@ rmc-tooltip@~1.0.0:
     rmc-trigger "1.x"
 
 rmc-trigger@1.x:
-  version "1.0.3"
-  resolved "http://registry.npm.taobao.org/rmc-trigger/download/rmc-trigger-1.0.3.tgz#384fa07d1e83026091cec092f705e21243bca264"
+  version "1.0.4"
+  resolved "http://registry.npm.taobao.org/rmc-trigger/download/rmc-trigger-1.0.4.tgz#753489fcc9e25265497af27712ef090d65967937"
   dependencies:
     babel-runtime "6.x"
     rc-animate "2.x"
