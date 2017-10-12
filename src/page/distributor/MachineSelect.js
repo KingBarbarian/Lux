@@ -43,7 +43,8 @@ class MachineSelect extends React.Component {
           this.props.onClose({
             data: {
               key: rowData.id,
-              value: rowData.name
+              value: rowData.name,
+              ...rowData
             }
           })}
       >
