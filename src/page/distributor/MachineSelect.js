@@ -23,6 +23,7 @@ class MachineSelect extends React.Component {
   };
 
   handleValue = (value) => {
+    if (!Array.isArray(value)) return
     let params = {}
     const keyword = value.find(item => item.id === "keyword")
     if (keyword) {
