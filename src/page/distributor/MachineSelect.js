@@ -2,19 +2,18 @@ import React from "react";
 import { connect } from "react-redux";
 import { NavBar, PickerView, WhiteSpace } from "antd-mobile";
 import { modal } from "@/utils/decorators";
-import { Distributor } from "@/actions"
+import { Distributor } from "@/actions";
 import { createPaginateSelector } from "@/reducers/selectors";
-import Table from "@/components/table"
-import tables from "@/tables"
+import Table from "@/components/table";
+import tables from "@/tables";
 
-const machinesSelector = createPaginateSelector("machines")
+const machinesSelector = createPaginateSelector("machines");
 
 @connect(state => ({
   machineData: machinesSelector(state)
 }))
 @modal()
 class MachineSelect extends React.Component {
-
   onEndReached = ({ value = {} }) => {
     this.props.dispatch(Distributor.machinesPaginator.loadNext(value));
   };

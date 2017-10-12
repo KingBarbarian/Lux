@@ -105,4 +105,4 @@ class DistributorSelect extends React.Component {
 }
 
 export default DistributorSelect;
-export { default as MachineSelect } from "./MachineSelect"
+export { default as MachineSelect } from "./MachineSelect";

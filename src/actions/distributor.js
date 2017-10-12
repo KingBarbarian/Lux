@@ -1,6 +1,6 @@
 import { createPaginateActionCreatorS } from "./paginate";
 import { createRequestTypes } from "./actionHelper";
-import { GALEN_API } from "@/config"
+import { GALEN_API } from "@/config";
 
 /**
  * 获取经销商列表
@@ -23,11 +23,7 @@ const getDistributorList = (
 /**
  * 获取农机列表
  */
-const getMachines = (
-  startIndex,
-  pageSize,
-  ...params
-) => ({
+const getMachines = (startIndex, pageSize, ...params) => ({
   host: GALEN_API,
   endpoint: "/agr/machine-list",
   data: {
@@ -36,7 +32,7 @@ const getMachines = (
     ...params
   },
   method: "GET"
-})
+});
 
 class Distributor {
   /**
@@ -47,10 +43,7 @@ class Distributor {
     getDistributorList
   );
 
-  machinesPaginator = createPaginateActionCreatorS(
-    "machines",
-    getMachines
-  )
+  machinesPaginator = createPaginateActionCreatorS("machines", getMachines);
 }
 
 export default {
