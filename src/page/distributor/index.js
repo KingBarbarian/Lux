@@ -39,16 +39,6 @@ class DistributorSelect extends React.Component {
           })}
       >
         <div style={{ display: "flex", padding: "15px" }}>
-          <img
-            style={{
-              height: "40px",
-              width: "40px",
-              marginRight: "15px",
-              borderRadius: "40px"
-            }}
-            src={"https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png"}
-            alt="icon"
-          />
           <div style={{ display: "inline-block" }}>
             <div
               style={{
