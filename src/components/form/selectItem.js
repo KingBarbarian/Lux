@@ -4,7 +4,6 @@ import { Toast, List } from "antd-mobile";
 import { combineModal } from "@/utils/decorators";
 import CustomerSelect from "@/page/customer";
 import DistributorSelect, { MachineSelect } from "@/page/distributor";
-import { fieldHOC } from "../form-wrapper/register";
 import { rctField as fieldHOC } from "rct-form";
 
 const Item = List.Item;
