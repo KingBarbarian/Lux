@@ -14,7 +14,8 @@ const getDistributorList = (
     endpoint: "/distributor",
     data: {
       startIndex,
-      pageSize
+      pageSize,
+      queryName
     },
     method: "GET"
   };
@@ -23,7 +24,7 @@ const getDistributorList = (
 /**
  * 获取农机列表
  */
-const getMachines = (startIndex, pageSize, ...params) => ({
+const getMachines = (startIndex, pageSize, params) => ({
   host: GALEN_API,
   endpoint: "/agr/machine-list",
   data: {

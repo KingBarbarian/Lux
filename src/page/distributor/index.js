@@ -15,12 +15,21 @@ const distributorSelector = createPaginateSelector("distributors");
 @modal()
 class DistributorSelect extends React.Component {
   onEndReached = ({ value = {} }) => {
-    this.props.dispatch(Distributor.listPaginator.loadNext(value));
+    this.props.dispatch(Distributor.listPaginator.loadNext(this.handleValue(value)));
   };
 
   onRefresh = ({ value = {} }) => {
-    this.props.dispatch(Distributor.listPaginator.refresh(value));
+    this.props.dispatch(Distributor.listPaginator.refresh(this.handleValue(value)));
   };
+
+  handleValue = (value) => {
+    let params = {}
+    const keyword = value.find(item => item.id === "keyword")
+    if (keyword) {
+      params['queryName'] = keyword.value
+    }
+    return params
+  }
 
   renderRow = (rowData, sectionID, rowID) => {
     return (
