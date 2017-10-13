@@ -15,12 +15,12 @@ const addCreditMachine = (info, templateId) => {
 };
 
 /**
- * 新增农补信贷<与农机接口相同>
+ * 新增农补信贷
  */
 const addCreditFillFarmers = (info, templateId) => {
   return {
     type: CREDIT_ADD.REQUEST,
-    endpoint: `/apply/use/machine?templateId=${templateId}`,
+    endpoint: `/apply/use/form-subsidy?templateId=${templateId}`,
     data: info,
     method: "POST"
   };
@@ -56,7 +56,7 @@ const addCreditFarmWork = (info, templateId) => {
 const addCreditFood = (info, templateId) => {
   return {
     type: CREDIT_ADD.REQUEST,
-    endpoint: `/schedule/foodstuff?templateId=${templateId}`,
+    endpoint: `/apply/use/foodstuff?templateId=${templateId}`,
     data: info,
     method: "POST"
   };

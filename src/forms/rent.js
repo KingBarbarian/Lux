@@ -33,16 +33,9 @@ export default {
         },
         {
           fieldType: "inputItem",
-          name: "capital",
+          name: "applyAmount",
           label: "申请金额",
           placeholder: "请输入申请金额",
-          type: "text"
-        },
-        {
-          fieldType: "inputItem",
-          name: "applyAmount",
-          label: "补贴金额",
-          placeholder: "请输入补贴金额",
           type: "text"
         },
         {

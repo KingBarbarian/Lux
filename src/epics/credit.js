@@ -15,7 +15,10 @@ export const creditAdd = (action$, store) =>
           type: CREDIT_ADD.SUCCESS,
           payload: response
         }))
-        .concat()
+        .concatMap(successAction => {
+          return Rx.Observable.of(Message.show("新增成功", Message.TYPE_SUCCESS));
+        })
+        .concat(Rx.Observable.of(Message.dismiss()).delay(2000))
         .catch(error => {
           let error$ = Rx.Observable.of({
             ...action,

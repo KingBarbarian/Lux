@@ -12,8 +12,7 @@
       }
     ],
     // Transpile React components to JavaScript
-    "react",
-    "stage-0"
+    "react"
   ],
   "plugins": [
     "transform-runtime",
@@ -21,6 +20,8 @@
     "transform-decorators-legacy",
     // Enables React code to work with HMR.
     "react-hot-loader/babel",
+    "babel-plugin-transform-class-properties",
+    "transform-object-rest-spread",
     [
       "import",
       {

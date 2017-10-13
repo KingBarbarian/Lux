@@ -38,7 +38,7 @@ class FillFarmers extends React.Component {
       dealerId: values.dealers.key,
       dealerName: values.dealers.value,
       description: values.models.description,
-      machineCode: values.models.machineModel,
+      machineCode: values.models.id,
       machineName: values.models.name,
       machineTypeId: values.models.machineTypeId,
       machineTypeName: values.models.machineTypeId,

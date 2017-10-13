@@ -33,17 +33,11 @@ class Food extends React.Component {
     let values_ = {
       applyAmount: values.applyAmount,
       customerId: values.customer.key,
-      brandId: values.models.brandId,
-      brandName: values.models.brandName,
-      dealerId: values.dealers.key,
-      dealerName: values.dealers.value,
-      description: values.models.description,
-      downPayment: values.capital,
-      machineCode: values.models.machineModel,
-      machineName: values.models.name,
-      machineTypeId: values.models.machineTypeId,
-      machineTypeName: values.models.machineTypeId,
-      price: values.totalPrice
+      description: values.remark,
+      growModel: values.grow.growModel,
+      growProductId: values.grow.id,
+      price: values.totalPrice,
+      tonnage: values.tonnage
     };
     dispatch(addCreditFood(values_, TEMPLATEID));
   };

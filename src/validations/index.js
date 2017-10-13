@@ -20,9 +20,6 @@ export const addMachineValidate = values => {
   if (!values.applyAmount) {
     _.set(errors, "applyAmount", "必填项");
   }
-  if (!values.remark) {
-    _.set(errors, "remark", "必填项");
-  }
   return errors;
 };
 
@@ -42,9 +39,6 @@ export const addCreditFillFarmersValidate = values => {
   }
   if (!values.applyAmount) {
     _.set(errors, "applyAmount", "必填项");
-  }
-  if (!values.remark) {
-    _.set(errors, "remark", "必填项");
   }
   if (!values.subsidies) {
     _.set(errors, "subsidies", "必填项");
@@ -66,14 +60,8 @@ export const addRentValidate = values => {
   if (!values.totalPrice) {
     _.set(errors, "totalPrice", "必填项");
   }
-  if (!values.capital) {
-    _.set(errors, "capital", "必填项");
-  }
   if (!values.applyAmount) {
     _.set(errors, "applyAmount", "必填项");
-  }
-  if (!values.remark) {
-    _.set(errors, "remark", "必填项");
   }
   return errors;
 };
@@ -101,9 +89,6 @@ export const addCreditFarmWorkValidate = values => {
   if (!values.applyAmount) {
     _.set(errors, "applyAmount", "必填项");
   }
-  if (!values.remark) {
-    _.set(errors, "remark", "必填项");
-  }
   return errors;
 };
 
@@ -121,11 +106,8 @@ export const addCreditFoodValidate = values => {
   if (!values.totalPrice) {
     _.set(errors, "totalPrice", "必填项");
   }
-  if (!values.capital) {
-    _.set(errors, "capital", "必填项");
-  }
-  if (!values.remark) {
-    _.set(errors, "remark", "必填项");
+  if (!values.applyAmount) {
+    _.set(errors, "applyAmount", "必填项");
   }
   return errors;
 };
@@ -141,11 +123,8 @@ export const addCreditLaborValidate = values => {
   if (!values.totalPrice) {
     _.set(errors, "totalPrice", "必填项");
   }
-  if (!values.capital) {
-    _.set(errors, "capital", "必填项");
-  }
-  if (!values.remark) {
-    _.set(errors, "remark", "必填项");
+  if (!values.applyAmount) {
+    _.set(errors, "applyAmount", "必填项");
   }
   return errors;
 };

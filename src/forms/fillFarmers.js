@@ -22,7 +22,7 @@ export default {
           name: "models",
           label: "购买机型",
           placeholder: "请选择购买机型",
-          sceneName: "CustomerSelect"
+          sceneName: "MachineSelect"
         },
         {
           fieldType: "inputItem",

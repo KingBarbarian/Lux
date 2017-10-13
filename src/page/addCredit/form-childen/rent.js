@@ -32,18 +32,11 @@ class Rent extends React.Component {
     const { dispatch } = this.props;
     let values_ = {
       applyAmount: values.applyAmount,
+      area: values.area,
       customerId: values.customer.key,
-      brandId: values.models.brandId,
-      brandName: values.models.brandName,
-      dealerId: values.dealers.key,
-      dealerName: values.dealers.value,
-      description: values.models.description,
-      machineCode: values.models.machineModel,
-      machineName: values.models.name,
-      machineTypeId: values.models.machineTypeId,
-      machineTypeName: values.models.machineTypeId,
+      description: values.remark,
       price: values.totalPrice,
-      subsidy: values.subsidies
+      year: values.year
     };
     dispatch(addCreditRent(values_, TEMPLATEID));
   };

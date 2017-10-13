@@ -29,24 +29,23 @@ class FarmWork extends React.Component {
   };
 
   handleOnSubmit = values => {
-    console.log(values);
-    // const { dispatch } = this.props;
-    // let values_ = {
-    //   applyAmount: values.applyAmount,
-    //   customerId: values.customer.key,
-    //   brandId: values.models.brandId,
-    //   brandName: values.models.brandName,
-    //   dealerId: values.dealers.key,
-    //   dealerName: values.dealers.value,
-    //   description: values.models.description,
-    //   downPayment: values.capital,
-    //   machineCode: values.models.machineModel,
-    //   machineName: values.models.name,
-    //   machineTypeId: values.models.machineTypeId,
-    //   machineTypeName: values.models.machineTypeId,
-    //   price: values.totalPrice
-    // };
-    // dispatch(addCreditFarmWork(values_,TEMPLATEID));
+    const { dispatch } = this.props;
+    let values_ = {
+      applyAmount: values.applyAmount,
+      area: values.area,
+      customerId: values.customer.key,
+      description: values.remark,
+      farmWorkType: {
+        id: values.farmWorkType
+      },
+      growModel: values.breed.growModel,
+      growProductId: values.breed.id,
+      operationType: {
+        id: values.practices || values.farming
+      },
+      price: 50000
+    };
+    dispatch(addCreditFarmWork(values_, TEMPLATEID));
   };
 
   render() {
