@@ -13,7 +13,7 @@ export default {
 
         {
           fieldType: "inputItem",
-          name: "numberMu",
+          name: "content",
           label: "用途描述",
           placeholder: "请输入用途描述",
           type: "text"

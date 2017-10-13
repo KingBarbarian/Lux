@@ -40,16 +40,6 @@ class CustomerSelect extends React.Component {
         <div
           style={{ display: "-webkit-box", display: "flex", padding: "15px" }}
         >
-          <img
-            style={{
-              height: "40px",
-              width: "40px",
-              marginRight: "15px",
-              borderRadius: "40px"
-            }}
-            src={"https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png"}
-            alt="icon"
-          />
           <div style={{ display: "inline-block" }}>
             <div
               style={{
@@ -59,7 +49,8 @@ class CustomerSelect extends React.Component {
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
                 maxWidth: "250px",
-                paddingBottom: "5px"
+                paddingBottom: "5px",
+                textAlign: "left"
               }}
             >
               {rowData.customerName}

@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 import Forms from "@/forms";
 import FormWrapper from "@/components/form-wrapper";
 import { addMachineValidate } from "@/validations";
+import { addCreditMachine } from "@/actions";
+
+const TEMPLATEID = "AT10004";
 
 @connect()
 class Machine extends React.Component {
@@ -26,32 +29,23 @@ class Machine extends React.Component {
   };
 
   handleOnSubmit = values => {
-    console.log(values);
+    const { dispatch } = this.props;
     let values_ = {
-      accountType: {
-        id: 0,
-        name: "string"
-      },
-      applyAmount: 30000,
-      brandId: "XYZ",
-      brandName: "雷沃",
-      dealerId: "JX1000",
-      dealerName: "马鞍山农机经销商",
-      description: "购买农机申请",
-      downPayment: 20000,
-      machineCode: "M100000",
-      machineName: "收割机-久保田-PRO-GH688Q",
-      machineTypeId: "XYZ",
-      machineTypeName: "收割机",
-      marginAmount: 0,
-      marginState: false,
-      payeeType: {
-        id: 0,
-        name: "string"
-      },
-      price: 50000,
-      useId: "AU100001"
+      applyAmount: values.applyAmount,
+      customerId: values.customer.key,
+      brandId: values.models.brandId,
+      brandName: values.models.brandName,
+      dealerId: values.dealers.key,
+      dealerName: values.dealers.value,
+      description: values.models.description,
+      downPayment: values.capital,
+      machineCode: values.models.id,
+      machineName: values.models.name,
+      machineTypeId: values.models.machineTypeId,
+      machineTypeName: values.models.machineTypeId,
+      price: values.totalPrice
     };
+    dispatch(addCreditMachine(values_, TEMPLATEID));
   };
 
   render() {

@@ -1,9 +1,12 @@
 import React from "react";
-import { List, WhiteSpace, Button } from "antd-mobile";
+import { List, WhiteSpace, Button, Flex } from "antd-mobile";
 import { connect } from "react-redux";
 import Forms from "@/forms";
 import FormWrapper from "@/components/form-wrapper";
-import { addMachineValidate } from "@/validations";
+import { addCreditFarmWorkValidate } from "@/validations";
+import { addCreditFarmWork } from "@/actions";
+
+const TEMPLATEID = "AT10017";
 
 @connect()
 class FarmWork extends React.Component {
@@ -27,6 +30,23 @@ class FarmWork extends React.Component {
 
   handleOnSubmit = values => {
     console.log(values);
+    // const { dispatch } = this.props;
+    // let values_ = {
+    //   applyAmount: values.applyAmount,
+    //   customerId: values.customer.key,
+    //   brandId: values.models.brandId,
+    //   brandName: values.models.brandName,
+    //   dealerId: values.dealers.key,
+    //   dealerName: values.dealers.value,
+    //   description: values.models.description,
+    //   downPayment: values.capital,
+    //   machineCode: values.models.machineModel,
+    //   machineName: values.models.name,
+    //   machineTypeId: values.models.machineTypeId,
+    //   machineTypeName: values.models.machineTypeId,
+    //   price: values.totalPrice
+    // };
+    // dispatch(addCreditFarmWork(values_,TEMPLATEID));
   };
 
   render() {
@@ -39,7 +59,7 @@ class FarmWork extends React.Component {
           bindSubmit={this.handleBindSubmit}
           onSubmit={this.handleOnSubmit}
           dispatch={dispatch}
-          validate={addMachineValidate}
+          validate={addCreditFarmWorkValidate}
         />
         <WhiteSpace />
         <WhiteSpace />
@@ -52,6 +72,7 @@ class FarmWork extends React.Component {
             保存
           </Button>
         </div>
+        <WhiteSpace />
         <WhiteSpace />
         <WhiteSpace />
       </List>

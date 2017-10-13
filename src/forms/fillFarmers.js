@@ -33,7 +33,7 @@ export default {
         },
         {
           fieldType: "inputItem",
-          name: "applyPrice",
+          name: "applyAmount",
           label: "申请金额",
           placeholder: "请输入申请金额",
           type: "text"

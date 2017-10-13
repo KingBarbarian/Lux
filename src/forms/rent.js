@@ -1,5 +1,5 @@
 export default {
-  formName: "machine",
+  formName: "rent",
   sections: [
     {
       fields: [
@@ -11,15 +11,15 @@ export default {
           sceneName: "CustomerSelect"
         },
         {
-          fieldType: "selectItem",
-          name: "models",
+          fieldType: "inputItem",
+          name: "year",
           label: "承包年限",
-          placeholder: "请选择承包年限",
-          sceneName: "CustomerSelect"
+          placeholder: "请输入承包年限",
+          type: "number"
         },
         {
           fieldType: "inputItem",
-          name: "numberMu",
+          name: "area",
           label: "承包亩数",
           placeholder: "请输入承包亩数",
           type: "number"

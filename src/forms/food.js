@@ -12,14 +12,14 @@ export default {
         },
         {
           fieldType: "selectItem",
-          name: "collectFoodFarieties",
+          name: "grow",
           label: "收粮品种",
           placeholder: "请选择收粮品种",
-          sceneName: "CustomerSelect"
+          sceneName: "FoodBreedSelect"
         },
         {
           fieldType: "inputItem",
-          name: "numberMu",
+          name: "tonnage",
           label: "重量",
           placeholder: "请输入重量",
           type: "number"

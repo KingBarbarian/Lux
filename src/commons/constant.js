@@ -1,11 +1,15 @@
 const FarmWorkType = new Map();
-FarmWorkType.set(0, "植保");
-FarmWorkType.set(1, "收割");
-FarmWorkType.set(2, "耕地");
+FarmWorkType.set(0, "植保 ");
+FarmWorkType.set(1, "收割 ");
+FarmWorkType.set(2, "耕地 ");
+
+const Farming = new Map();
+Farming.set(0, "深耕 ");
+Farming.set(1, "浅耕 ");
 
 const Practices = new Map();
-Practices.set(0, "深耕");
-Practices.set(1, "浅耕");
+Practices.set(0, "人工 ");
+Practices.set(1, "机械 ");
 
 const CustomerLinkedType = new Map();
 CustomerLinkedType.set("", "全部的客户");
@@ -103,6 +107,7 @@ const Constant = {
   timeFilter,
   timeFilterOcen,
   FarmWorkType,
+  Farming,
   Practices
 };
 

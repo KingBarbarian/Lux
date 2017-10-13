@@ -87,19 +87,15 @@ class WebListView extends React.Component {
       }
     });
     this.props.onRefresh();
-
-    this.setState({
-      text: value,
-      value: value,
-      activity: value
-    });
-
     const hei = this.state.height - ReactDOM.findDOMNode(this.lv).offsetTop;
     document.body.style.overflow = "hidden";
     setTimeout(() => {
       this.setState({
         height: hei,
-        refreshing: false
+        refreshing: false,
+        text: value,
+        value: value,
+        activity: value
       });
     }, 2000);
   }
@@ -113,26 +109,17 @@ class WebListView extends React.Component {
     const data = this.props.config.data;
     let keyword = {};
     let value = this.state.value;
-
     keyword.id = "keyword";
     keyword.value = this.keyword;
     keyword.headerDisplay = "false";
-
     value[data.length] = keyword;
-
     this.setState({
       value: value
     });
-
     this.props.onRefresh(value);
   };
 
   onRefresh = () => {
-    if (!this.manuallyRefresh) {
-      this.setState({ refreshing: true });
-    } else {
-      this.manuallyRefresh = false;
-    }
     setTimeout(() => {
       this.props.onRefresh();
       this.setState({
@@ -146,7 +133,17 @@ class WebListView extends React.Component {
   };
 
   onEndReached = event => {
-    this.props.onEndReached();
+    const data = this.props.config.data;
+    let keyword = {};
+    let value = this.state.value;
+    keyword.id = "keyword";
+    keyword.value = this.keyword;
+    keyword.headerDisplay = "false";
+    value[data.length] = keyword;
+    this.setState({
+      value: value
+    });
+    this.props.onEndReached(value);
   };
 
   renderFooter = () => {

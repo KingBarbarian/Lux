@@ -1,26 +1,26 @@
 import { createRequestTypes } from "./actionHelper";
 
+const CREDIT_ADD = createRequestTypes("CREDIT_ADD");
+
 /**
  * 新增农机信贷
  */
-const ADD_CREDIT_MACHINE = createRequestTypes("ADD_CREDIT_MACHINE");
-const addCreditMachine = info => {
+const addCreditMachine = (info, templateId) => {
   return {
-    type: ADD_CREDIT_MACHINE.REQUEST,
-    endpoint: "/schedule/trace-record",
+    type: CREDIT_ADD.REQUEST,
+    endpoint: `/apply/use/machine?templateId=${templateId}`,
     data: info,
     method: "POST"
   };
 };
 
 /**
- * 新增农补信贷
+ * 新增农补信贷<与农机接口相同>
  */
-const ADD_CREDIT_FILLFARMERS = createRequestTypes("ADD_CREDIT_FILLFARMERS");
-const addCreditFillFarmers = info => {
+const addCreditFillFarmers = (info, templateId) => {
   return {
-    type: ADD_CREDIT_FILLFARMERS.REQUEST,
-    endpoint: "/schedule/trace-record",
+    type: CREDIT_ADD.REQUEST,
+    endpoint: `/apply/use/machine?templateId=${templateId}`,
     data: info,
     method: "POST"
   };
@@ -29,11 +29,10 @@ const addCreditFillFarmers = info => {
 /**
  * 新增地租信贷
  */
-const ADD_CREDIT_RENT = createRequestTypes("ADD_CREDIT_RENT");
-const addCreditRent = info => {
+const addCreditRent = (info, templateId) => {
   return {
-    type: ADD_CREDIT_RENT.REQUEST,
-    endpoint: "/schedule/trace-record",
+    type: CREDIT_ADD.REQUEST,
+    endpoint: `/apply/use/land?templateId=${templateId}`,
     data: info,
     method: "POST"
   };
@@ -42,11 +41,10 @@ const addCreditRent = info => {
 /**
  * 新增农活信贷
  */
-const ADD_CREDIT_FARMWORK = createRequestTypes("ADD_CREDIT_FARMWORK");
-const addCreditFarmWork = info => {
+const addCreditFarmWork = (info, templateId) => {
   return {
-    type: ADD_CREDIT_FARMWORK.REQUEST,
-    endpoint: "/schedule/trace-record",
+    type: CREDIT_ADD.REQUEST,
+    endpoint: `/apply/use/farm-work?templateId=${templateId}`,
     data: info,
     method: "POST"
   };
@@ -55,11 +53,10 @@ const addCreditFarmWork = info => {
 /**
  * 新增粮食信贷
  */
-const ADD_CREDIT_FOOD = createRequestTypes("ADD_CREDIT_FOOD");
-const addCreditFood = info => {
+const addCreditFood = (info, templateId) => {
   return {
-    type: ADD_CREDIT_FARMWORK.REQUEST,
-    endpoint: "/schedule/trace-record",
+    type: CREDIT_ADD.REQUEST,
+    endpoint: `/schedule/foodstuff?templateId=${templateId}`,
     data: info,
     method: "POST"
   };
@@ -68,27 +65,21 @@ const addCreditFood = info => {
 /**
  * 新增人工信贷
  */
-const ADD_CREDIT_LABOR = createRequestTypes("ADD_CREDIT_LABOR");
-const addCreditLabor = info => {
+const addCreditLabor = (info, templateId) => {
   return {
-    type: ADD_CREDIT_LABOR.REQUEST,
-    endpoint: "/schedule/trace-record",
+    type: CREDIT_ADD.REQUEST,
+    endpoint: `/apply/use/artificial?templateId=${templateId}`,
     data: info,
     method: "POST"
   };
 };
 
 export default {
-  ADD_CREDIT_MACHINE,
+  CREDIT_ADD,
   addCreditMachine,
-  ADD_CREDIT_FILLFARMERS,
   addCreditFillFarmers,
-  ADD_CREDIT_RENT,
   addCreditRent,
-  ADD_CREDIT_FARMWORK,
   addCreditFarmWork,
-  ADD_CREDIT_FOOD,
   addCreditFood,
-  ADD_CREDIT_LABOR,
   addCreditLabor
 };

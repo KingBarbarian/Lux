@@ -35,13 +35,17 @@ class RadioButtonItem extends React.Component {
     };
   }
 
-  //radio按钮的回调
+  componentDidMount = () => {
+    const { input } = this.props;
+    input.onChange(this.state.selectedOption.id.toString());
+  };
+
   setSelectedOption = selectedOption => {
     this.setState({
       selectedOption
     });
     const { input } = this.props;
-    input.onChange(selectedOption.id);
+    input.onChange(selectedOption.id.toString());
   };
 
   renderOption = (option, selected, onSelect, index) => {
@@ -84,10 +88,7 @@ class RadioButtonItem extends React.Component {
         multipleLine={multipleLine}
         error={error && touched ? true : false}
         wrap={wrap}
-        extra={error && touched ? this.state.errorExtra : this.state.extra}
-      >
-        {label}
-        <Brief>
+        extra={
           <Radio
             options={options}
             onSelection={this.setSelectedOption}
@@ -95,7 +96,9 @@ class RadioButtonItem extends React.Component {
             renderOption={this.renderOption}
             renderContainer={this.renderContainer}
           />
-        </Brief>
+        }
+      >
+        {label}
       </Item>
     );
   }

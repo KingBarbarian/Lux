@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 import { Toast, List } from "antd-mobile";
 import { combineModal } from "@/utils/decorators";
 import CustomerSelect from "@/page/customer";
-import DistributorSelect, { MachineSelect } from "@/page/distributor";
+import DistributorSelect, {
+  MachineSelect,
+  FoodBreedSelect
+} from "@/page/distributor";
 import { rctField as fieldHOC } from "rct-form";
 
 const Item = List.Item;
@@ -28,7 +31,12 @@ const defaultProps = {
   brief: false
 };
 @fieldHOC("selectItem")
-@combineModal({ CustomerSelect, DistributorSelect, MachineSelect })
+@combineModal({
+  CustomerSelect,
+  DistributorSelect,
+  MachineSelect,
+  FoodBreedSelect
+})
 class SelectItemField extends React.Component {
   constructor(props) {
     super(props);

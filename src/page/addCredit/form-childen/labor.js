@@ -3,7 +3,10 @@ import { List, WhiteSpace, Button } from "antd-mobile";
 import { connect } from "react-redux";
 import Forms from "@/forms";
 import FormWrapper from "@/components/form-wrapper";
-import { addMachineValidate } from "@/validations";
+import { addCreditLaborValidate } from "@/validations";
+import { addCreditLabor } from "@/actions";
+
+const TEMPLATEID = "AT10004";
 
 @connect()
 class Labor extends React.Component {
@@ -26,7 +29,23 @@ class Labor extends React.Component {
   };
 
   handleOnSubmit = values => {
-    console.log(values);
+    // const { dispatch } = this.props;
+    // let values_ = {
+    //   applyAmount: values.applyAmount,
+    //   customerId: values.customer.key,
+    //   brandId: values.models.brandId,
+    //   brandName: values.models.brandName,
+    //   dealerId: values.dealers.key,
+    //   dealerName: values.dealers.value,
+    //   description: values.models.description,
+    //   downPayment: values.capital,
+    //   machineCode: values.models.machineModel,
+    //   machineName: values.models.name,
+    //   machineTypeId: values.models.machineTypeId,
+    //   machineTypeName: values.models.machineTypeId,
+    //   price: values.totalPrice
+    // };
+    // dispatch(addCreditLabor(values_,TEMPLATEID));
   };
 
   render() {
@@ -39,7 +58,7 @@ class Labor extends React.Component {
           bindSubmit={this.handleBindSubmit}
           onSubmit={this.handleOnSubmit}
           dispatch={dispatch}
-          validate={addMachineValidate}
+          validate={addCreditLaborValidate}
         />
         <WhiteSpace />
         <WhiteSpace />
