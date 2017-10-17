@@ -9,7 +9,14 @@ export const modal = modalConfig => Component =>
   class ModalWrapper extends React.Component {
     render() {
       return (
-        <Modal visible={this.props.visible} {...modalConfig}>
+        <Modal
+          visible={this.props.visible}
+          {...modalConfig}
+          onClose={this.props.onClose}
+          closable={true}
+          style={{ marginTop: 80 }}
+          maskClosable={true}
+        >
           <Component {...this.props} />
         </Modal>
       );

@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { NavBar } from "antd-mobile";
 import { modal } from "@/utils/decorators";
 import { Distributor } from "@/actions";
 import { createPaginateSelector } from "@/reducers/selectors";
@@ -12,7 +11,7 @@ const growsSelector = createPaginateSelector("grows");
 @connect(state => ({
   machineData: growsSelector(state)
 }))
-@modal()
+@modal({ title: "选择品种" })
 class FoodBreedSelect extends React.Component {
   onEndReached = ({ value = {} }) => {
     this.props.dispatch(
@@ -86,14 +85,6 @@ class FoodBreedSelect extends React.Component {
     } = this.props.machineData;
     return (
       <div>
-        <NavBar
-          leftContent="关闭"
-          mode="light"
-          onLeftClick={() => this.props.onClose()}
-          rightContent="确定"
-        >
-          选择机型
-        </NavBar>
         <Table
           dataList={entities || []}
           totalCount={totalCount}

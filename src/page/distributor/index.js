@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { NavBar } from "antd-mobile";
 import { modal } from "@/utils/decorators";
 import { Distributor } from "@/actions";
 import { createPaginateSelector } from "@/reducers/selectors";
@@ -12,7 +11,7 @@ const distributorSelector = createPaginateSelector("distributors");
 @connect(state => ({
   distributors: distributorSelector(state)
 }))
-@modal()
+@modal({ title: "选择经销商" })
 class DistributorSelect extends React.Component {
   onEndReached = ({ value = {} }) => {
     this.props.dispatch(
@@ -84,13 +83,6 @@ class DistributorSelect extends React.Component {
     } = this.props.distributors;
     return (
       <div>
-        <NavBar
-          leftContent="关闭"
-          mode="light"
-          onLeftClick={() => this.props.onClose()}
-        >
-          选择经销商
-        </NavBar>
         <Table
           dataList={entities || []}
           totalCount={totalCount}

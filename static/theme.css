@@ -12,3 +12,14 @@
 .am-list-item .am-list-line .am-list-extra {
     flex-basis: 60% !important;
 }
+.am-modal-header {
+    padding: 15px 15px 15px !important;
+}
+.am-modal-close {
+    padding-top: 15px !important;
+    left: 15px !important;
+}
+.am-modal-content {
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+}

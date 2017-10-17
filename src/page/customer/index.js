@@ -14,7 +14,7 @@ const customersSelector = createPaginateSelector("customers");
     customers: customersSelector(state)
   };
 })
-@modal()
+@modal({ title: "选择客户" })
 class CustomerSelect extends React.Component {
   onEndReached = ({ value }) => {
     this.props.dispatch(Customer.listPaginator.loadNext(value));
@@ -73,13 +73,6 @@ class CustomerSelect extends React.Component {
     } = this.props.customers;
     return (
       <div>
-        <NavBar
-          leftContent="关闭"
-          mode="light"
-          onLeftClick={() => this.props.onClose()}
-        >
-          选择客户
-        </NavBar>
         <Table
           dataList={entities ? entities : []}
           totalCount={totalCount}
