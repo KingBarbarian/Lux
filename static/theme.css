@@ -16,7 +16,7 @@
     padding: 15px 15px 15px !important;
 }
 .am-modal-close {
-    padding-top: 15px !important;
+    top: 15px !important;
     left: 15px !important;
 }
 .am-modal-content {
