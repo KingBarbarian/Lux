@@ -29,14 +29,14 @@ export default {
           name: "totalPrice",
           label: "总价",
           placeholder: "请输入总价",
-          type: "text"
+          type: "number"
         },
         {
           fieldType: "inputItem",
           name: "applyAmount",
           label: "申请金额",
           placeholder: "请输入申请金额",
-          type: "text"
+          type: "number"
         },
         {
           fieldType: "inputItem",
