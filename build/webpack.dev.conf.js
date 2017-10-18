@@ -7,21 +7,19 @@ var config = require("../config");
 var merge = require("webpack-merge");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var OpenBrowserPlugin = require("open-browser-webpack-plugin");
-var FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 let isProd = process.env.NODE_ENV === "production";
 function resolve(dir) {
   return path.join(__dirname, "..", dir);
 }
 
 const baseWebpackConfig = {
-  entry: {
-    app: ["babel-polyfill", "./src/main.js"]
-  },
+  entry: ["react-hot-loader/patch", "./src/main.js"],
   devServer: {
     port: config.dev.port,
     contentBase: "./dist",
     hot: true
   },
+  devtool: "inline-source-map",
   output: {
     path: config.build.assetsRoot,
     filename: "[name].js",
@@ -40,52 +38,24 @@ const baseWebpackConfig = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        loader: (function() {
-          let _loader = ["babel-loader"];
-          if (config.dev.cssModules) {
-            _loader.push("webpack-module-hot-accept");
-          }
-          return _loader;
-        })(),
-        include: [resolve("src"), resolve("test")]
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: "url-loader",
-        options: {
-          limit: 10000,
-          name: utils.assetsPath("img/[name].[hash:7].[ext]")
-        }
-      },
-      {
-        test: /\.json$/,
-        loader: "json-loader"
-      },
-      {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: "url-loader",
-        options: {
-          limit: 10000,
-          name: utils.assetsPath("fonts/[name].[hash:7].[ext]")
-        }
+        use: ["babel-loader"],
+        include: [resolve("src")],
+        exclude: /node_modules/
       }
     ]
+  },
+  watchOptions: {
+    aggregateTimeout: 300,
+    poll: 1000
   }
 };
-
-Object.keys(baseWebpackConfig.entry).forEach(function(name) {
-  baseWebpackConfig.entry[name] = ["react-hot-loader/patch"].concat(
-    baseWebpackConfig.entry[name]
-  );
-  console.log(baseWebpackConfig.entry);
-});
 
 module.exports = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
   },
-  devtool: "#cheap-module-eval-source-map",
   plugins: [
+    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: "index.html",

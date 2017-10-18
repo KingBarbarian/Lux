@@ -7,11 +7,11 @@ import { AppContainer } from "react-hot-loader";
 
 const render = Component => {
   ReactDOM.render(
-    <Provider store={configureStore()}>
-      <AppContainer>
+    <AppContainer>
+      <Provider store={configureStore()}>
         <Component />
-      </AppContainer>
-    </Provider>,
+      </Provider>
+    </AppContainer>,
     document.getElementById("app")
   );
 };
@@ -19,8 +19,5 @@ const render = Component => {
 render(Routers);
 
 if (module.hot) {
-  const NextApp = require("@/routers").default;
-  module.hot.accept("@/routers", () => {
-    render(NextApp);
-  });
+  module.hot.accept();
 }
