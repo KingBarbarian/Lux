@@ -6,20 +6,22 @@ var webpack = require("webpack");
 var config = require("../config");
 var merge = require("webpack-merge");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
-var OpenBrowserPlugin = require("open-browser-webpack-plugin");
+var FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
 let isProd = process.env.NODE_ENV === "production";
 function resolve(dir) {
   return path.join(__dirname, "..", dir);
 }
 
 const baseWebpackConfig = {
-  entry: ["react-hot-loader/patch", "./src/main.js"],
+  entry: {
+    app: "./src/main.js"
+  },
   devServer: {
     port: config.dev.port,
     contentBase: "./dist",
     hot: true
   },
-  devtool: "inline-source-map",
+  devtool: "cheap-source-map",
   output: {
     path: config.build.assetsRoot,
     filename: "[name].js",
@@ -50,20 +52,26 @@ const baseWebpackConfig = {
   }
 };
 
+Object.keys(baseWebpackConfig.entry).forEach(function(name) {
+  baseWebpackConfig.entry[name] = [
+    "react-hot-loader/patch",
+    "./build/dev-client"
+  ].concat(baseWebpackConfig.entry[name]);
+  console.log(baseWebpackConfig.entry);
+});
+
 module.exports = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
   },
   plugins: [
-    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: "index.html",
       inject: true
     }),
-    new OpenBrowserPlugin({
-      url: `http://localhost:${config.dev.port}`
-    })
+    new FriendlyErrorsPlugin()
   ]
 });

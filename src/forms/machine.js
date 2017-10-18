@@ -13,7 +13,7 @@ export default {
         {
           fieldType: "selectItem",
           name: "dealers",
-          label: "经销商",
+          label: "经经销商",
           placeholder: "请选择经销商",
           sceneName: "DistributorSelect"
         },
