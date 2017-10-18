@@ -25,7 +25,7 @@ module.exports = {
     assetsPublicPath: "/",
     proxyTable: {},
     // 是否开启 css Module
-    cssModules: false,
+    cssModules: true,
     cssSourceMap: false
   }
 };

@@ -15,12 +15,12 @@ function resolve(dir) {
 
 const baseWebpackConfig = {
   entry: {
-    app: "./src/main.js"
+    app: ["babel-polyfill", "./src/main.js"]
   },
   devServer: {
     port: config.dev.port,
-    compress: true,
-    disableHostCheck: true
+    contentBase: "./dist",
+    hot: true
   },
   output: {
     path: config.build.assetsRoot,
@@ -42,7 +42,7 @@ const baseWebpackConfig = {
         test: /\.(js|jsx)$/,
         loader: (function() {
           let _loader = ["babel-loader"];
-          if (!isProd && config.dev.cssModules) {
+          if (config.dev.cssModules) {
             _loader.push("webpack-module-hot-accept");
           }
           return _loader;
@@ -77,6 +77,7 @@ Object.keys(baseWebpackConfig.entry).forEach(function(name) {
   baseWebpackConfig.entry[name] = ["react-hot-loader/patch"].concat(
     baseWebpackConfig.entry[name]
   );
+  console.log(baseWebpackConfig.entry);
 });
 
 module.exports = merge(baseWebpackConfig, {
@@ -86,13 +87,11 @@ module.exports = merge(baseWebpackConfig, {
   devtool: "#cheap-module-eval-source-map",
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: "index.html",
       inject: true
     }),
-    new FriendlyErrorsPlugin(),
     new OpenBrowserPlugin({
       url: `http://localhost:${config.dev.port}`
     })
