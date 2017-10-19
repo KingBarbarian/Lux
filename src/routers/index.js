@@ -5,11 +5,6 @@ import Message from "@/components/Message";
 import { User } from "@/actions";
 import CreditContainer from "@/containers/creditContainer";
 
-@connect(state => ({
-  visiable: state.message.isShowing,
-  content: state.message.content,
-  type: state.message.type
-}))
 class Router extends React.Component {
   // componentDidMount = () => {
   //   this.props.dispatch(User.getToken());

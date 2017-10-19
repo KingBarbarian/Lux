@@ -4,9 +4,6 @@ import { formValueSelector } from "redux-form";
 import UU from "../form";
 import { rctForm } from "rct-form";
 
-@connect(state => {
-  return { state };
-})
 @rctForm
 class FormWrapper extends React.Component {
   componentDidMount() {

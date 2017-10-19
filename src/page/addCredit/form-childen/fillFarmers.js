@@ -8,7 +8,6 @@ import { addCreditFillFarmers } from "@/actions";
 
 const TEMPLATEID = "AT10006";
 
-@connect()
 class FillFarmers extends React.Component {
   constructor(props) {
     super(props);

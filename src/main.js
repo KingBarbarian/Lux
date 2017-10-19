@@ -8,9 +8,7 @@ import { AppContainer } from "react-hot-loader";
 const render = Component => {
   ReactDOM.render(
     <AppContainer>
-      <Provider store={configureStore()}>
-        <Component />
-      </Provider>
+      <Component />
     </AppContainer>,
     document.getElementById("app")
   );

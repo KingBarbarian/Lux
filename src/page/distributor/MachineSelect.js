@@ -8,9 +8,6 @@ import tables from "@/tables";
 
 const machinesSelector = createPaginateSelector("machines");
 
-@connect(state => ({
-  machineData: machinesSelector(state)
-}))
 @modal({ title: "选择机型" })
 class MachineSelect extends React.Component {
   onEndReached = ({ value = {} }) => {

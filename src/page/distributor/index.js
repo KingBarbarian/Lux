@@ -8,9 +8,6 @@ import Table from "@/components/table";
 
 const distributorSelector = createPaginateSelector("distributors");
 
-@connect(state => ({
-  distributors: distributorSelector(state)
-}))
 @modal({ title: "选择经销商" })
 class DistributorSelect extends React.Component {
   onEndReached = ({ value = {} }) => {

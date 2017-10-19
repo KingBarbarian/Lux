@@ -8,7 +8,6 @@ import { addCreditLabor } from "@/actions";
 
 const TEMPLATEID = "AT10015";
 
-@connect()
 class Labor extends React.Component {
   constructor(props) {
     super(props);

@@ -8,9 +8,6 @@ import tables from "@/tables";
 
 const growsSelector = createPaginateSelector("grows");
 
-@connect(state => ({
-  machineData: growsSelector(state)
-}))
 @modal({ title: "选择品种" })
 class FoodBreedSelect extends React.Component {
   onEndReached = ({ value = {} }) => {

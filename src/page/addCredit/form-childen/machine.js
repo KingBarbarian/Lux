@@ -8,7 +8,6 @@ import { addCreditMachine } from "@/actions";
 
 const TEMPLATEID = "AT10004";
 
-@connect()
 class Machine extends React.Component {
   constructor(props) {
     super(props);

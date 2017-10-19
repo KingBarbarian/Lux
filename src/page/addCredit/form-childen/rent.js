@@ -8,7 +8,6 @@ import { addCreditRent } from "@/actions";
 
 const TEMPLATEID = "AT10014";
 
-@connect()
 class Rent extends React.Component {
   constructor(props) {
     super(props);

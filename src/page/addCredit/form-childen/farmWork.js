@@ -8,7 +8,6 @@ import { addCreditFarmWork } from "@/actions";
 
 const TEMPLATEID = "AT10017";
 
-@connect()
 class FarmWork extends React.Component {
   constructor(props) {
     super(props);

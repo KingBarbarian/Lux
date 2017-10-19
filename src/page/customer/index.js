@@ -9,11 +9,6 @@ import Table from "@/components/table";
 
 const customersSelector = createPaginateSelector("customers");
 
-@connect(state => {
-  return {
-    customers: customersSelector(state)
-  };
-})
 @modal({ title: "选择客户" })
 class CustomerSelect extends React.Component {
   onEndReached = ({ value }) => {
