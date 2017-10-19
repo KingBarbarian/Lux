@@ -12,14 +12,14 @@ export default {
         },
         {
           fieldType: "selectItem",
-          name: "collectFoodFarieties",
+          name: "grow",
           label: "收粮品种",
           placeholder: "请选择收粮品种",
-          sceneName: "CustomerSelect"
+          sceneName: "FoodBreedSelect"
         },
         {
           fieldType: "inputItem",
-          name: "numberMu",
+          name: "tonnage",
           label: "重量",
           placeholder: "请输入重量",
           type: "number"
@@ -29,14 +29,14 @@ export default {
           name: "totalPrice",
           label: "总价",
           placeholder: "请输入总价",
-          type: "text"
+          type: "number"
         },
         {
           fieldType: "inputItem",
-          name: "capital",
+          name: "applyAmount",
           label: "申请金额",
           placeholder: "请输入申请金额",
-          type: "text"
+          type: "number"
         },
         {
           fieldType: "inputItem",

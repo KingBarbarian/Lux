@@ -3,7 +3,10 @@ import { List, WhiteSpace, Button } from "antd-mobile";
 import { connect } from "react-redux";
 import Forms from "@/forms";
 import FormWrapper from "@/components/form-wrapper";
-import { addMachineValidate } from "@/validations";
+import { addCreditFillFarmersValidate } from "@/validations";
+import { addCreditFillFarmers } from "@/actions";
+
+const TEMPLATEID = "AT10006";
 
 @connect()
 class FillFarmers extends React.Component {
@@ -26,22 +29,38 @@ class FillFarmers extends React.Component {
   };
 
   handleOnSubmit = values => {
-    console.log(values);
+    const { dispatch } = this.props;
+    let values_ = {
+      applyAmount: values.applyAmount,
+      customerId: values.customer.key,
+      brandId: values.models.brandId,
+      brandName: values.models.brandName,
+      dealerId: values.dealers.key,
+      dealerName: values.dealers.value,
+      description: values.models.description,
+      machineCode: values.models.id,
+      machineName: values.models.name,
+      machineTypeId: values.models.machineTypeId,
+      machineTypeName: values.models.machineTypeId,
+      price: values.totalPrice,
+      subsidy: values.subsidies
+    };
+    dispatch(addCreditFillFarmers(values_, TEMPLATEID));
   };
 
   render() {
     const { dispatch } = this.props;
     let fillFarmersFormProp = Forms.FillFarmers;
     return (
-      <List renderHeader={() => "农机信贷"}>
+      <List>
         <FormWrapper
           formProp={fillFarmersFormProp}
-          initialValues={this.initialValues}
           bindSubmit={this.handleBindSubmit}
           onSubmit={this.handleOnSubmit}
           dispatch={dispatch}
-          validate={addMachineValidate}
+          validate={addCreditFillFarmersValidate}
         />
+        <WhiteSpace />
         <WhiteSpace />
         <div>
           <Button
@@ -52,6 +71,8 @@ class FillFarmers extends React.Component {
             保存
           </Button>
         </div>
+        <WhiteSpace />
+        <WhiteSpace />
       </List>
     );
   }

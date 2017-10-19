@@ -5,16 +5,79 @@ var utils = require("./utils");
 var webpack = require("webpack");
 var config = require("../config");
 var merge = require("webpack-merge");
-var baseWebpackConfig = require("./webpack.base.conf");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin");
 var NyanProgressPlugin = require("nyan-progress-webpack-plugin");
+let isProd = process.env.NODE_ENV === "production";
+function resolve(dir) {
+  return path.join(__dirname, "..", dir);
+}
+
 var env =
   process.env.NODE_ENV === "testing"
     ? require("../config/test.env")
     : config.build.env;
+
+var baseWebpackConfig = {
+  entry: {
+    app: "./src/main.js"
+  },
+  devServer: {
+    compress: true,
+    disableHostCheck: true
+  },
+  output: {
+    path: config.build.assetsRoot,
+    filename: "[name].js",
+    publicPath: isProd
+      ? config.build.assetsPublicPath
+      : config.dev.assetsPublicPath
+  },
+  resolve: {
+    extensions: [".js", ".jsx", ".json"],
+    modules: [resolve("src"), resolve("node_modules")],
+    alias: {
+      "@": resolve("src")
+    }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        loader: (function() {
+          let _loader = ["babel-loader"];
+          if (!isProd && config.dev.cssModules) {
+            _loader.push("webpack-module-hot-accept");
+          }
+          return _loader;
+        })(),
+        include: [resolve("src"), resolve("test")]
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: "url-loader",
+        options: {
+          limit: 10000,
+          name: utils.assetsPath("img/[name].[hash:7].[ext]")
+        }
+      },
+      {
+        test: /\.json$/,
+        loader: "json-loader"
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: "url-loader",
+        options: {
+          limit: 10000,
+          name: utils.assetsPath("fonts/[name].[hash:7].[ext]")
+        }
+      }
+    ]
+  }
+};
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -35,28 +98,21 @@ var webpackConfig = merge(baseWebpackConfig, {
       "process.env": env
     }),
     new webpack.optimize.UglifyJsPlugin({
+      comments: false, //去掉注释
       compress: {
         warnings: false
-        // drop_debugger: true,
-        // drop_console: true
       },
       sourceMap: false //打包是否需要带上source文件
     }),
-    // extract css into its own file
     new ExtractTextPlugin({
       filename: utils.assetsPath("css/[name].[contenthash:8].css"),
       allChunks: true
     }),
-    // Compress extracted CSS. We are using this plugin so that possible
-    // duplicated CSS from different components can be deduped.
     new OptimizeCSSPlugin({
       cssProcessorOptions: {
         safe: true
       }
     }),
-    // generate dist index.html with correct asset hash for caching.
-    // you can customize output by editing /index.html
-    // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename:
         process.env.NODE_ENV === "testing" ? "index.html" : config.build.index,
@@ -66,17 +122,12 @@ var webpackConfig = merge(baseWebpackConfig, {
         removeComments: true,
         collapseWhitespace: true,
         removeAttributeQuotes: true
-        // more options:
-        // https://github.com/kangax/html-minifier#options-quick-reference
       },
-      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: "dependency"
     }),
-    // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor",
       minChunks: function(module, count) {
-        // any required modules inside node_modules are extracted to vendor
         return (
           module.resource &&
           /\.js$/.test(module.resource) &&
@@ -84,13 +135,10 @@ var webpackConfig = merge(baseWebpackConfig, {
         );
       }
     }),
-    // extract webpack runtime and module manifest to its own file in order to
-    // prevent vendor hash from being updated whenever app bundle is updated
     new webpack.optimize.CommonsChunkPlugin({
       name: "manifest",
       chunks: ["vendor"]
     }),
-    // copy custom static assets
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, "../static"),
@@ -104,7 +152,6 @@ var webpackConfig = merge(baseWebpackConfig, {
 
 if (config.build.productionGzip) {
   var CompressionWebpackPlugin = require("compression-webpack-plugin");
-
   webpackConfig.plugins.push(
     new CompressionWebpackPlugin({
       asset: "[path].gz[query]",
@@ -113,7 +160,7 @@ if (config.build.productionGzip) {
         "\\.(" + config.build.productionGzipExtensions.join("|") + ")$"
       ),
       threshold: 10240,
-      minRatio: 0.8
+      minRatio: 0
     })
   );
 }

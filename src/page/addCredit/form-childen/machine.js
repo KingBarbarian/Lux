@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 import Forms from "@/forms";
 import FormWrapper from "@/components/form-wrapper";
 import { addMachineValidate } from "@/validations";
+import { addCreditMachine } from "@/actions";
+
+const TEMPLATEID = "AT10004";
 
 @connect()
 class Machine extends React.Component {
@@ -26,22 +29,38 @@ class Machine extends React.Component {
   };
 
   handleOnSubmit = values => {
-    console.log(values);
+    const { dispatch } = this.props;
+    let values_ = {
+      applyAmount: values.applyAmount,
+      customerId: values.customer.key,
+      brandId: values.models.brandId,
+      brandName: values.models.brandName,
+      dealerId: values.dealers.key,
+      dealerName: values.dealers.value,
+      description: values.models.description,
+      downPayment: values.capital,
+      machineCode: values.models.id,
+      machineName: values.models.name,
+      machineTypeId: values.models.machineTypeId,
+      machineTypeName: values.models.machineTypeId,
+      price: values.totalPrice
+    };
+    dispatch(addCreditMachine(values_, TEMPLATEID));
   };
 
   render() {
     const { dispatch } = this.props;
     let machineFormProp = Forms.Machine;
     return (
-      <List renderHeader={() => "农机信贷"}>
+      <List>
         <FormWrapper
           formProp={machineFormProp}
-          initialValues={this.initialValues}
           bindSubmit={this.handleBindSubmit}
           onSubmit={this.handleOnSubmit}
           dispatch={dispatch}
           validate={addMachineValidate}
         />
+        <WhiteSpace />
         <WhiteSpace />
         <div>
           <Button
@@ -52,6 +71,8 @@ class Machine extends React.Component {
             保存
           </Button>
         </div>
+        <WhiteSpace />
+        <WhiteSpace />
       </List>
     );
   }

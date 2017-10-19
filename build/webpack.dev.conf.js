@@ -1,43 +1,77 @@
 "use strict";
 
-var utils = require('./utils')
-var webpack = require('webpack')
-var config = require('../config')
-var merge = require('webpack-merge')
-var baseWebpackConfig = require('./webpack.base.conf')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-var env = process.env.NODE_ENV.trim()
+let path = require("path");
+var utils = require("./utils");
+var webpack = require("webpack");
+var config = require("../config");
+var merge = require("webpack-merge");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
+var FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin");
+let isProd = process.env.NODE_ENV === "production";
+function resolve(dir) {
+  return path.join(__dirname, "..", dir);
+}
 
-// add hot-reload related code to entry chunks
-Object.keys(baseWebpackConfig.entry).forEach(function (name) {
+const baseWebpackConfig = {
+  entry: {
+    app: "./src/main.js"
+  },
+  devServer: {
+    port: config.dev.port,
+    contentBase: "./dist",
+    hot: true
+  },
+  devtool: "cheap-source-map",
+  output: {
+    path: config.build.assetsRoot,
+    filename: "[name].js",
+    publicPath: isProd
+      ? config.build.assetsPublicPath
+      : config.dev.assetsPublicPath
+  },
+  resolve: {
+    extensions: [".js", ".jsx", ".json"],
+    modules: [resolve("src"), resolve("node_modules")],
+    alias: {
+      "@": resolve("src")
+    }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        use: ["babel-loader"],
+        include: [resolve("src")],
+        exclude: /node_modules/
+      }
+    ]
+  },
+  watchOptions: {
+    aggregateTimeout: 300,
+    poll: 1000
+  }
+};
+
+Object.keys(baseWebpackConfig.entry).forEach(function(name) {
   baseWebpackConfig.entry[name] = [
-    'react-hot-loader/patch',
-  ].concat(baseWebpackConfig.entry[name])
-})
+    "react-hot-loader/patch",
+    "./build/dev-client"
+  ].concat(baseWebpackConfig.entry[name]);
+  console.log(baseWebpackConfig.entry);
+});
 
 module.exports = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
   },
-  // cheap-module-eval-source-map is faster for development
-  devtool: '#cheap-module-eval-source-map',
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': config.dev.env,
-      __DEV__: env === 'development',
-      __PROD__: env === 'production',
-      __COMPONENT_DEVTOOLS__: false, // 是否使用组件形式的 Redux DevTools
-      __WHY_DID_YOU_UPDATE__: false // 是否检测不必要的组件重渲染
-    }),
-    // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'index.html',
+      filename: "index.html",
+      template: "index.html",
       inject: true
     }),
     new FriendlyErrorsPlugin()
   ]
-})
+});

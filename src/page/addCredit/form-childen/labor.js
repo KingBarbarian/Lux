@@ -3,7 +3,10 @@ import { List, WhiteSpace, Button } from "antd-mobile";
 import { connect } from "react-redux";
 import Forms from "@/forms";
 import FormWrapper from "@/components/form-wrapper";
-import { addMachineValidate } from "@/validations";
+import { addCreditLaborValidate } from "@/validations";
+import { addCreditLabor } from "@/actions";
+
+const TEMPLATEID = "AT10015";
 
 @connect()
 class Labor extends React.Component {
@@ -26,22 +29,30 @@ class Labor extends React.Component {
   };
 
   handleOnSubmit = values => {
-    console.log(values);
+    const { dispatch } = this.props;
+    let values_ = {
+      applyAmount: values.applyAmount,
+      content: values.content,
+      customerId: values.customer.key,
+      description: values.remark,
+      price: values.totalPrice
+    };
+    dispatch(addCreditLabor(values_, TEMPLATEID));
   };
 
   render() {
     const { dispatch } = this.props;
     let laborFormProp = Forms.Labor;
     return (
-      <List renderHeader={() => "农机信贷"}>
+      <List>
         <FormWrapper
           formProp={laborFormProp}
-          initialValues={this.initialValues}
           bindSubmit={this.handleBindSubmit}
           onSubmit={this.handleOnSubmit}
           dispatch={dispatch}
-          validate={addMachineValidate}
+          validate={addCreditLaborValidate}
         />
+        <WhiteSpace />
         <WhiteSpace />
         <div>
           <Button
@@ -52,6 +63,8 @@ class Labor extends React.Component {
             保存
           </Button>
         </div>
+        <WhiteSpace />
+        <WhiteSpace />
       </List>
     );
   }

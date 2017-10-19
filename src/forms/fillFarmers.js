@@ -13,37 +13,37 @@ export default {
         {
           fieldType: "selectItem",
           name: "dealers",
-          label: "经销商",
-          placeholder: "请选择经销商",
+          label: "购买处",
+          placeholder: "请选择购买处",
           sceneName: "DistributorSelect"
         },
         {
           fieldType: "selectItem",
           name: "models",
-          label: "购买机型",
-          placeholder: "请选择购买机型",
-          sceneName: "CustomerSelect"
+          label: "购买类型",
+          placeholder: "请选择购买类型",
+          sceneName: "MachineSelect"
         },
         {
           fieldType: "inputItem",
           name: "totalPrice",
-          label: "总价",
-          placeholder: "请输入总价",
-          type: "text"
+          label: "机器总价",
+          placeholder: "请输入机器总价",
+          type: "number"
         },
         {
           fieldType: "inputItem",
-          name: "applyPrice",
+          name: "applyAmount",
           label: "申请金额",
           placeholder: "请输入申请金额",
-          type: "text"
+          type: "number"
         },
         {
           fieldType: "inputItem",
           name: "subsidies",
           label: "补贴金额",
           placeholder: "请输入补贴金额",
-          type: "text"
+          type: "number"
         },
         {
           fieldType: "inputItem",

@@ -1,9 +1,12 @@
 import React from "react";
-import { List, WhiteSpace, Button } from "antd-mobile";
+import { List, WhiteSpace, Button, Flex } from "antd-mobile";
 import { connect } from "react-redux";
 import Forms from "@/forms";
 import FormWrapper from "@/components/form-wrapper";
-import { addMachineValidate } from "@/validations";
+import { addCreditFarmWorkValidate } from "@/validations";
+import { addCreditFarmWork } from "@/actions";
+
+const TEMPLATEID = "AT10017";
 
 @connect()
 class FarmWork extends React.Component {
@@ -26,22 +29,38 @@ class FarmWork extends React.Component {
   };
 
   handleOnSubmit = values => {
-    console.log(values);
+    const { dispatch } = this.props;
+    let values_ = {
+      applyAmount: values.applyAmount,
+      area: values.area,
+      customerId: values.customer.key,
+      description: values.remark,
+      farmWorkType: {
+        id: values.farmWorkType
+      },
+      growModel: values.breed.growModel,
+      growProductId: values.breed.id,
+      operationType: {
+        id: values.practices || values.farming
+      },
+      price: 50000
+    };
+    dispatch(addCreditFarmWork(values_, TEMPLATEID));
   };
 
   render() {
     const { dispatch } = this.props;
     let farmWorkFormProp = Forms.FarmWork;
     return (
-      <List renderHeader={() => "农机信贷"}>
+      <List>
         <FormWrapper
           formProp={farmWorkFormProp}
-          initialValues={this.initialValues}
           bindSubmit={this.handleBindSubmit}
           onSubmit={this.handleOnSubmit}
           dispatch={dispatch}
-          validate={addMachineValidate}
+          validate={addCreditFarmWorkValidate}
         />
+        <WhiteSpace />
         <WhiteSpace />
         <div>
           <Button
@@ -52,6 +71,9 @@ class FarmWork extends React.Component {
             保存
           </Button>
         </div>
+        <WhiteSpace />
+        <WhiteSpace />
+        <WhiteSpace />
       </List>
     );
   }

@@ -14,7 +14,7 @@ const customersSelector = createPaginateSelector("customers");
     customers: customersSelector(state)
   };
 })
-@modal()
+@modal({ title: "选择客户" })
 class CustomerSelect extends React.Component {
   onEndReached = ({ value }) => {
     this.props.dispatch(Customer.listPaginator.loadNext(value));
@@ -40,16 +40,6 @@ class CustomerSelect extends React.Component {
         <div
           style={{ display: "-webkit-box", display: "flex", padding: "15px" }}
         >
-          <img
-            style={{
-              height: "40px",
-              width: "40px",
-              marginRight: "15px",
-              borderRadius: "40px"
-            }}
-            src={"https://zos.alipayobjects.com/rmsportal/XmwCzSeJiqpkuMB.png"}
-            alt="icon"
-          />
           <div style={{ display: "inline-block" }}>
             <div
               style={{
@@ -59,7 +49,8 @@ class CustomerSelect extends React.Component {
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
                 maxWidth: "250px",
-                paddingBottom: "5px"
+                paddingBottom: "5px",
+                textAlign: "left"
               }}
             >
               {rowData.customerName}
@@ -82,13 +73,6 @@ class CustomerSelect extends React.Component {
     } = this.props.customers;
     return (
       <div>
-        <NavBar
-          leftContent="关闭"
-          mode="light"
-          onLeftClick={() => this.props.onClose()}
-        >
-          选择客户
-        </NavBar>
         <Table
           dataList={entities ? entities : []}
           totalCount={totalCount}

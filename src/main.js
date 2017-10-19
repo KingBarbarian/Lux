@@ -3,10 +3,21 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import Routers from "@/routers";
 import configureStore from "./stores/configureStore";
+import { AppContainer } from "react-hot-loader";
 
-ReactDOM.render(
-  <Provider store={configureStore()}>
-    <Routers />
-  </Provider>,
-  document.getElementById("app")
-);
+const render = Component => {
+  ReactDOM.render(
+    <AppContainer>
+      <Provider store={configureStore()}>
+        <Component />
+      </Provider>
+    </AppContainer>,
+    document.getElementById("app")
+  );
+};
+
+render(Routers);
+
+if (module.hot) {
+  module.hot.accept();
+}

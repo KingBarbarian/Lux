@@ -3,33 +3,34 @@ import { connect } from "react-redux";
 import { modal } from "@/utils/decorators";
 import { Distributor } from "@/actions";
 import { createPaginateSelector } from "@/reducers/selectors";
-import tables from "@/tables";
 import Table from "@/components/table";
+import tables from "@/tables";
 
-const distributorSelector = createPaginateSelector("distributors");
+const machinesSelector = createPaginateSelector("machines");
 
 @connect(state => ({
-  distributors: distributorSelector(state)
+  machineData: machinesSelector(state)
 }))
-@modal({ title: "选择经销商" })
-class DistributorSelect extends React.Component {
+@modal({ title: "选择机型" })
+class MachineSelect extends React.Component {
   onEndReached = ({ value = {} }) => {
     this.props.dispatch(
-      Distributor.listPaginator.loadNext(this.handleValue(value))
+      Distributor.machinesPaginator.loadNext(this.handleValue(value))
     );
   };
 
   onRefresh = ({ value = {} }) => {
     this.props.dispatch(
-      Distributor.listPaginator.refresh(this.handleValue(value))
+      Distributor.machinesPaginator.refresh(this.handleValue(value))
     );
   };
 
   handleValue = value => {
     let params = {};
+    if (!Array.isArray(value)) return params;
     const keyword = value.find(item => item.id === "keyword");
     if (keyword) {
-      params["queryName"] = keyword.value;
+      params["fuzzyAgrMachineNames"] = keyword.value;
     }
     return params;
   };
@@ -45,8 +46,9 @@ class DistributorSelect extends React.Component {
         onClick={() =>
           this.props.onClose({
             data: {
-              key: rowData.distributorId,
-              value: rowData.companyName
+              key: rowData.id,
+              value: rowData.name,
+              ...rowData
             }
           })}
       >
@@ -63,10 +65,10 @@ class DistributorSelect extends React.Component {
                 paddingBottom: "5px"
               }}
             >
-              {rowData.companyName}
+              {rowData.name}
             </div>
             <div style={{ fontSize: "14px", color: "#888", textAlign: "left" }}>
-              {rowData.distributorId}
+              {rowData.machineModel}
             </div>
           </div>
         </div>
@@ -80,7 +82,7 @@ class DistributorSelect extends React.Component {
       totalCount,
       isRefreshing,
       isFetching
-    } = this.props.distributors;
+    } = this.props.machineData;
     return (
       <div>
         <Table
@@ -92,13 +94,11 @@ class DistributorSelect extends React.Component {
           onEndReached={this.onEndReached}
           renderRow={this.renderRow}
           config={tables.distributorList}
-          placeholder="请选择经销商"
+          placeholder="请选择机型"
         />
       </div>
     );
   }
 }
 
-export default DistributorSelect;
-export { default as MachineSelect } from "./MachineSelect";
-export { default as FoodBreedSelect } from "./FoodBreedSelect";
+export default MachineSelect;

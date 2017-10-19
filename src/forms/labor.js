@@ -13,7 +13,7 @@ export default {
 
         {
           fieldType: "inputItem",
-          name: "numberMu",
+          name: "content",
           label: "用途描述",
           placeholder: "请输入用途描述",
           type: "text"
@@ -23,14 +23,14 @@ export default {
           name: "totalPrice",
           label: "总价",
           placeholder: "请输入总价",
-          type: "text"
+          type: "number"
         },
         {
           fieldType: "inputItem",
-          name: "capital",
+          name: "applyAmount",
           label: "申请金额",
           placeholder: "请输入申请金额",
-          type: "text"
+          type: "number"
         },
         {
           fieldType: "inputItem",

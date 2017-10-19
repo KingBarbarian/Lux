@@ -3,7 +3,10 @@ import { List, WhiteSpace, Button } from "antd-mobile";
 import { connect } from "react-redux";
 import Forms from "@/forms";
 import FormWrapper from "@/components/form-wrapper";
-import { addMachineValidate } from "@/validations";
+import { addCreditFoodValidate } from "@/validations";
+import { addCreditFood } from "@/actions";
+
+const TEMPLATEID = "AT10016";
 
 @connect()
 class Food extends React.Component {
@@ -26,22 +29,32 @@ class Food extends React.Component {
   };
 
   handleOnSubmit = values => {
-    console.log(values);
+    const { dispatch } = this.props;
+    let values_ = {
+      applyAmount: values.applyAmount,
+      customerId: values.customer.key,
+      description: values.remark,
+      growModel: values.grow.growModel,
+      growProductId: values.grow.id,
+      price: values.totalPrice,
+      tonnage: values.tonnage
+    };
+    dispatch(addCreditFood(values_, TEMPLATEID));
   };
 
   render() {
     const { dispatch } = this.props;
     let foodFormProp = Forms.Food;
     return (
-      <List renderHeader={() => "农机信贷"}>
+      <List>
         <FormWrapper
           formProp={foodFormProp}
-          initialValues={this.initialValues}
           bindSubmit={this.handleBindSubmit}
           onSubmit={this.handleOnSubmit}
           dispatch={dispatch}
-          validate={addMachineValidate}
+          validate={addCreditFoodValidate}
         />
+        <WhiteSpace />
         <WhiteSpace />
         <div>
           <Button
@@ -52,6 +65,8 @@ class Food extends React.Component {
             保存
           </Button>
         </div>
+        <WhiteSpace />
+        <WhiteSpace />
       </List>
     );
   }
