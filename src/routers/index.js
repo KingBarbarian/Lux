@@ -11,9 +11,9 @@ import CreditContainer from "@/containers/creditContainer";
   type: state.message.type
 }))
 class Router extends React.Component {
-  componentDidMount = () => {
-    this.props.dispatch(User.getToken());
-  };
+  // componentDidMount = () => {
+  //   this.props.dispatch(User.getToken());
+  // };
   render() {
     const { visiable, content, type } = this.props;
     return (
